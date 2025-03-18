@@ -15,7 +15,7 @@ public class CaptainCharacter : BaseCharacter
 
         RotateCamera();
         //Если нажата клавиша, то открываем UI(сделать свой скрипт), по отпусканию запускаем SwitchCharacter, в который суем индекс
-        //У скрипта тоже методы Open и Close, если индекс 0, то ничего не меняем?
+        //У скрипта тоже методы Open и Close, если индекс 0, то ничего не меняем? -Максим: бля я ебал создам попозже другой скрипт я пока чисто через manager UIум управляю
     }
 
     protected override void RotateCamera()
@@ -36,7 +36,7 @@ public class CaptainCharacter : BaseCharacter
     protected override void Start()
     {
         base.Start();
-        //Activate();
+        
     }
 
     public override void Activate()

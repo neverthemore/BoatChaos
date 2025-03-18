@@ -5,7 +5,7 @@ public abstract class BaseCharacter : MonoBehaviour
 {    
     [SerializeField] protected string _characterName;
     protected GameObject cmCameraGameObject;
-    protected CinemachineCamera cmCamera;
+    [SerializeField] protected CinemachineCamera cmCamera; //Надо сделать так, чтобы искалось в иерархии
     protected float mouseX;
     protected float mouseY;
     protected float sensivity = 10f;
@@ -18,7 +18,7 @@ public abstract class BaseCharacter : MonoBehaviour
     {
         camera = Camera.main;
         cmCameraGameObject = GameObject.Find("CM Camera");
-        cmCamera = cmCameraGameObject.GetComponent<CinemachineCamera>();
+        //cmCamera = GetComponentInChildren<CinemachineCamera>(); // надо что то вот тут придумать
     }
 
     protected virtual void Update()
@@ -28,7 +28,8 @@ public abstract class BaseCharacter : MonoBehaviour
             AIMod();
             return;
         }
-        camera.cullingMask &= ~(1 << LayerMask.NameToLayer("Head"));
+        //camera.cullingMask &= ~(1 << LayerMask.NameToLayer("Head")); !!!Это надо вернуть чтобы голову
+                                                                       //не просвечивало на камере!!!
     }
     
     protected virtual void RotateCamera()
@@ -39,7 +40,8 @@ public abstract class BaseCharacter : MonoBehaviour
     public virtual void Activate()
     {        
         _isActive = true;
-        cmCamera.Priority = 10;
+        if (cmCamera != null) cmCamera.Priority = 10;
+        else Debug.Log("null");
         //+ логика в наследнике
         //Поднять приоритет камеры
     }
@@ -47,7 +49,8 @@ public abstract class BaseCharacter : MonoBehaviour
     public virtual void Deactivate()
     {
         _isActive = false;
-        cmCamera.Priority = 0;
+        if (cmCamera != null) cmCamera.Priority = 0;
+        else Debug.Log("null");
         //+ логика
         //Опустить приоритет камеры
     }
