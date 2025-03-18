@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
-{
+{ 
     //Синглтон
     public static CharacterManager Instance;
 
