@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
-{ 
+{
     //Синглтон
     public static CharacterManager Instance;
 
@@ -34,8 +34,10 @@ public class CharacterManager : MonoBehaviour
         //Проверка на то, чтобы не выйти за пределы массива?
         _currentCharacter = characters[index];
         _currentCharacter.Activate();
-
     }
 
-
+    public void SwitchCharacterToCaptain() { SwitchCharacter(0); }
+    public void SwitchCharacterToFranky() { SwitchCharacter(1); }
+    public void SwitchCharacterToUsopp() { SwitchCharacter(2); }
+    public void SwitchCharacterToChopper() { SwitchCharacter(3); }
 }

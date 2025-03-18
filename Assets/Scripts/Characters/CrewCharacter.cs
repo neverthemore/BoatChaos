@@ -17,7 +17,7 @@ public class CrewCharacter : BaseCharacter
     protected override void RotateCamera()
     {
         Vector2 look = inputActions.Captain.Look.ReadValue<Vector2>();
-        cmCamera.transform.Rotate(new Vector3(look.y, look.x, 0f));
+        cmCameraGameObject.transform.Rotate(new Vector3(look.y, look.x, 0f));
     }
 
     protected override void Update()

@@ -4,7 +4,8 @@ using UnityEngine;
 public abstract class BaseCharacter : MonoBehaviour
 {    
     [SerializeField] protected string _characterName;
-    protected GameObject cmCamera;
+    protected GameObject cmCameraGameObject;
+    protected CinemachineCamera cmCamera;
     protected float mouseX;
     protected float mouseY;
     protected float sensivity = 10f;
@@ -16,7 +17,8 @@ public abstract class BaseCharacter : MonoBehaviour
     virtual protected void Start()
     {
         camera = Camera.main;
-        cmCamera = GameObject.Find("CM Camera");
+        cmCameraGameObject = GameObject.Find("CM Camera");
+        cmCamera = cmCameraGameObject.GetComponent<CinemachineCamera>();
     }
 
     protected virtual void Update()
@@ -37,6 +39,7 @@ public abstract class BaseCharacter : MonoBehaviour
     public virtual void Activate()
     {        
         _isActive = true;
+        cmCamera.Priority = 10;
         //+ логика в наследнике
         //ѕодн€ть приоритет камеры
     }
@@ -44,6 +47,7 @@ public abstract class BaseCharacter : MonoBehaviour
     public virtual void Deactivate()
     {
         _isActive = false;
+        cmCamera.Priority = 0;
         //+ логика
         //ќпустить приоритет камеры
     }

@@ -25,7 +25,7 @@ public class CaptainCharacter : BaseCharacter
         mouseY -= look.y * Time.deltaTime * sensivity;        
         mouseX = Mathf.Clamp(mouseX, -80f, 80f);
         mouseY = Mathf.Clamp(mouseY, -75f, 75f);
-        cmCamera.transform.localEulerAngles = new Vector3(mouseY, mouseX, 0f);
+        cmCameraGameObject.transform.localEulerAngles = new Vector3(mouseY, mouseX, 0f);
     }
 
     private void SwitchCharacter(int index)
