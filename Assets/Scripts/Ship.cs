@@ -4,18 +4,20 @@ using UnityEngine;
 public class Ship : MonoBehaviour
 {
     Wheel wheel;
-    Collider collider;
     CharacterController controller;
-    float _maxAngle = 24f;
-    float _shipSpeed = 2f;
-    float _maxIncline = 6f;
+
+    [Header("Wheel Settings")]
+    [SerializeField] private float _maxAngle = 24f;
+    [SerializeField] private float _shipSpeed = 2f;
+    [SerializeField] private float _maxIncline = 6f;
+
     float _incline = 1f;
     bool _rightIncline = true;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+
     void Start()
     {
         wheel = FindAnyObjectByType<Wheel>();
-        collider = GetComponent<Collider>();
         controller = GetComponent<CharacterController>();
     }
 
@@ -39,7 +41,6 @@ public class Ship : MonoBehaviour
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, shipAngle, _incline);
     }
 
-    // Update is called once per frame
     void Update()
     {
         //MoveShip();

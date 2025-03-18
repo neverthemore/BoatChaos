@@ -21,12 +21,14 @@ public abstract class BaseCharacter : MonoBehaviour
     {
         _isActive = true;
         //+ логика в наследнике
+        //ѕодн€ть приоритет камеры
     }
 
     public virtual void Deactivate()
     {
         _isActive = false;
         //+ логика
+        //ќпустить приоритет камеры
     }
 
     protected virtual void AIMod()
