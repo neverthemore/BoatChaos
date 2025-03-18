@@ -1,18 +1,31 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CaptainCharacter : BaseCharacter
 {
     //Капитан стоит у штурвала, двигаться не может
     //Может взаимодействовать со штурвалом (Максим)
     //Может вызвать круг, для того чтобы поменять персонажа
-
+    InputSystem_Actions inputActions;
     [SerializeField] ChoiceWheel _choiceWheel; //Прокинуть зависимость надо как-то
 
     protected override void Update()
     {
         base.Update();
+
+        RotateCamera();
         //Если нажата клавиша, то открываем UI(сделать свой скрипт), по отпусканию запускаем SwitchCharacter, в который суем индекс
         //У скрипта тоже методы Open и Close, если индекс 0, то ничего не меняем?
+    }
+
+    protected override void RotateCamera()
+    {
+        Vector2 look = inputActions.Captain.Look.ReadValue<Vector2>();
+        mouseX += look.x * Time.deltaTime * sensivity;
+        mouseY -= look.y * Time.deltaTime * sensivity;        
+        mouseX = Mathf.Clamp(mouseX, -80f, 80f);
+        mouseY = Mathf.Clamp(mouseY, -75f, 75f);
+        cmCamera.transform.localEulerAngles = new Vector3(mouseY, mouseX, 0f);
     }
 
     private void SwitchCharacter(int index)
@@ -20,11 +33,17 @@ public class CaptainCharacter : BaseCharacter
         CharacterManager.Instance.SwitchCharacter(index);
     }
 
-
+    protected override void Start()
+    {
+        base.Start();
+        //Activate();
+    }
 
     public override void Activate()
     {
         base.Activate();
+        inputActions = new InputSystem_Actions();
+        inputActions.Enable();
         //Меняем камеру, включаем управление
     }
 

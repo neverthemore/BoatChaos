@@ -9,10 +9,15 @@ public class CrewCharacter : BaseCharacter
     float _speedOfMoving = 5f;
     //Команда, может двигаться и ходить в отличие от кэпа
 
-    private void Awake()
+    override protected void Start()
     {
         controller = GetComponent<CharacterController>();
         inputActions = new InputSystem_Actions();
+    }
+    protected override void RotateCamera()
+    {
+        Vector2 look = inputActions.Captain.Look.ReadValue<Vector2>();
+        cmCamera.transform.Rotate(new Vector3(look.y, look.x, 0f));
     }
 
     protected override void Update()

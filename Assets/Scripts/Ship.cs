@@ -9,7 +9,7 @@ public class Ship : MonoBehaviour
     [Header("Ship Settings")]
     [SerializeField] private float _maxAngle = 24f;
     [SerializeField] private float _shipSpeed = 2f;
-    [SerializeField] private float _maxIncline = 6f;
+    [SerializeField] private float _maxIncline = 10f;
 
     float _incline = 1f;
     bool _rightIncline = true;
