@@ -108,6 +108,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CircleMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""5432e505-187b-4158-90f7-98971897cd60"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,109 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Manage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83df9043-7ecc-491d-addc-3b5716bdbe26"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CircleMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Crew"",
+            ""id"": ""7e287b48-b5fe-4fe5-a417-6b1a9775c6f2"",
+            ""actions"": [
+                {
+                    ""name"": ""Leave"",
+                    ""type"": ""Button"",
+                    ""id"": ""a671e486-6858-4d43-ad75-c9efcded7129"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""28af68bc-7a0e-48e1-a4e1-f91d1af0a84f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f9e046cc-5e3f-49f6-8dee-6e53992c6439"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Leave"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""e41f21c8-a49a-435a-9994-d27f33c85b61"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""215d122c-0e8d-4d2b-95d9-14f2de1bd0c3"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""dbf9b70a-ae13-449f-bffc-e049b1cc3222"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""0bb16532-8c77-44ba-a1f0-b41b97a9d450"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""7771ed5a-1f39-4c4e-b8e4-a21d1e6d689e"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -225,11 +337,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Captain = asset.FindActionMap("Captain", throwIfNotFound: true);
         m_Captain_Manage = m_Captain.FindAction("Manage", throwIfNotFound: true);
         m_Captain_Look = m_Captain.FindAction("Look", throwIfNotFound: true);
+        m_Captain_CircleMenu = m_Captain.FindAction("CircleMenu", throwIfNotFound: true);
+        // Crew
+        m_Crew = asset.FindActionMap("Crew", throwIfNotFound: true);
+        m_Crew_Leave = m_Crew.FindAction("Leave", throwIfNotFound: true);
+        m_Crew_Move = m_Crew.FindAction("Move", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
     {
         UnityEngine.Debug.Assert(!m_Captain.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Captain.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Crew.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Crew.Disable() has not been called.");
     }
 
     /// <summary>
@@ -307,6 +425,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private List<ICaptainActions> m_CaptainActionsCallbackInterfaces = new List<ICaptainActions>();
     private readonly InputAction m_Captain_Manage;
     private readonly InputAction m_Captain_Look;
+    private readonly InputAction m_Captain_CircleMenu;
     /// <summary>
     /// Provides access to input actions defined in input action map "Captain".
     /// </summary>
@@ -326,6 +445,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Captain/Look".
         /// </summary>
         public InputAction @Look => m_Wrapper.m_Captain_Look;
+        /// <summary>
+        /// Provides access to the underlying input action "Captain/CircleMenu".
+        /// </summary>
+        public InputAction @CircleMenu => m_Wrapper.m_Captain_CircleMenu;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -358,6 +481,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @CircleMenu.started += instance.OnCircleMenu;
+            @CircleMenu.performed += instance.OnCircleMenu;
+            @CircleMenu.canceled += instance.OnCircleMenu;
         }
 
         /// <summary>
@@ -375,6 +501,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @CircleMenu.started -= instance.OnCircleMenu;
+            @CircleMenu.performed -= instance.OnCircleMenu;
+            @CircleMenu.canceled -= instance.OnCircleMenu;
         }
 
         /// <summary>
@@ -408,6 +537,113 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="CaptainActions" /> instance referencing this action map.
     /// </summary>
     public CaptainActions @Captain => new CaptainActions(this);
+
+    // Crew
+    private readonly InputActionMap m_Crew;
+    private List<ICrewActions> m_CrewActionsCallbackInterfaces = new List<ICrewActions>();
+    private readonly InputAction m_Crew_Leave;
+    private readonly InputAction m_Crew_Move;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Crew".
+    /// </summary>
+    public struct CrewActions
+    {
+        private @InputSystem_Actions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public CrewActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Crew/Leave".
+        /// </summary>
+        public InputAction @Leave => m_Wrapper.m_Crew_Leave;
+        /// <summary>
+        /// Provides access to the underlying input action "Crew/Move".
+        /// </summary>
+        public InputAction @Move => m_Wrapper.m_Crew_Move;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Crew; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="CrewActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(CrewActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="CrewActions" />
+        public void AddCallbacks(ICrewActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CrewActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CrewActionsCallbackInterfaces.Add(instance);
+            @Leave.started += instance.OnLeave;
+            @Leave.performed += instance.OnLeave;
+            @Leave.canceled += instance.OnLeave;
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="CrewActions" />
+        private void UnregisterCallbacks(ICrewActions instance)
+        {
+            @Leave.started -= instance.OnLeave;
+            @Leave.performed -= instance.OnLeave;
+            @Leave.canceled -= instance.OnLeave;
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="CrewActions.UnregisterCallbacks(ICrewActions)" />.
+        /// </summary>
+        /// <seealso cref="CrewActions.UnregisterCallbacks(ICrewActions)" />
+        public void RemoveCallbacks(ICrewActions instance)
+        {
+            if (m_Wrapper.m_CrewActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="CrewActions.AddCallbacks(ICrewActions)" />
+        /// <seealso cref="CrewActions.RemoveCallbacks(ICrewActions)" />
+        /// <seealso cref="CrewActions.UnregisterCallbacks(ICrewActions)" />
+        public void SetCallbacks(ICrewActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CrewActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CrewActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="CrewActions" /> instance referencing this action map.
+    /// </summary>
+    public CrewActions @Crew => new CrewActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -494,5 +730,34 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLook(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "CircleMenu" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCircleMenu(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Crew" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="CrewActions.AddCallbacks(ICrewActions)" />
+    /// <seealso cref="CrewActions.RemoveCallbacks(ICrewActions)" />
+    public interface ICrewActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Leave" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLeave(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMove(InputAction.CallbackContext context);
     }
 }

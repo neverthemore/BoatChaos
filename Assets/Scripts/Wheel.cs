@@ -17,8 +17,8 @@ public class Wheel : MonoBehaviour
         float input = inputActions.Captain.Manage.ReadValue<float>();
         
         if (input > 0) _currentAngle += _angularSpeed * Time.deltaTime;
-        else if (input < 0) _currentAngle -= _angularSpeed * Time.deltaTime;
-        Debug.Log(input);
-        transform.localEulerAngles = new Vector3(-90f, _currentAngle, 0f);
+        else if (input < 0) _currentAngle -= _angularSpeed * Time.deltaTime;        
+        transform.localEulerAngles = new Vector3(0f, _currentAngle, 0f);
     }
+    public float GetCurrentAngle() { return _currentAngle; }
 }
