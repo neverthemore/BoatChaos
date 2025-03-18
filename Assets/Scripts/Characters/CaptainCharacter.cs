@@ -10,10 +10,6 @@ public class CaptainCharacter : BaseCharacter
     {
         if (!_isActive) return; //Если не активный, то ничего не работает (вообще надо сделать, чтобы работал другой скрипт ИИ
 
-        else
-        {
-            
-        }
     }
 
 
