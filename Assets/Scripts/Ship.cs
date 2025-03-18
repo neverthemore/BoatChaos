@@ -6,7 +6,7 @@ public class Ship : MonoBehaviour
     Wheel wheel;
     CharacterController controller;
 
-    [Header("Wheel Settings")]
+    [Header("Ship Settings")]
     [SerializeField] private float _maxAngle = 24f;
     [SerializeField] private float _shipSpeed = 2f;
     [SerializeField] private float _maxIncline = 6f;
