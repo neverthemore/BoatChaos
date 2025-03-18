@@ -7,6 +7,16 @@ public abstract class BaseCharacter : MonoBehaviour
 
     protected bool _isActive;
 
+    protected virtual void Update()
+    {
+        if (!_isActive)
+        {
+            AIMod();
+            return;
+        }
+
+    }
+    
     public virtual void Activate()
     {
         _isActive = true;
@@ -17,5 +27,10 @@ public abstract class BaseCharacter : MonoBehaviour
     {
         _isActive = false;
         //+ логика
+    }
+
+    protected virtual void AIMod()
+    {
+
     }
 }

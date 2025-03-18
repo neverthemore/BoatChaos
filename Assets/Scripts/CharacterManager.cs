@@ -24,7 +24,7 @@ public class CharacterManager : MonoBehaviour
         SwitchCharacter(0);
     }
 
-    private void SwitchCharacter(int index)
+    public void SwitchCharacter(int index)
     {
         if (_currentCharacter != null)
         {
