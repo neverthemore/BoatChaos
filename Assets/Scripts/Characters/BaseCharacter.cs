@@ -4,7 +4,8 @@ using UnityEngine;
 public abstract class BaseCharacter : MonoBehaviour
 {    
     [SerializeField] protected string _characterName;
-    protected GameObject cmCamera;
+    protected GameObject cmCameraGameObject;
+    [SerializeField] protected CinemachineCamera cmCamera; //Надо сделать так, чтобы искалось в иерархии
     protected float mouseX;
     protected float mouseY;
     protected float sensivity = 10f;
@@ -16,7 +17,9 @@ public abstract class BaseCharacter : MonoBehaviour
     virtual protected void Start()
     {
         camera = Camera.main;
-        cmCamera = GameObject.Find("CM Camera");
+        //cmCameraGameObject = GameObject.Find("CM Camera" + _characterName);
+        //cmCameraGameObject = GameObject.Find("CM Camera");
+        //cmCamera = GetComponentInChildren<CinemachineCamera>(); // надо что то вот тут придумать
     }
 
     protected virtual void Update()
@@ -26,7 +29,8 @@ public abstract class BaseCharacter : MonoBehaviour
             AIMod();
             return;
         }
-        camera.cullingMask &= ~(1 << LayerMask.NameToLayer("Head"));
+        //camera.cullingMask &= ~(1 << LayerMask.NameToLayer("Head")); !!!Это надо вернуть чтобы голову
+                                                                       //не просвечивало на камере!!!
     }
     
     protected virtual void RotateCamera()
@@ -37,13 +41,16 @@ public abstract class BaseCharacter : MonoBehaviour
     public virtual void Activate()
     {        
         _isActive = true;
-        //+ логика в наследнике
+        if (cmCamera != null) cmCamera.Priority = 10;        
+        cmCameraGameObject = GameObject.Find("CM Camera" + _characterName);
+                //+ логика в наследнике
         //Поднять приоритет камеры
     }
 
     public virtual void Deactivate()
     {
         _isActive = false;
+        if (cmCamera != null) cmCamera.Priority = 0;        
         //+ логика
         //Опустить приоритет камеры
     }

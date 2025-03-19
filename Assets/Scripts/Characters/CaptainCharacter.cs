@@ -7,7 +7,7 @@ public class CaptainCharacter : BaseCharacter
     //Может взаимодействовать со штурвалом (Максим)
     //Может вызвать круг, для того чтобы поменять персонажа
     InputSystem_Actions inputActions;
-    [SerializeField] ChoiceWheel _choiceWheel; //Прокинуть зависимость надо как-то
+    //[SerializeField] ChoiceWheel _choiceWheel; //Прокинуть зависимость надо как-то
 
     protected override void Update()
     {
@@ -15,7 +15,7 @@ public class CaptainCharacter : BaseCharacter
 
         RotateCamera();
         //Если нажата клавиша, то открываем UI(сделать свой скрипт), по отпусканию запускаем SwitchCharacter, в который суем индекс
-        //У скрипта тоже методы Open и Close, если индекс 0, то ничего не меняем?
+        //У скрипта тоже методы Open и Close, если индекс 0, то ничего не меняем? -Максим: бля я ебал создам попозже другой скрипт я пока чисто через manager UIум управляю
     }
 
     protected override void RotateCamera()
@@ -25,7 +25,7 @@ public class CaptainCharacter : BaseCharacter
         mouseY -= look.y * Time.deltaTime * sensivity;        
         mouseX = Mathf.Clamp(mouseX, -80f, 80f);
         mouseY = Mathf.Clamp(mouseY, -75f, 75f);
-        cmCamera.transform.localEulerAngles = new Vector3(mouseY, mouseX, 0f);
+        cmCameraGameObject.transform.localEulerAngles = new Vector3(mouseY, mouseX, 0f);
     }
 
     private void SwitchCharacter(int index)
@@ -36,7 +36,7 @@ public class CaptainCharacter : BaseCharacter
     protected override void Start()
     {
         base.Start();
-        //Activate();
+        
     }
 
     public override void Activate()
