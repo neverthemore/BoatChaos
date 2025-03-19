@@ -27,7 +27,7 @@ public class ChoiceWheel : MonoBehaviour
     private void Start()
     {
         inputActions = new InputSystem_Actions();
-        manager = GetComponentInChildren<CharacterManager>();
+        manager = CharacterManager.Instance;
         inputActions.Enable();
         wheel = GameObject.Find("Wheel");
         wheel.SetActive(false);
@@ -35,7 +35,7 @@ public class ChoiceWheel : MonoBehaviour
 
     private void Update()
     {
-        _selected = inputActions.Captain.CircleMenu.IsPressed() ;
+        _selected = inputActions.Captain.CircleMenu.IsPressed();
         if (_selected) Open();
         else Close();
     }

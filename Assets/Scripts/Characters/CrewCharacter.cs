@@ -1,4 +1,5 @@
 using NUnit.Framework.Constraints;
+using Unity.Jobs;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,15 +30,19 @@ public class CrewCharacter : BaseCharacter
 
     protected override void Update()
     {
-        base.Update();
+        if (_isActive)
+        {
+            base.Update();
+
+            Move();
+
+            RotateCamera();
+
+            //Если нажали ESC, то возврат к кэпу       //сделал через инпут систему
+            if (inputActions.Crew.Leave.IsPressed())
+                SwitchCharacter();
+        }
         
-        Move();
-
-        RotateCamera();
-
-        //Если нажали ESC, то возврат к кэпу       //сделал через инпут систему
-        if (inputActions.Crew.Leave.IsPressed()) 
-            SwitchCharacter();
     }  
     private void Move()
     {
