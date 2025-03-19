@@ -7,7 +7,7 @@ public class CaptainCharacter : BaseCharacter
     //Может взаимодействовать со штурвалом (Максим)
     //Может вызвать круг, для того чтобы поменять персонажа
     InputSystem_Actions inputActions;
-    [SerializeField] ChoiceWheel _choiceWheel; //Прокинуть зависимость надо как-то
+    //[SerializeField] ChoiceWheel _choiceWheel; //Прокинуть зависимость надо как-то
 
     protected override void Update()
     {

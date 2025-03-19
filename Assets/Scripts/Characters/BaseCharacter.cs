@@ -17,7 +17,8 @@ public abstract class BaseCharacter : MonoBehaviour
     virtual protected void Start()
     {
         camera = Camera.main;
-        cmCameraGameObject = GameObject.Find("CM Camera");
+        //cmCameraGameObject = GameObject.Find("CM Camera" + _characterName);
+        //cmCameraGameObject = GameObject.Find("CM Camera");
         //cmCamera = GetComponentInChildren<CinemachineCamera>(); // надо что то вот тут придумать
     }
 
@@ -40,17 +41,16 @@ public abstract class BaseCharacter : MonoBehaviour
     public virtual void Activate()
     {        
         _isActive = true;
-        if (cmCamera != null) cmCamera.Priority = 10;
-        else Debug.Log("null");
-        //+ логика в наследнике
+        if (cmCamera != null) cmCamera.Priority = 10;        
+        cmCameraGameObject = GameObject.Find("CM Camera" + _characterName);
+                //+ логика в наследнике
         //Поднять приоритет камеры
     }
 
     public virtual void Deactivate()
     {
         _isActive = false;
-        if (cmCamera != null) cmCamera.Priority = 0;
-        else Debug.Log("null");
+        if (cmCamera != null) cmCamera.Priority = 0;        
         //+ логика
         //Опустить приоритет камеры
     }
