@@ -1,5 +1,7 @@
+using System.Data;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public abstract class BaseCharacter : MonoBehaviour
 {    
@@ -7,6 +9,7 @@ public abstract class BaseCharacter : MonoBehaviour
     protected GameObject cmCameraGameObject;
     [SerializeField] protected CinemachineCamera cmCamera; //Ќадо сделать так, чтобы искалось в иерархии
     protected float mouseX;
+    InputSystem_Actions inputActions;
     protected float mouseY;
     protected float sensivity = 10f;
     Camera camera;
@@ -17,9 +20,8 @@ public abstract class BaseCharacter : MonoBehaviour
     virtual protected void Start()
     {
         camera = Camera.main;
-        //cmCameraGameObject = GameObject.Find("CM Camera" + _characterName);
-        //cmCameraGameObject = GameObject.Find("CM Camera");
-        //cmCamera = GetComponentInChildren<CinemachineCamera>(); // надо что то вот тут придумать
+        Cursor.visible = false;
+        inputActions = new InputSystem_Actions();        
     }
 
     protected virtual void Update()
@@ -42,17 +44,13 @@ public abstract class BaseCharacter : MonoBehaviour
     {        
         _isActive = true;
         if (cmCamera != null) cmCamera.Priority = 10;        
-        cmCameraGameObject = GameObject.Find("CM Camera" + _characterName);
-                //+ логика в наследнике
-        //ѕодн€ть приоритет камеры
+        cmCameraGameObject = GameObject.Find("CM Camera" + _characterName);                
     }
 
     public virtual void Deactivate()
     {
         _isActive = false;
         if (cmCamera != null) cmCamera.Priority = 0;        
-        //+ логика
-        //ќпустить приоритет камеры
     }
 
     protected virtual void AIMod()

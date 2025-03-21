@@ -1132,6 +1132,7 @@ GameObject:
   - component: {fileID: 417258210}
   - component: {fileID: 417258209}
   - component: {fileID: 417258208}
+  - component: {fileID: 417258211}
   m_Layer: 5
   m_Name: ButtonDown
   m_TagString: Untagged
@@ -1252,6 +1253,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417258206}
   m_CullTransparentMesh: 1
+--- !u!114 &417258211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417258206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1290824853}
+          m_TargetAssemblyTypeName: ChoiceWheel, Assembly-CSharp
+          m_MethodName: setSelectionDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &455408101 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: dd9d3a1e62a2ebe49bdba9f029e67466, type: 3}
@@ -1269,6 +1299,7 @@ GameObject:
   - component: {fileID: 506362754}
   - component: {fileID: 506362753}
   - component: {fileID: 506362752}
+  - component: {fileID: 506362755}
   m_Layer: 5
   m_Name: ButtonRight
   m_TagString: Untagged
@@ -1389,6 +1420,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506362750}
   m_CullTransparentMesh: 1
+--- !u!114 &506362755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506362750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1290824853}
+          m_TargetAssemblyTypeName: ChoiceWheel, Assembly-CSharp
+          m_MethodName: setSelectionRight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &566381857 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 757819ff114ce3f488d254e7fb9bf666, type: 3}
@@ -1801,6 +1861,7 @@ GameObject:
   - component: {fileID: 768312961}
   - component: {fileID: 768312960}
   - component: {fileID: 768312959}
+  - component: {fileID: 768312962}
   m_Layer: 5
   m_Name: ButtonUp
   m_TagString: Untagged
@@ -1921,6 +1982,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768312957}
   m_CullTransparentMesh: 1
+--- !u!114 &768312962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768312957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1290824853}
+          m_TargetAssemblyTypeName: ChoiceWheel, Assembly-CSharp
+          m_MethodName: setSelectionUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &960664766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2963,6 +3053,7 @@ GameObject:
   - component: {fileID: 1620097805}
   - component: {fileID: 1620097807}
   - component: {fileID: 1620097806}
+  - component: {fileID: 1620097808}
   m_Layer: 5
   m_Name: Wheel
   m_TagString: Untagged
@@ -3031,6 +3122,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1620097804}
   m_CullTransparentMesh: 1
+--- !u!225 &1620097808
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620097804}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!4 &1655808411 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 52137504385b5934c9c787ad65cb8d0f, type: 3}
@@ -3304,6 +3407,7 @@ GameObject:
   - component: {fileID: 1818763265}
   - component: {fileID: 1818763264}
   - component: {fileID: 1818763263}
+  - component: {fileID: 1818763266}
   m_Layer: 5
   m_Name: ButtonLeft
   m_TagString: Untagged
@@ -3424,6 +3528,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818763261}
   m_CullTransparentMesh: 1
+--- !u!114 &1818763266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818763261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1290824853}
+          m_TargetAssemblyTypeName: ChoiceWheel, Assembly-CSharp
+          m_MethodName: setSelectionLeft
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &1904920759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f6356b0fd1f40ea448946884c31ebf93, type: 3}
