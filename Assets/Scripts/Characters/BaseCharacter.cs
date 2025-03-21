@@ -21,7 +21,7 @@ public abstract class BaseCharacter : MonoBehaviour
     {
         camera = Camera.main;
         Cursor.visible = false;
-        //inputActions = new InputSystem_Actions();        
+        inputActions = new InputSystem_Actions();        
     }
 
     protected virtual void Update()
