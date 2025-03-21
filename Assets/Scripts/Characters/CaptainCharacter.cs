@@ -36,13 +36,12 @@ public class CaptainCharacter : BaseCharacter
     protected override void Start()
     {
         base.Start();
-        
+        inputActions = new InputSystem_Actions();
     }
 
     public override void Activate()
     {
-        base.Activate();
-        inputActions = new InputSystem_Actions();
+        base.Activate();        
         inputActions.Enable();
         //Меняем камеру, включаем управление
     }
@@ -50,5 +49,6 @@ public class CaptainCharacter : BaseCharacter
     public override void Deactivate()
     {
         base.Deactivate();
+        inputActions.Disable();
     }
 }
