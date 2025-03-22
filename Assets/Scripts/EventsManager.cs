@@ -1,15 +1,23 @@
+using NUnit.Framework;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class EventsManager : MonoBehaviour
 {
     public static EventsManager Instance;
-    [SerializeField] private Event[] events;
+
+    [SerializeField] private Event[] events; //Наверное лучше списком
+    private List<ShipEvent> _activeEvents = new();
+
     [SerializeField]float timerDuration = 10f;
     float timeRemaining;
     bool isTimerRunning = false;
     int _totalPriority = 0;
+
+    private void Awake() => Instance = this;
+    
 
     void Start()
     {
@@ -23,7 +31,7 @@ public class EventsManager : MonoBehaviour
         isTimerRunning = true;
     }
        
-    public void StartChosenEvent(Event name) 
+    public void StartChosenEvent(ShipEvent name) 
     {
         Debug.Log("Starting event: " + name);
         //Старт через сам класс Event
