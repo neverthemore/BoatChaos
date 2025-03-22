@@ -7,6 +7,7 @@ public class CaptainCharacter : BaseCharacter
     //Может взаимодействовать со штурвалом (Максим)
     //Может вызвать круг, для того чтобы поменять персонажа
     InputSystem_Actions inputActions;
+    [SerializeField] Wheel wheel;
     //[SerializeField] ChoiceWheel _choiceWheel; //Прокинуть зависимость надо как-то
 
     protected override void Update()
@@ -36,12 +37,14 @@ public class CaptainCharacter : BaseCharacter
     protected override void Start()
     {
         base.Start();
+        //wheel = GetComponent<Wheel>();
         inputActions = new InputSystem_Actions();
     }
 
     public override void Activate()
     {
-        base.Activate();        
+        base.Activate();
+        wheel.SetRotation(true);
         //inputActions.Enable();
         //Меняем камеру, включаем управление
     }
@@ -49,6 +52,7 @@ public class CaptainCharacter : BaseCharacter
     public override void Deactivate()
     {
         base.Deactivate();
+        wheel.SetRotation(false);
         //inputActions.Disable();
     }
 }

@@ -21,7 +21,7 @@ public class ChoiceWheel : MonoBehaviour
 
     public void Open()
     {
-        wheelCanvasGroup.alpha = 1f;
+        wheelCanvasGroup.alpha = 1f;        
         Cursor.visible = true;
         //Показываем колесо, включаем мышку, далее в зависимости от положения меняем _currentSelection
         //Ну и анимация мб, но это уже UI (подсветка выбранного в UI в данный момент перса)
@@ -34,7 +34,7 @@ public class ChoiceWheel : MonoBehaviour
         {            
             manager.SwitchCharacter(_currentSelection);
         }
-        wheelCanvasGroup.alpha = 0f;
+        wheelCanvasGroup.alpha = 0f;        
         Cursor.visible = false;
         //Закрытие колеса и тд
     }
@@ -55,15 +55,15 @@ public class ChoiceWheel : MonoBehaviour
         else Close();
     }
 
-    public void setSelectionUp() { _currentSelection = 2; }
-    public void setSelectionDown() { _currentSelection = 0; }
-    public void setSelectionRight() { _currentSelection = 3; }
-    public void setSelectionLeft() { _currentSelection = 1; }
+    public void setSelectionUp() { if (_selected) _currentSelection = 2; }
+    public void setSelectionDown() { if (_selected) _currentSelection = 0; }
+    public void setSelectionRight() { if (_selected) _currentSelection = 3; }
+    public void setSelectionLeft() { if (_selected) _currentSelection = 1; }
 
-    public void SwitchCharacterToCaptain() { manager.SwitchCharacter(0); }
-    public void SwitchCharacterToFranky() { manager.SwitchCharacter(1); }
-    public void SwitchCharacterToUsopp() { manager.SwitchCharacter(2); }
-    public void SwitchCharacterToChopper() { manager.SwitchCharacter(3); }
+    public void SwitchCharacterToCaptain() { if (_selected) manager.SwitchCharacter(0); }
+    public void SwitchCharacterToFranky() { if (_selected) manager.SwitchCharacter(1); }
+    public void SwitchCharacterToUsopp() { if (_selected) manager.SwitchCharacter(2); }
+    public void SwitchCharacterToChopper() { if (_selected) manager.SwitchCharacter(3); }
     public int GetCurrentSelection() //Мб через ивент сделать, хз
     {
         return _currentSelection;
