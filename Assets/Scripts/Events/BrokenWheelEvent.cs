@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BrokenWheelEvent : ShipEvent
+public class BrokenWheelEvent// : ShipEvent
 {
-
-}
+    
+};

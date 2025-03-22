@@ -2754,7 +2754,6 @@ GameObject:
   - component: {fileID: 1553538007}
   - component: {fileID: 1553538010}
   - component: {fileID: 1553538009}
-  - component: {fileID: 1553538008}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -2770,25 +2769,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553538006}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.19, y: 3.19, z: 1.252}
-  m_LocalScale: {x: 1.6000001, y: 0.032128517, z: 1.6000001}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.19000006, y: 1.1999999, z: 1.2519999}
+  m_LocalScale: {x: 1.6000001, y: 0.032128517, z: 1.6000003}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1607097700}
+  m_Father: {fileID: 1991247797}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &1553538008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553538006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c0a2aafd77e91648ad4055d882c2e5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &1553538009
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2993,7 +2980,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2048385158}
-  - {fileID: 1553538007}
   - {fileID: 1991247797}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3695,6 +3681,7 @@ GameObject:
   - component: {fileID: 1991247797}
   - component: {fileID: 1991247796}
   - component: {fileID: 1991247798}
+  - component: {fileID: 1991247799}
   m_Layer: 0
   m_Name: Capitain
   m_TagString: Untagged
@@ -3744,6 +3731,7 @@ Transform:
   - {fileID: 1655808411}
   - {fileID: 1438282694}
   - {fileID: 701795788}
+  - {fileID: 1553538007}
   m_Father: {fileID: 1607097700}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1991247798
@@ -3760,6 +3748,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterName: Captain
   cmCamera: {fileID: 701795787}
+  wheel: {fileID: 0}
+--- !u!114 &1991247799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991247795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0a2aafd77e91648ad4055d882c2e5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2040259467
 GameObject:
   m_ObjectHideFlags: 0
