@@ -4,9 +4,8 @@ using UnityEngine;
 public class EventData : ScriptableObject
 {
     //»нфа о ивенте (чтобы создать экземпл€р класса нужно создать —криптаблќбж)
-                                                    //ћаксим, если будут вопросы как создать Scriptsble, пиши
     public string _name;
-    public string _description;
-    public bool _enabled;
+    [TextArea(3, 8)]
+    public string _description;    
     public int _priority;
 }

@@ -4,6 +4,7 @@ public abstract class Event : MonoBehaviour
 {
     //Ивент запускается, прекращается и тд
     EventData _eventData;
+    public bool _enabled;
     //+Что-то типо отсчета до проигрыша или урона, в зависимости че там
 
     public virtual void StartEvent()
