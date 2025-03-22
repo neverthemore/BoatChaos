@@ -12,14 +12,14 @@ public abstract class BaseCharacter : MonoBehaviour
     InputSystem_Actions inputActions;
     protected float mouseY;
     protected float sensivity = 10f;
-    Camera camera;
+    CinemachineCamera camera;
     //[SerializeField] protected GameObject characterPrefab; //Не факт, что нужно
 
     protected bool _isActive;
 
     virtual protected void Start()
     {
-        camera = Camera.main;
+        //camera = Camera.main;
         Cursor.visible = false;
         inputActions = new InputSystem_Actions();        
     }
@@ -31,8 +31,7 @@ public abstract class BaseCharacter : MonoBehaviour
             AIMod();
             return;
         }
-        //camera.cullingMask &= ~(1 << LayerMask.NameToLayer("Head")); !!!Это надо вернуть чтобы голову
-                                                                       //не просвечивало на камере!!!
+        
     }
     
     protected virtual void RotateCamera()
@@ -44,7 +43,7 @@ public abstract class BaseCharacter : MonoBehaviour
     {        
         _isActive = true;
         if (cmCamera != null) cmCamera.Priority = 10;        
-        cmCameraGameObject = GameObject.Find("CM Camera" + _characterName);                
+        cmCameraGameObject = GameObject.Find("CM Camera" + _characterName);           
     }
 
     public virtual void Deactivate()
