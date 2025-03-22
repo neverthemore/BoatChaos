@@ -5,8 +5,10 @@ public class MastEvent : Event
 {
     private void Start()
     {
-        name = "Сломанная мачта";
-        priority = 45;
-        description = "";
+        /*
+        _name = "Сломанная мачта";
+        _priority = 45;
+        _description = "";
+        */
     }
 }

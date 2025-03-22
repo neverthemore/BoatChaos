@@ -6,14 +6,14 @@ public class EventsManager : MonoBehaviour
 {
     public static EventsManager Instance;
     [SerializeField] private Event[] events;
-    float timerDuration = 10f;
+    [SerializeField]float timerDuration = 10f;
     float timeRemaining;
     bool isTimerRunning = false;
     int _totalPriority = 0;
 
     void Start()
     {
-        StartTimer();
+        //StartTimer(); В другом месте (например при начале игры (после обучения и тд))
         
     }
 
@@ -23,35 +23,33 @@ public class EventsManager : MonoBehaviour
         isTimerRunning = true;
     }
        
-    public void StartChosenEvent(string name)
+    public void StartChosenEvent(Event name) 
     {
         Debug.Log("Starting event: " + name);
-        /*switch (name)
-        {
-            case "BrokenWheel":
-                
-                break;
-        }*/
+        //Старт через сам класс Event
+        name.StartEvent(); //Например вот старт первого в массиве
     }
 
+    /*
     public void ChooseEvent()
     {
         foreach (Event e in events)
         {
-            _totalPriority += e.priority;
+            _totalPriority += e._priority;
         }
         int randowValue = Random.Range(0, _totalPriority);
         int currentPriority = 0;
         foreach (Event e in events)
         {
-            currentPriority += e.priority;
+            currentPriority += e._priority;
             if (randowValue < currentPriority)
             {
-                StartChosenEvent(e.name);
+                StartChosenEvent(e);
                 break;
             }
         }
     }
+    */
 
     void Update()
     {
