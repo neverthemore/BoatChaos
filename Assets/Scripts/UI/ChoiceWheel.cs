@@ -7,8 +7,10 @@ public class ChoiceWheel : MonoBehaviour
     //Открытие UI с колесом, затем в зависимости от положения мышки выбор персонажа   
     [SerializeField] Sprite[] backGroundImages;
     [SerializeField] Image[] selectionCrosses;
+
     private Image selectionWheel;
     private int _currentSelection;
+
     InputSystem_Actions inputActions;    
     CanvasGroup wheelCanvasGroup;
     CharacterManager manager;
@@ -27,11 +29,12 @@ public class ChoiceWheel : MonoBehaviour
     {
         wheelCanvasGroup.alpha = 1f;        
         Cursor.visible = true;
+
         //Показываем колесо, включаем мышку, далее в зависимости от положения меняем _currentSelection
         //Ну и анимация мб, но это уже UI (подсветка выбранного в UI в данный момент перса)
 
     }
-
+     
     public void Close()
     {
         if (_currentSelection >= 0 && _currentSelection <= 3)
@@ -54,7 +57,7 @@ public class ChoiceWheel : MonoBehaviour
         wheelCanvasGroup = wheel.GetComponent<CanvasGroup>();        
     }
 
-    private void Update()
+    private void Update() //Есть трабл, что Close запускается каждый кадр
     {
         _selected = inputActions.Captain.CircleMenu.IsPressed();
         if (_selected) Open();
@@ -85,7 +88,7 @@ public class ChoiceWheel : MonoBehaviour
         }        
     }
 
-    public void setSelectionUp()
+    public void setSelectionUp() //Выборка выделения кнопки
     {
         SetSelection(2);
     }
@@ -104,7 +107,7 @@ public class ChoiceWheel : MonoBehaviour
 
 
 
-    public void SwitchCharacterToCaptain() 
+    public void SwitchCharacterToCaptain()  //Прикольная реализация, это надо переделать (скрипт для кнопок на UI именно)
     {
         if (_selected)
         {

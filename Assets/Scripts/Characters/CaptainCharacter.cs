@@ -21,7 +21,7 @@ public class CaptainCharacter : BaseCharacter
         cmCameraGameObject.transform.localEulerAngles = new Vector3(mouseY, mouseX, 0f);
     }
 
-    private void SwitchCharacter(int index)
+    private void SwitchCharacter(int index) //Вроде метод не используется
     {
         CharacterManager.Instance.SwitchCharacter(index);
     }
