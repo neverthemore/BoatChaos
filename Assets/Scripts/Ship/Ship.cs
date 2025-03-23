@@ -6,15 +6,22 @@ public class Ship : MonoBehaviour
     Wheel wheel;
     CharacterController controller;
 
-    [Header("Ship Settings")]
-    [SerializeField] private float _maxAngle = 24f;
-    [SerializeField] private float _shipSpeed = 2f;
-    [SerializeField] private float _maxIncline = 10f;
+    private float _incline = 0f;
+    private bool _rightIncline = true;
+    private float _shipSpeed = 2f;
+    private float _maxAngle = 24f;
+    private float _maxIncline = 10f;
+    private float _brokenMastCoef = 1.5f;
 
-    float _incline = 1f;
-    bool _rightIncline = true;
-
-
+    public void SetBrokenMastParameters() { 
+        _maxIncline *= _brokenMastCoef; 
+        _shipSpeed /= _brokenMastCoef;
+    }
+    public void SetNormalMastParameters() { 
+        _maxIncline /= _brokenMastCoef;
+        _shipSpeed *= _brokenMastCoef;
+    }
+    
     void Start()
     {
         wheel = FindAnyObjectByType<Wheel>();
