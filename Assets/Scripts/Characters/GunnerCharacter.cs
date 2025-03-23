@@ -6,24 +6,7 @@ public class GunnerCharacter : CrewCharacter
     [SerializeField] private float _range = 4f;
 
     private Transform _ballPlacement;
-    GameObject ball;
-
-    private void BallInHands()
-    {
-        ball.transform.SetParent(_ballPlacement);        
-        ball.transform.localPosition = Vector3.zero;
-        ball.transform.localEulerAngles = Vector3.zero;
-        Rigidbody ballRB = ball.GetComponent<Rigidbody>();
-        ballRB.constraints = RigidbodyConstraints.FreezeAll;            
-        _withBall = true;
-    }
-
-    private void BallOutOfHands()
-    {
-        Rigidbody ballRB = ball.GetComponent<Rigidbody>();
-        ballRB.constraints = RigidbodyConstraints.None;
-        ball.transform.parent = null;
-    }
+    Ball ball;        
     private void TakeTheBall()
     {
         Ray ray = new Ray(cmCameraGameObject.transform.position, cmCameraGameObject.transform.forward);
@@ -32,21 +15,48 @@ public class GunnerCharacter : CrewCharacter
         {            
             if (hit.collider.CompareTag("Ball"))
             {                
-                ball = hit.collider.gameObject;
-                BallInHands();
+                ball = hit.collider.gameObject.GetComponent<Ball>();
+                ball.transform.SetParent(_ballPlacement);
+                ball.BallInHands();
                 _withBall = true;
             }            
-        }
-        Debug.DrawRay(cmCameraGameObject.transform.position,
-             cmCameraGameObject.transform.forward * 100f,
-             Color.red,
-             1f);
+        }        
     }
 
     private void ThrowTheBall()
-    {
+    {        
+        ball.BallOutOfHands();
         _withBall = false;
-        BallOutOfHands();
+    }
+
+    private void LoadTheBall()
+    {
+        Ray ray = new Ray(cmCameraGameObject.transform.position, cmCameraGameObject.transform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, _range))
+        {
+            if (hit.collider.CompareTag("Gun"))
+            {
+                Debug.Log("loading");
+                _withBall = false;
+                Cannon cannon = hit.collider.gameObject.GetComponent<Cannon>();
+                cannon.ChangeState(true);
+                Destroy(ball.gameObject);
+            }
+        }
+    }
+    void Fire()
+    {
+        Ray ray = new Ray(cmCameraGameObject.transform.position, cmCameraGameObject.transform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, _range))
+        {
+            if (hit.collider.CompareTag("Gun"))
+            {                
+                Cannon cannon = hit.collider.gameObject.GetComponent<Cannon>();                
+                cannon.RequestToFire();
+            }
+        }
     }
 
     protected override void Start()
@@ -66,6 +76,14 @@ public class GunnerCharacter : CrewCharacter
         if (inputActions.Crew.PutDown.IsPressed() && _withBall == true)
         {
             ThrowTheBall();
+        }
+        if (inputActions.Crew.Use.IsPressed() && _withBall == true)
+        {            
+            LoadTheBall();
+        }
+        if (inputActions.Gunner.Shoot.IsPressed() && _withBall == false)
+        {
+            Fire();
         }
     }
 }
