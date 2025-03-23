@@ -10,6 +10,15 @@ public class Wheel : MonoBehaviour
     InputSystem_Actions inputActions;
     Transform _wheel;
 
+    public void SetBrokenWheelParameters()
+    {
+        _canRotate = false;
+    }
+    public void SetNormalWheelParameters()
+    {
+        _canRotate = true;
+    }
+
     public void SetRotation(bool t)
     {
         _canRotate = t;
