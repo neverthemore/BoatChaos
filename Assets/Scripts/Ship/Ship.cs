@@ -31,8 +31,15 @@ public class Ship : MonoBehaviour
     {
         float angle = wheel.GetCurrentAngle();
         float shipAngle = Mathf.Clamp(angle / (1080 / _maxAngle), -_maxAngle, _maxAngle);
-
-        float deltaIncline = (_shipSpeed / Mathf.Abs(_incline + 0.00001f)) * Time.deltaTime;
+        float deltaIncline;
+        if (_incline > 0.05f || _incline < -0.05f)
+        {
+            deltaIncline = (_shipSpeed / Mathf.Abs(_incline)) * Time.deltaTime;
+        }
+        else
+        {
+            deltaIncline = 0.05f;
+        }
         Mathf.Clamp(deltaIncline, 0.05f, 0.1f);
         _incline += deltaIncline * ((_rightIncline) ? 1f : -1f);
         if (_incline >= _maxIncline) _rightIncline = false;
