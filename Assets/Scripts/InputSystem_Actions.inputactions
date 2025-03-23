@@ -121,6 +121,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PutDown",
+                    "type": "Button",
+                    "id": "f1488e85-bd31-47b9-af30-2e38d1d38d3d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -193,11 +202,22 @@
                 {
                     "name": "",
                     "id": "d1a712e4-bb8c-40e3-9dd2-b170ae9e9311",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "PickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bbe991a1-b4d6-4e49-bd0b-ffebcdd3a35e",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PutDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -207,6 +207,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PutDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""f1488e85-bd31-47b9-af30-2e38d1d38d3d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -279,11 +288,22 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d1a712e4-bb8c-40e3-9dd2-b170ae9e9311"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PickUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bbe991a1-b4d6-4e49-bd0b-ffebcdd3a35e"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PutDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -363,6 +383,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Crew_Leave = m_Crew.FindAction("Leave", throwIfNotFound: true);
         m_Crew_Move = m_Crew.FindAction("Move", throwIfNotFound: true);
         m_Crew_PickUp = m_Crew.FindAction("PickUp", throwIfNotFound: true);
+        m_Crew_PutDown = m_Crew.FindAction("PutDown", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -565,6 +586,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Crew_Leave;
     private readonly InputAction m_Crew_Move;
     private readonly InputAction m_Crew_PickUp;
+    private readonly InputAction m_Crew_PutDown;
     /// <summary>
     /// Provides access to input actions defined in input action map "Crew".
     /// </summary>
@@ -588,6 +610,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Crew/PickUp".
         /// </summary>
         public InputAction @PickUp => m_Wrapper.m_Crew_PickUp;
+        /// <summary>
+        /// Provides access to the underlying input action "Crew/PutDown".
+        /// </summary>
+        public InputAction @PutDown => m_Wrapper.m_Crew_PutDown;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -623,6 +649,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @PickUp.started += instance.OnPickUp;
             @PickUp.performed += instance.OnPickUp;
             @PickUp.canceled += instance.OnPickUp;
+            @PutDown.started += instance.OnPutDown;
+            @PutDown.performed += instance.OnPutDown;
+            @PutDown.canceled += instance.OnPutDown;
         }
 
         /// <summary>
@@ -643,6 +672,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @PickUp.started -= instance.OnPickUp;
             @PickUp.performed -= instance.OnPickUp;
             @PickUp.canceled -= instance.OnPickUp;
+            @PutDown.started -= instance.OnPutDown;
+            @PutDown.performed -= instance.OnPutDown;
+            @PutDown.canceled -= instance.OnPutDown;
         }
 
         /// <summary>
@@ -798,5 +830,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPickUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PutDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPutDown(InputAction.CallbackContext context);
     }
 }

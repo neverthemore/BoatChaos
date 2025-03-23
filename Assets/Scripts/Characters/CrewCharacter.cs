@@ -6,10 +6,12 @@ using UnityEngine.InputSystem;
 
 public class CrewCharacter : BaseCharacter
 {
-    CharacterController controller;
-    //protected InputSystem_Actions inputActions;
-    float _speedOfMoving = 5f;
+    CharacterController controller;     
     Animator animator;
+
+    private float _speedOfMoving = 5f;
+    private float _jumpUp;
+    private float _gravityForce = -5f;
     //Команда, может двигаться и ходить в отличие от кэпа
 
     override protected void Start()
@@ -50,16 +52,22 @@ public class CrewCharacter : BaseCharacter
     }  
     private void Move()
     {
-        Debug.Log("move working");        
-        Vector2 direction = inputActions.Crew.Move.ReadValue<Vector2>();
+        if (!controller.isGrounded)        
+            _jumpUp += _gravityForce * Time.deltaTime;
+        else if (_jumpUp <= 0) _jumpUp = 0;
+
+        Vector2 direction = inputActions.Crew.Move.ReadValue<Vector2>();        
+        Vector3 move = new Vector3();
+        move = transform.forward * direction.y + transform.right * direction.x;
+        move *= _speedOfMoving * Time.deltaTime;
+        move.y = _jumpUp;
+        controller.Move(move);
+
+        //анимация
         if (direction != Vector2.zero)
         {
             animator.SetBool("walking", true);
         }
         else animator.SetBool("walking", false);
-        Vector3 move = new Vector3();
-        move = transform.forward * direction.y + transform.right * direction.x;
-        move *= _speedOfMoving * Time.deltaTime;
-        controller.Move(move);  
     }    
 }
