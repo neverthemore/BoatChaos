@@ -7,19 +7,16 @@ public abstract class BaseCharacter : MonoBehaviour
 {    
     [SerializeField] protected string _characterName;
     protected GameObject cmCameraGameObject;
-    [SerializeField] protected CinemachineCamera cmCamera; //Надо сделать так, чтобы искалось в иерархии
-    protected float mouseX;
-    InputSystem_Actions inputActions;
-    protected float mouseY;
-    protected float sensivity = 10f;
-    CinemachineCamera camera;
-    //[SerializeField] protected GameObject characterPrefab; //Не факт, что нужно
+    [SerializeField] protected CinemachineCamera cmCamera; 
+    protected InputSystem_Actions inputActions;
 
+    protected float mouseX;
+    protected float mouseY;
+    protected float sensivity = 10f;        
     protected bool _isActive;
 
     virtual protected void Start()
-    {
-        //camera = Camera.main;
+    {       
         Cursor.visible = false;
         inputActions = new InputSystem_Actions();        
     }
@@ -36,12 +33,16 @@ public abstract class BaseCharacter : MonoBehaviour
     
     protected virtual void RotateCamera()
     {
-        
+        Vector2 look = inputActions.Captain.Look.ReadValue<Vector2>();
+        mouseX += look.x * Time.deltaTime * sensivity;
+        mouseY -= look.y * Time.deltaTime * sensivity;
+        mouseY = Mathf.Clamp(mouseY, -75, 75);        
     }
 
     public virtual void Activate()
     {        
         _isActive = true;
+        inputActions.Enable();
         if (cmCamera != null) cmCamera.Priority = 10;        
         cmCameraGameObject = GameObject.Find("CM Camera" + _characterName);           
     }
@@ -49,6 +50,7 @@ public abstract class BaseCharacter : MonoBehaviour
     public virtual void Deactivate()
     {
         _isActive = false;
+        inputActions.Disable();
         if (cmCamera != null) cmCamera.Priority = 0;        
     }
 

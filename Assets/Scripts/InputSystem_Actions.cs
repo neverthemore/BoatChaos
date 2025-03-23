@@ -198,6 +198,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PickUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""566e3aad-4d0d-4113-901f-8471534a1941"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -266,6 +275,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d1a712e4-bb8c-40e3-9dd2-b170ae9e9311"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -342,6 +362,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Crew = asset.FindActionMap("Crew", throwIfNotFound: true);
         m_Crew_Leave = m_Crew.FindAction("Leave", throwIfNotFound: true);
         m_Crew_Move = m_Crew.FindAction("Move", throwIfNotFound: true);
+        m_Crew_PickUp = m_Crew.FindAction("PickUp", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -543,6 +564,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private List<ICrewActions> m_CrewActionsCallbackInterfaces = new List<ICrewActions>();
     private readonly InputAction m_Crew_Leave;
     private readonly InputAction m_Crew_Move;
+    private readonly InputAction m_Crew_PickUp;
     /// <summary>
     /// Provides access to input actions defined in input action map "Crew".
     /// </summary>
@@ -562,6 +584,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Crew/Move".
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Crew_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Crew/PickUp".
+        /// </summary>
+        public InputAction @PickUp => m_Wrapper.m_Crew_PickUp;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -594,6 +620,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @PickUp.started += instance.OnPickUp;
+            @PickUp.performed += instance.OnPickUp;
+            @PickUp.canceled += instance.OnPickUp;
         }
 
         /// <summary>
@@ -611,6 +640,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @PickUp.started -= instance.OnPickUp;
+            @PickUp.performed -= instance.OnPickUp;
+            @PickUp.canceled -= instance.OnPickUp;
         }
 
         /// <summary>
@@ -759,5 +791,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PickUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPickUp(InputAction.CallbackContext context);
     }
 }
