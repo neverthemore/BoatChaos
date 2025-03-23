@@ -4,8 +4,9 @@ using UnityEngine;
 public class Wheel : MonoBehaviour
 {
     private bool _canRotate = false;
-    float _currentAngle = 0f;
-    float _angularSpeed = 90f;
+    private float _currentAngle = 0f;
+    private float _angularSpeed = 90f;
+
     InputSystem_Actions inputActions;
     Transform _wheel;
 
