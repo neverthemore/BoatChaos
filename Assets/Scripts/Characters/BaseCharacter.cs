@@ -41,16 +41,14 @@ public abstract class BaseCharacter : MonoBehaviour
 
     public virtual void Activate()
     {        
-        _isActive = true;
-        inputActions.Enable();
+        _isActive = true;        
         if (cmCamera != null) cmCamera.Priority = 10;        
         cmCameraGameObject = GameObject.Find("CM Camera" + _characterName);           
     }
 
     public virtual void Deactivate()
     {
-        _isActive = false;
-        inputActions.Disable();
+        _isActive = false;        
         if (cmCamera != null) cmCamera.Priority = 0;        
     }
 
