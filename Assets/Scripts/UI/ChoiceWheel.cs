@@ -5,11 +5,11 @@ using UnityEngine.UI;
 public class ChoiceWheel : MonoBehaviour
 {
     //Открытие UI с колесом, затем в зависимости от положения мышки выбор персонажа   
-    [SerializeField] Sprite[] backGroundImages;
-    [SerializeField] Image[] selectionCrosses;
+    [SerializeField] Sprite[] backGroundImages;    
 
     private Image selectionWheel;
     private int _currentSelection;
+    private int _selectedCharacter; 
 
     InputSystem_Actions inputActions;    
     CanvasGroup wheelCanvasGroup;
@@ -39,9 +39,11 @@ public class ChoiceWheel : MonoBehaviour
     public void Close()
     {
         if (_currentSelection >= 0 && _currentSelection <= 3)
-        {            
-            manager.SwitchCharacter(_currentSelection);
-            selectionWheel.sprite = backGroundImages[_currentSelection];
+        {
+            manager.SwitchCharacter(_selectedCharacter);
+            int indexOfMassive = 4 * _selectedCharacter + _currentSelection;
+            _selectedCharacter = _currentSelection;
+            selectionWheel.sprite = backGroundImages[indexOfMassive];
         }
         wheelCanvasGroup.alpha = 0f; 
         
@@ -73,23 +75,10 @@ public class ChoiceWheel : MonoBehaviour
         if (_selected)
         {
             _currentSelection = selection;
-            for (int i = 0; i < selectionCrosses.Length; i++)
-            {
-                if (i == selection)
-                {
-                    Color currentColor = selectionCrosses[selection].color;
-                    currentColor.a = 255f;
-                    selectionCrosses[selection].color = currentColor;
-                }
-                else
-                {
-                    Color currentColor = selectionCrosses[i].color;
-                    currentColor.a = 0f;
-                    selectionCrosses[i].color = currentColor;
-                }
-            }  
-
-        }        
+            int indexOfMassive = 4 * _selectedCharacter + _currentSelection;
+            selectionWheel.sprite = backGroundImages[indexOfMassive];
+        }
+        
     }
 
     public void setSelectionUp() //Выборка выделения кнопки
@@ -115,32 +104,36 @@ public class ChoiceWheel : MonoBehaviour
     {
         if (_selected)
         {
-            manager.SwitchCharacter(0);
-            selectionWheel.sprite = backGroundImages[0];
+            SetSelection(0);
+            manager.SwitchCharacter(0);            
+            _selectedCharacter = 0;            
         }
     }
     public void SwitchCharacterToFranky()
     {
         if (_selected)
         {
+            SetSelection(1);
             manager.SwitchCharacter(1);
-            selectionWheel.sprite = backGroundImages[1];
+            _selectedCharacter = 1;
         }
     }
     public void SwitchCharacterToUsopp() 
     {
         if (_selected)
         {
+            SetSelection(2);
             manager.SwitchCharacter(2);
-            selectionWheel.sprite = backGroundImages[2];
+            _selectedCharacter = 2;
         }        
     }
     public void SwitchCharacterToChopper() 
     {
         if (_selected)
         {
+            SetSelection(3);
             manager.SwitchCharacter(3);
-            selectionWheel.sprite = backGroundImages[3];
+            _selectedCharacter = 3;
         }
     }
     public int GetCurrentSelection() //Мб через ивент сделать, хз
