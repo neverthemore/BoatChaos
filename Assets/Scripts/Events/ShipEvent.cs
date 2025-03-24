@@ -1,24 +1,26 @@
 using UnityEngine;
 
-public abstract class ShipEvent : MonoBehaviour
+public enum EventState {Inactive, Active, Соmpleted }
+public abstract class ShipEvent : ScriptableObject
 {
-    //Ивент запускается, прекращается и тд
-    [SerializeField] EventData _eventData;
-    private bool _isActive;
-    //+Что-то типо отсчета до проигрыша или урона, в зависимости че там
+    [Header("Base Settings")]
+    [SerializeField]protected EventData _eventData;
+    public EventState State { get; protected set; } = EventState.Inactive;
 
-    public virtual void StartEvent()
+    public virtual bool CanActivate()
     {
-        
-        //Логика начала ивента (отключение штурвала, управление, понижение скорости...)
-        //Вообще возможно нужно делать отдельные менеджеры для ивентов (например менеджер для пробоин, мачты и тд)
-        _isActive = true;
+        return State == EventState.Inactive;  //Приоритет/шанс можно наверное сюда добавить
     }
 
-    public abstract void UpdateEvent();
-
-    public virtual void FinishEvent()
+    public virtual void Activate()
     {
-        //Соответственно завершение (+ наверное надо сделать проверку)
+        State = EventState.Active;
+        //Логика начала события (например можно промт показать и вывести в UI)
+    }
+
+    public virtual void Complete()
+    {
+        State = EventState.Inactive; //Или Complete смотря как ивенты будут
+        //Логика звершения события
     }
 }

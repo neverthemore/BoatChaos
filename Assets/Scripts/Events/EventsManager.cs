@@ -8,20 +8,28 @@ public class EventsManager : MonoBehaviour
 {
     public static EventsManager Instance;
 
-    [SerializeField] private Event[] events; //Наверное лучше списком
-    private List<ShipEvent> _activeEvents = new();
+    [SerializeField] private List<ShipEvent> _allEvents = new List<ShipEvent>();
 
     [SerializeField]float timerDuration = 10f;
+
     float timeRemaining;
     bool isTimerRunning = false;
     int _totalPriority = 0;
 
-    private void Awake() => Instance = this;
+    private void Awake()
+    {
+        if (Instance != null && Instance != this) Destroy(this);
+        else Instance = this;
+    }
     
 
     void Start()
     {
         //StartTimer(); В другом месте (например при начале игры (после обучения и тд))
+        foreach (ShipEvent e in _allEvents)
+        {
+            e.Activate();
+        }
         
     }
 
@@ -35,7 +43,7 @@ public class EventsManager : MonoBehaviour
     {
         Debug.Log("Starting event: " + name);
         //Старт через сам класс Event
-        name.StartEvent(); //Например вот старт первого в массиве
+        //name.StartEvent(); //Например вот старт первого в массиве
     }
 
     /*

@@ -14,7 +14,7 @@ public class CaptainCharacter : BaseCharacter
         
     }
 
-    protected override void RotateCamera()
+    protected override void RotateCamera()  //“ут что-то не работает
     {
         base.RotateCamera();              
         mouseX = Mathf.Clamp(mouseX, -80f, 80f);
