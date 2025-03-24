@@ -16,8 +16,7 @@ public class BrokenWheelEvent : ShipEvent
     public void AddOneFix() //Починить на одну
     {
         _currentFix++;
-        Debug.Log("Фикс на одну");
-        Debug.Log("Вот: " + _currentFix + ": " + Amount_For_Fix);
+        Debug.Log("Штурвал: " + _currentFix + ": " + Amount_For_Fix);
         if (_currentFix >= Amount_For_Fix) Complete();
     }
 
@@ -27,6 +26,8 @@ public class BrokenWheelEvent : ShipEvent
         _currentFix = 0;
         OnWheelBroken?.Invoke();
     }
+
+
 
     public override void Complete()
     {
