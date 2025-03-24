@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+//using static UnityEngine.Rendering.DynamicArray<T>;           Это че нахуй?
 
 public class Ball : BaseItem
 {
@@ -24,9 +25,10 @@ public class Ball : BaseItem
         GetComponent<Collider>().enabled = false;
     }
 
-    private void Drop()
+    public override void DropItem()
     {
-        //Если нужна какая-то логика для дропа ядра именно для ядра
+        _rb.isKinematic = false;
+        GetComponent<Collider>().enabled = true;
     }
     
     public override void UseItem()

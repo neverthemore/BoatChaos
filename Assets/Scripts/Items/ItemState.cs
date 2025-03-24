@@ -13,7 +13,6 @@ public class ItemState : MonoBehaviour
         _item = newItem;
         newItem.transform.SetParent(gameObject.GetComponent<BaseCharacter>()._itemTransform);
         newItem.transform.localPosition = Vector3.zero;
-        //Возможно нужно включить Kinematic у rb
     }
 
     public void DropItem()
@@ -21,8 +20,9 @@ public class ItemState : MonoBehaviour
         if ( _item != null )
         {
             _item.transform.SetParent(null);
+            _item.DropItem();
             _item = null;
-            Debug.Log("Выбросили предыдуший предмет");
+            
         }
     }
 

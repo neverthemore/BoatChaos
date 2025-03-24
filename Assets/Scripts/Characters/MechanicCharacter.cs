@@ -1,3 +1,4 @@
+using System.Drawing;
 using UnityEngine;
 
 public class MechanicCharacter : CrewCharacter
@@ -16,10 +17,11 @@ public class MechanicCharacter : CrewCharacter
     {
         if (!_isActive) return;
         base.Update();
-        
+
         //Добавить проверку на наличие молотка в инвентаре
+        //Debug.Log(GetItem()?.Name);
         
-        if (inputActions.Crew.Attack.IsPressed())  //Если кнопка зажата сколько то секунд (например одну), то запускается один раз StartFix()
+        if (inputActions.Crew.Attack.IsPressed() && GetItem()?.Name == "Hammer")  //Если кнопка зажата сколько то секунд (например одну), то запускается один раз StartFix()
         {
             if (CastRayForFixAndCheck())
             { 
@@ -35,7 +37,7 @@ public class MechanicCharacter : CrewCharacter
             _currentFixable.StartFix();
             _clampedSeconds = 0f;
         }
-
+        
     }
 
     private bool CastRayForFixAndCheck()   //Зажато ЛКМ, попало в IFixable -> вызывается StartFix()
