@@ -25,7 +25,7 @@ public class Wheel : MonoBehaviour
     }
     private void Start()
     {
-        _wheel = GameObject.Find("Wheell").transform;
+        _wheel = GameObject.Find("Wheel").transform;
         inputActions = new InputSystem_Actions();
         inputActions.Enable();
     }
