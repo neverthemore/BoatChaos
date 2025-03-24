@@ -4,7 +4,7 @@ using UnityEngine;
 public class Ship : MonoBehaviour
 {
     Wheel wheel;
-    CharacterController controller;
+    CharacterController controller; //?
 
     [Header("Ship Settings")]
     [SerializeField] private float _maxAngle = 24f;

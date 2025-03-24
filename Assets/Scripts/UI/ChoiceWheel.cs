@@ -22,12 +22,13 @@ public class ChoiceWheel : MonoBehaviour
         {
             inputActions.Disable();
         }
-        Cursor.visible = false; 
+        //Cursor.visible = false; 
     }
 
     public void Open()
     {
-        wheelCanvasGroup.alpha = 1f;        
+        wheelCanvasGroup.alpha = 1f;
+        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
         //Показываем колесо, включаем мышку, далее в зависимости от положения меняем _currentSelection
@@ -42,8 +43,11 @@ public class ChoiceWheel : MonoBehaviour
             manager.SwitchCharacter(_currentSelection);
             selectionWheel.sprite = backGroundImages[_currentSelection];
         }
-        wheelCanvasGroup.alpha = 0f;        
-        Cursor.visible = false;
+        wheelCanvasGroup.alpha = 0f; 
+        
+        Cursor.lockState = CursorLockMode.Locked;
+
+        //Cursor.visible = false;
         //Закрытие колеса и тд
     }
 

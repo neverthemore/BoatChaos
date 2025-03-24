@@ -6,19 +6,35 @@ using UnityEngine.InputSystem;
 public abstract class BaseCharacter : MonoBehaviour
 {    
     [SerializeField] protected string _characterName;
+    public string CharacterName { get { return _characterName; } }
+
     protected GameObject cmCameraGameObject;
+
     [SerializeField] protected CinemachineCamera cmCamera; 
     protected InputSystem_Actions inputActions;
 
+    #region Rotate protected Variables
     protected float mouseX;
     protected float mouseY;
-    protected float sensivity = 10f;        
-    protected bool _isActive;
+    protected float sensivity = 10f;
+    #endregion
+
+    protected ItemState _itemState;            //Ячейка инвентаря
+    public Transform _itemTransform;     //Место для присоединения вещей
+
+
+    InteractionDetector _interactionDetector;
+
+    protected bool _isActive; //Активен ли сейчас персонаж
+
 
     virtual protected void Start()
     {       
         Cursor.visible = false;
-        inputActions = new InputSystem_Actions();        
+        inputActions = new InputSystem_Actions();   
+        _interactionDetector = gameObject.AddComponent<InteractionDetector>();
+        _itemState = gameObject.AddComponent<ItemState>();
+        _itemTransform = transform.Find("ItemPivot");
     }
 
     protected virtual void Update()
@@ -27,6 +43,15 @@ public abstract class BaseCharacter : MonoBehaviour
         {
             AIMod();
             return;
+        }
+        if (_isActive && inputActions.Crew.Use.triggered)
+        {
+            _interactionDetector.SendARay();
+        }
+
+        if (inputActions.Crew.PutDown.triggered)
+        {
+            DropItem();
         }
         
     }
@@ -55,5 +80,21 @@ public abstract class BaseCharacter : MonoBehaviour
     protected virtual void AIMod()
     {
 
+    }
+
+    public virtual void AddItem(BaseItem item)
+    {
+        
+        _itemState.PickUpItem(item);
+    }
+
+    public virtual void DropItem()
+    {
+        _itemState.DropItem();
+    }
+
+    public BaseItem GetItem()
+    {
+        return _itemState.Item;
     }
 }
