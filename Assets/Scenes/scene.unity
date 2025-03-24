@@ -2146,7 +2146,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 1290824853}
           m_TargetAssemblyTypeName: ChoiceWheel, Assembly-CSharp
           m_MethodName: setSelectionLeft
           m_Mode: 1
@@ -2202,7 +2202,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1290824853}
         m_TargetAssemblyTypeName: ChoiceWheel, Assembly-CSharp
         m_MethodName: SwitchCharacterToFranky
         m_Mode: 1
@@ -2335,7 +2335,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1290824853}
         m_TargetAssemblyTypeName: ChoiceWheel, Assembly-CSharp
         m_MethodName: SwitchCharacterToUsopp
         m_Mode: 1
@@ -2364,7 +2364,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 1290824853}
           m_TargetAssemblyTypeName: ChoiceWheel, Assembly-CSharp
           m_MethodName: setSelectionUp
           m_Mode: 1
@@ -3032,7 +3032,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 1290824853}
           m_TargetAssemblyTypeName: ChoiceWheel, Assembly-CSharp
           m_MethodName: setSelectionRight
           m_Mode: 1
@@ -3088,7 +3088,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1290824853}
         m_TargetAssemblyTypeName: ChoiceWheel, Assembly-CSharp
         m_MethodName: SwitchCharacterToChopper
         m_Mode: 1
@@ -3471,7 +3471,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 81caf282eaa71094c8494caf3b78b242, type: 3}
   - {fileID: 21300000, guid: 4ccd5ee0b9fcca04cad490b56eed97bb, type: 3}
   - {fileID: 21300000, guid: c82d32b12644b8a4b9b91468541c6af8, type: 3}
-  selectionCrosses: []
 --- !u!1 &1294834513
 GameObject:
   m_ObjectHideFlags: 0
@@ -5565,7 +5564,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 1290824853}
           m_TargetAssemblyTypeName: ChoiceWheel, Assembly-CSharp
           m_MethodName: setSelectionDown
           m_Mode: 1
@@ -5621,7 +5620,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1290824853}
         m_TargetAssemblyTypeName: ChoiceWheel, Assembly-CSharp
         m_MethodName: SwitchCharacterToCaptain
         m_Mode: 1
