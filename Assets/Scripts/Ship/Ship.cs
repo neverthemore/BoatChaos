@@ -3,31 +3,43 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
+    [SerializeField] private BrokenMastEvent _mastBroken;
     Wheel wheel;
-    CharacterController controller; //?
+    CharacterController controller;
 
-    private float _incline = 0f;
+    private float _incline = 0f; //Наклон
     private bool _rightIncline = true;
-    private float _shipSpeed = 2f;
-    private float _maxAngle = 24f;
-    private float _maxIncline = 10f;
-    private float _brokenMastCoef = 1.5f;
 
-    public void SetBrokenMastParameters() { 
-        _maxIncline *= _brokenMastCoef; 
-        _shipSpeed /= _brokenMastCoef;
-    }
-    public void SetNormalMastParameters() { 
-        _maxIncline /= _brokenMastCoef;
-        _shipSpeed *= _brokenMastCoef;
-    }
     
+    [SerializeField] private float _maxAngle = 24f;
+    [SerializeField] private float _maxIncline = 10f;
+    [SerializeField]private float _shipSpeed = 2f;  
+    private float _brokenMastCoef = 1.5f; //Коэф сломаной мачты
+
+    private void OnEnable()
+    {
+        _mastBroken.OnMastBroken.AddListener(SetBrokenMastParameters);
+        _mastBroken.OnMastFixed.AddListener(SetNormalMastParameters);
+    }
+
     void Start()
     {
         wheel = FindAnyObjectByType<Wheel>();
         controller = GetComponent<CharacterController>();
     }
-
+    private void SetBrokenMastParameters() 
+    { 
+        _maxIncline *= _brokenMastCoef; 
+        _shipSpeed /= _brokenMastCoef;
+        Debug.Log("Мачта сломана");
+    }
+    private void SetNormalMastParameters() 
+    { 
+        _maxIncline /= _brokenMastCoef;
+        _shipSpeed *= _brokenMastCoef;
+        Debug.Log("Мачта починена");
+    }
+        
     private void MoveShip()
     {
         Vector3 move = new Vector3(0f, 0f, _shipSpeed);

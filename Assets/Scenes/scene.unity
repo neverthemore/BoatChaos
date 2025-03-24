@@ -681,6 +681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _allEvents:
   - {fileID: 11400000, guid: 9ce682475e61fe34ba74a3b87c3f3cf9, type: 2}
+  - {fileID: 11400000, guid: f9c40afd81a060d4290eaf7100439352, type: 2}
   timerDuration: 10
 --- !u!4 &109383244
 Transform:
@@ -4201,6 +4202,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fedcc5ebc1c3e94684641dd27445279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mastBroken: {fileID: 11400000, guid: f9c40afd81a060d4290eaf7100439352, type: 2}
+  _maxAngle: 24
+  _maxIncline: 10
+  MAX_SHIP_SPEED: 2
 --- !u!4 &1607097700
 Transform:
   m_ObjectHideFlags: 0
