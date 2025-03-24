@@ -62,7 +62,7 @@ public class Ship : MonoBehaviour
 
     void Update()
     {
-        MoveShip();
+        //MoveShip();
 
         RotateShip();
     }
