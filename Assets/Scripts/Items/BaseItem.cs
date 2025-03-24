@@ -34,6 +34,11 @@ public class BaseItem : MonoBehaviour, IInteractable
     {
         _rb = GetComponent<Rigidbody>();
     }
+
+    public virtual void DropItem()
+    {
+
+    }
     
     public virtual void UseItem()
     {

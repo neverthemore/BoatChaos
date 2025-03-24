@@ -51,7 +51,7 @@ public abstract class BaseCharacter : MonoBehaviour
 
         if (inputActions.Crew.PutDown.triggered)
         {
-            DropItem();
+            _itemState.DropItem();
         }
         
     }

@@ -24,4 +24,10 @@ public class Hammer : BaseItem
         _interactor.GetComponent<BaseCharacter>().AddItem(this);
         GetComponent<Collider>().enabled = false;
     }
+
+    public override void DropItem()
+    {
+        _rb.isKinematic = false;
+        GetComponent<Collider>().enabled = true;
+    }
 }
