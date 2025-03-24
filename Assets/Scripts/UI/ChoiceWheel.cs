@@ -1,3 +1,4 @@
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -5,11 +6,11 @@ using UnityEngine.UI;
 public class ChoiceWheel : MonoBehaviour
 {
     //Открытие UI с колесом, затем в зависимости от положения мышки выбор персонажа   
-    [SerializeField] Sprite[] backGroundImages;
-    [SerializeField] Image[] selectionCrosses;
+    [SerializeField] Sprite[] backGroundImages;     
 
     private Image selectionWheel;
     private int _currentSelection;
+    private int _selectedCharacter;
 
     InputSystem_Actions inputActions;    
     CanvasGroup wheelCanvasGroup;
@@ -29,22 +30,19 @@ public class ChoiceWheel : MonoBehaviour
     {
         wheelCanvasGroup.alpha = 1f;        
         Cursor.visible = true;
-
-        //Показываем колесо, включаем мышку, далее в зависимости от положения меняем _currentSelection
-        //Ну и анимация мб, но это уже UI (подсветка выбранного в UI в данный момент перса)
-
     }
      
     public void Close()
     {
-        if (_currentSelection >= 0 && _currentSelection <= 3)
+        if (_selectedCharacter >= 0 && _selectedCharacter <= 3)
         {            
-            manager.SwitchCharacter(_currentSelection);
-            selectionWheel.sprite = backGroundImages[_currentSelection];
+            manager.SwitchCharacter(_selectedCharacter);
+            int indexOfMassive = 4 * _selectedCharacter + _currentSelection;
+            _selectedCharacter = _currentSelection;
+            selectionWheel.sprite = backGroundImages[indexOfMassive];
         }
         wheelCanvasGroup.alpha = 0f;        
-        Cursor.visible = false;
-        //Закрытие колеса и тд
+        Cursor.visible = false;        
     }
 
     private void Start()
@@ -69,22 +67,8 @@ public class ChoiceWheel : MonoBehaviour
         if (_selected)
         {
             _currentSelection = selection;
-            for (int i = 0; i < selectionCrosses.Length; i++)
-            {
-                if (i == selection)
-                {
-                    Color currentColor = selectionCrosses[selection].color;
-                    currentColor.a = 255f;
-                    selectionCrosses[selection].color = currentColor;
-                }
-                else
-                {
-                    Color currentColor = selectionCrosses[i].color;
-                    currentColor.a = 0f;
-                    selectionCrosses[i].color = currentColor;
-                }
-            }  
-
+            int indexOfMassive = 4 * _selectedCharacter + _currentSelection;
+            selectionWheel.sprite = backGroundImages[indexOfMassive];
         }        
     }
 
@@ -112,7 +96,8 @@ public class ChoiceWheel : MonoBehaviour
         if (_selected)
         {
             manager.SwitchCharacter(0);
-            selectionWheel.sprite = backGroundImages[0];
+            SetSelection(0);
+            _selectedCharacter = 0;
         }
     }
     public void SwitchCharacterToFranky()
@@ -120,7 +105,8 @@ public class ChoiceWheel : MonoBehaviour
         if (_selected)
         {
             manager.SwitchCharacter(1);
-            selectionWheel.sprite = backGroundImages[1];
+            SetSelection(1);
+            _selectedCharacter = 1;
         }
     }
     public void SwitchCharacterToUsopp() 
@@ -128,7 +114,8 @@ public class ChoiceWheel : MonoBehaviour
         if (_selected)
         {
             manager.SwitchCharacter(2);
-            selectionWheel.sprite = backGroundImages[2];
+            SetSelection(2);
+            _selectedCharacter = 2;
         }        
     }
     public void SwitchCharacterToChopper() 
@@ -136,11 +123,13 @@ public class ChoiceWheel : MonoBehaviour
         if (_selected)
         {
             manager.SwitchCharacter(3);
-            selectionWheel.sprite = backGroundImages[3];
+            SetSelection(3);
+            _selectedCharacter = 3;
         }
     }
     public int GetCurrentSelection() //Мб через ивент сделать, хз
     {
         return _currentSelection;
     }
+
 }
