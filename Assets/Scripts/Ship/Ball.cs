@@ -35,7 +35,7 @@ public class Ball : BaseItem, IInteractable
         //Если нужна какая-то логика для дропа ядра именно для ядра
     }
     
-    public void ChargeBall()
+    public override void UseItem()
     {
         //Удаляем нахуй этот объект (!!!не проебать ошибки!!!)
         Destroy(gameObject);

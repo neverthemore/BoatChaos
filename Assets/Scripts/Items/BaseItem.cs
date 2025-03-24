@@ -12,4 +12,9 @@ public class BaseItem : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
     }
+    
+    public virtual void UseItem()
+    {
+        //Логика использования, например уничтожение объекта
+    }
 }

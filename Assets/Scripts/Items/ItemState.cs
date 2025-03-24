@@ -6,9 +6,9 @@ public class ItemState : MonoBehaviour
     public BaseItem Item {  get { return _item; } }
 
     public void PickUpItem(BaseItem newItem)
-    {        
+    {
+        if (newItem == _item) return;
         if (_item != null) DropItem();
-        Debug.Log("Выбросили");
 
         _item = newItem;
         newItem.transform.SetParent(gameObject.GetComponent<BaseCharacter>()._itemTransform);
@@ -22,6 +22,13 @@ public class ItemState : MonoBehaviour
         {
             _item.transform.SetParent(null);
             _item = null;
+            Debug.Log("Выбросили предыдуший предмет");
         }
+    }
+
+    public void UseItem()
+    {
+        //Айтем активирован -> удаляем его
+
     }
 }
