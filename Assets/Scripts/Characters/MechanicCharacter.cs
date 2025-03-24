@@ -42,16 +42,13 @@ public class MechanicCharacter : CrewCharacter
     {
         Ray ray = new Ray(cmCamera.transform.position, cmCamera.transform.forward);
         RaycastHit hit;
-        Debug.Log("Луч починки выпущен");
         if (Physics.Raycast(ray, out hit, _fixRange))
         {
             IFixable fixable = hit.collider.GetComponent<IFixable>();
             if (fixable != null)
             {
-                Debug.Log("Попали в фиксбл");
                 if (fixable.NeedToFix())
                 {
-                    Debug.Log("Его надо чинить");
                     _currentFixable = fixable;
                     return true;
                 }
