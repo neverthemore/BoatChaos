@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class MechanicCharacter : CrewCharacter
 {
-    //Быстрее чинит или че там
+    //Этот тип может быть с молотком, может чинить что-то
 }
