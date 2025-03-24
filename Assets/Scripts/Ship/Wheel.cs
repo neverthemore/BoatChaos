@@ -4,10 +4,20 @@ using UnityEngine;
 public class Wheel : MonoBehaviour
 {
     private bool _canRotate = false;
-    float _currentAngle = 0f;
-    float _angularSpeed = 90f;
+    private float _currentAngle = 0f;
+    private float _angularSpeed = 90f;
+
     InputSystem_Actions inputActions;
     Transform _wheel; //
+
+    public void SetBrokenWheelParameters()
+    {
+        _canRotate = false;
+    }
+    public void SetNormalWheelParameters()
+    {
+        _canRotate = true;
+    }
 
     public void SetRotation(bool t)
     {
@@ -15,7 +25,7 @@ public class Wheel : MonoBehaviour
     }
     private void Start()
     {
-        _wheel = GameObject.Find("Wheell").transform;
+        _wheel = GameObject.Find("Wheel").transform;
         inputActions = new InputSystem_Actions();
         inputActions.Enable();
     }
