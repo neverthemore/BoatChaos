@@ -19,7 +19,7 @@ public class BaseItem : MonoBehaviour, IInteractable
     protected bool IsInteractionAllowed;
 
     public virtual void Interact(GameObject interactor)
-    {
+    {        
         IsInteractionAllowed = false;
         //Debug.Log(_whoCanEnteract.ToString());
         if (_whoCanEnteract != WhoCanEnteract.All)  //Если не любой персонаж, то далее проверяем тот ли этот пресонаж

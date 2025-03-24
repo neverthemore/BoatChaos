@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractionDetector : MonoBehaviour
 {
     //Используется в BaseCharacter
-    [SerializeField]private float _interactionRange = 2.0f;
+    [SerializeField]private float _interactionRange = 5.0f;
     private Camera _camera;
 
     private void Awake()
