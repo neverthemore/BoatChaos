@@ -111,8 +111,8 @@ public class MenuController : MonoBehaviour
 
     public void OnExitButtonClick()
     {
-
-            Application.Quit();
+        PlayerPrefs.Save();
+        Application.Quit();
     }
 
   
