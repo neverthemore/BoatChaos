@@ -1,8 +1,9 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Wheel : MonoBehaviour
+public class Wheel : MonoBehaviour, IFixable
 {
+
     [SerializeField] private BrokenWheelEvent _brokenWheelEvent;
 
     #region Private Variables
@@ -15,6 +16,7 @@ public class Wheel : MonoBehaviour
 
     InputSystem_Actions inputActions;
     Transform _wheel;
+
 
     private void OnEnable()
     {
@@ -38,7 +40,7 @@ public class Wheel : MonoBehaviour
 
     public void SetBrokenWheelParameters()
     {
-        //_isBroken = true;
+        _isBroken = true;
         Debug.Log("Штурвал сломан!");
     }
     public void SetNormalWheelParameters()
@@ -67,4 +69,15 @@ public class Wheel : MonoBehaviour
         }        
     }
     public float GetCurrentAngle() { return _currentAngle; }
+
+    public void StartFix()
+    {
+        //Чиним на 1/4 например, когда 4/4 -> штурвал фиксится, событие заканчивается
+        Debug.Log("Починили на одну");
+    }
+
+    public bool NeedToFix()
+    {
+        return _isBroken;
+    }
 }

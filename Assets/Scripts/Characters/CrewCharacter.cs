@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 
 public class CrewCharacter : BaseCharacter
 {
-    CharacterController controller;     
-    Animator animator;
+    protected CharacterController controller;     
+    protected Animator animator;
 
     private float _speedOfMoving = 5f;
     private float _jumpUp;

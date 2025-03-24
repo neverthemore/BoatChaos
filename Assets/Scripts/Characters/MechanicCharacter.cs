@@ -2,5 +2,62 @@ using UnityEngine;
 
 public class MechanicCharacter : CrewCharacter
 {
-    //Этот тип может быть с молотком, может чинить что-то
+    [SerializeField] private float _fixRange = 2f;
+
+
+    //Если в руках молоток, То мы можем нажать ЛКМ, который будет чинить сломанные объекты
+    //Выпускает луч, который проверяет тег, пока он выпущен и наведен на цель то цель чинится (ну или логика внутри предмета)
+    private float _secondsForFix = 1f;
+    private float _clampedSeconds = 0f;
+
+    private IFixable _currentFixable;
+
+    protected override void Update()
+    {
+        if (!_isActive) return;
+        base.Update();
+        
+        //Добавить проверку на наличие молотка в инвентаре
+        
+        if (inputActions.Crew.Attack.IsPressed())  //Если кнопка зажата сколько то секунд (например одну), то запускается один раз StartFix()
+        {
+            if (CastRayForFixAndCheck())
+            { 
+                _clampedSeconds += Time.deltaTime;
+                Debug.Log("Чиним");
+            }
+            else _clampedSeconds = 0;
+        }
+        else _clampedSeconds = 0f;
+
+        if (_clampedSeconds >= _secondsForFix)
+        {
+            _currentFixable.StartFix();
+            _clampedSeconds = 0f;
+        }
+
+    }
+
+    private bool CastRayForFixAndCheck()   //Зажато ЛКМ, попало в IFixable -> вызывается StartFix()
+    {
+        Ray ray = new Ray(cmCamera.transform.position, cmCamera.transform.forward);
+        RaycastHit hit;
+        Debug.Log("Луч починки выпущен");
+        if (Physics.Raycast(ray, out hit, _fixRange))
+        {
+            IFixable fixable = hit.collider.GetComponent<IFixable>();
+            if (fixable != null)
+            {
+                Debug.Log("Попали в фиксбл");
+                if (fixable.NeedToFix())
+                {
+                    Debug.Log("Его надо чинить");
+                    _currentFixable = fixable;
+                    return true;
+                }
+            }
+            else _currentFixable = null;
+        }
+        return false;
+    }
 }

@@ -55,17 +55,7 @@ public class SpawnIcebergs : MonoBehaviour
             yield return new WaitForSeconds(_nextSpawnInterval);
         }        
         
-    }
-    void Clear()
-    {
-        spawnedIcebergs.RemoveAll(obj =>
-        {
-            bool shouldRemove = (obj.transform.position.z - mainObject.position.z < -_minDistance);
-            if (shouldRemove) Destroy(obj.gameObject);
-            return shouldRemove;
-        });
-    }
-
+    }    
     void Update()
     {
         

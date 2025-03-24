@@ -3,27 +3,28 @@ using UnityEngine;
 
 public class Ball : BaseItem
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         Name = "CannonBall";
+        _whoCanEnteract = WhoCanEnteract.Pushkar;
     }
     public override void Interact(GameObject interactor)
-    {
-        /*
-        if (interactor.GetComponent<BaseCharacter>().CharacterName != "Pushkar") return;        
-        _interactor = interactor;
-        Debug.Log("Это пушкарь!");
-        */
+    {        
         base.Interact(interactor);
+        if (!IsInteractionAllowed)
+            return;
         PickUp();
+
     }
-    public void PickUp()
+    private void PickUp()
     {
+        _rb.isKinematic = true; // Отключаем физику
         _interactor.GetComponent<BaseCharacter>().AddItem(this);
         GetComponent<Collider>().enabled = false;
     }
 
-    public void Drop()
+    private void Drop()
     {
         //Если нужна какая-то логика для дропа ядра именно для ядра
     }

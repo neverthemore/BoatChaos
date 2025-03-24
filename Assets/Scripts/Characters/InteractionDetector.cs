@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractionDetector : MonoBehaviour
 {
     //Используется в BaseCharacter
-    [SerializeField]private float _interactionRange = 2.0f;
+    [SerializeField]private float _interactionRange = 5.0f;
     private Camera _camera;
 
     private void Awake()
@@ -17,6 +17,7 @@ public class InteractionDetector : MonoBehaviour
     {
         Ray ray = new Ray(_camera.transform.position, _camera.transform.forward);
         RaycastHit hit;
+        Debug.Log("Луч выпущен");
         if (Physics.Raycast(ray, out hit, _interactionRange))
         {
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
