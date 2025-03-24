@@ -38,7 +38,7 @@ public class Wheel : MonoBehaviour
 
     public void SetBrokenWheelParameters()
     {
-        _isBroken = true;
+        //_isBroken = true;
         Debug.Log("Штурвал сломан!");
     }
     public void SetNormalWheelParameters()
