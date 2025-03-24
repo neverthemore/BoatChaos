@@ -546,7 +546,6 @@ RectTransform:
   - {fileID: 579362150}
   - {fileID: 1553341538}
   - {fileID: 915319066}
-  - {fileID: 1841942711}
   m_Father: {fileID: 1461793232}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -624,6 +623,7 @@ RectTransform:
   m_LocalScale: {x: 2.5557, y: 2.5557, z: 2.5557}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1841942711}
   - {fileID: 1628300861}
   m_Father: {fileID: 533187063}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -738,12 +738,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4062bf53b46c7f84fa8e9efaf71fee95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsPanel: {fileID: 0}
+  settingsPanel: {fileID: 915319065}
   gameSceneName: scene
-  objectToMove: {fileID: 0}
+  objectToMove: {fileID: 1643768682}
   moveSpeed: 5
   moveDuration: 2
-  fadeImage: {fileID: 0}
+  fadeImage: {fileID: 1841942709}
   fadeDuration: 1
   rotationSpeed: 0.1
 --- !u!1 &832575517
@@ -832,7 +832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -817, y: -472}
+  m_AnchoredPosition: {x: -817, y: -371}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &915319067
@@ -1930,16 +1930,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841942708}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 21.17, y: 21.17, z: 21.17}
+  m_LocalScale: {x: 8.283444, y: 8.283444, z: 8.283444}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 533187063}
+  m_Father: {fileID: 579362150}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -36.17716}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
