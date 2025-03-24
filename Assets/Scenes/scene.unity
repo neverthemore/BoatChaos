@@ -222,7 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterName: Pushkar
   cmCamera: {fileID: 126782738}
-  _range: 4
+  _itemTransform: {fileID: 0}
 --- !u!1 &24501183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,6 +1970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eba6df9f88df0a41a9fa9431d366c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: 
 --- !u!1001 &748935361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3470,6 +3471,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 81caf282eaa71094c8494caf3b78b242, type: 3}
   - {fileID: 21300000, guid: 4ccd5ee0b9fcca04cad490b56eed97bb, type: 3}
   - {fileID: 21300000, guid: c82d32b12644b8a4b9b91468541c6af8, type: 3}
+  selectionCrosses: []
 --- !u!1 &1294834513
 GameObject:
   m_ObjectHideFlags: 0
@@ -3922,7 +3924,7 @@ GameObject:
   - component: {fileID: 1553538010}
   - component: {fileID: 1553538009}
   m_Layer: 0
-  m_Name: Wheell
+  m_Name: Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4073,6 +4075,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterName: Doctor
   cmCamera: {fileID: 2040259469}
+  _itemTransform: {fileID: 0}
 --- !u!143 &1588358784
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4930,6 +4933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterName: Technar
   cmCamera: {fileID: 1180324891}
+  _itemTransform: {fileID: 0}
 --- !u!143 &1935216892
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4983,7 +4987,7 @@ GameObject:
   - component: {fileID: 1991247798}
   - component: {fileID: 1991247799}
   m_Layer: 0
-  m_Name: Capitain
+  m_Name: Captain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5048,6 +5052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterName: Captain
   cmCamera: {fileID: 701795787}
+  _itemTransform: {fileID: 0}
   wheel: {fileID: 1991247799}
 --- !u!114 &1991247799
 MonoBehaviour:
