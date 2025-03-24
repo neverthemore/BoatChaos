@@ -17,18 +17,21 @@ public class BrokenWheelEvent : ShipEvent
     {
         _currentFix++;
         Debug.Log("Фикс на одну");
-        if (_currentFix == Amount_For_Fix) Complete();
+        Debug.Log("Вот: " + _currentFix + ": " + Amount_For_Fix);
+        if (_currentFix >= Amount_For_Fix) Complete();
     }
 
     public override void Activate()
     {
         base.Activate();
+        _currentFix = 0;
         OnWheelBroken?.Invoke();
     }
 
     public override void Complete()
     {
         base.Complete();
+        _currentFix = 0;
         OnWheelFixed?.Invoke();
     }
 

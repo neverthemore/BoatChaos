@@ -72,8 +72,7 @@ public class Wheel : MonoBehaviour, IFixable
 
     public void StartFix()
     {
-        //Чиним на 1/4 например, когда 4/4 -> штурвал фиксится, событие заканчивается
-        Debug.Log("Починили на одну");
+        _brokenWheelEvent.AddOneFix();
     }
 
     public bool NeedToFix()
