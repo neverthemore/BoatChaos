@@ -13,16 +13,17 @@ public class AI : MonoBehaviour
     {
         aiCharacter = GetComponent<CrewCharacter>();
         agent = GetComponent<NavMeshAgent>();
-        StartCoroutine(AIMoving());
+        //StartCoroutine(AIMoving());
     }
 
     private bool IsOnPoint(Transform point)
     {
-        if 
-        return 
+        Collider collider = point.GetComponent<Collider>();
+        
+        return true;
     }
 
-    IEnumerator AIMoving()
+    /*IEnumerator AIMoving()
     {
         while (true)
         {
@@ -35,5 +36,5 @@ public class AI : MonoBehaviour
             {
                 yield return new WaitUntil(() => );
             }            
-        }    
+        }    */
 }
