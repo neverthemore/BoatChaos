@@ -8,8 +8,10 @@ public class CaptainCharacter : BaseCharacter
 
     protected override void Update()
     {
+        if (_isIll) return;
         base.Update();
 
+        if (!_isActive) return;
         RotateCamera();
         
     }

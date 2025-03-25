@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 6642289317651420237}
   - component: {fileID: 8096667465534051505}
   - component: {fileID: 6178563564564419545}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Pushkar
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5e3821c7cbc0747a8691217fefa81a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _illnessEvent: {fileID: 11400000, guid: 5d6cd77f6de768c4b82e94dd6bf462cf, type: 2}
   _characterName: Pushkar
   cmCamera: {fileID: 8249357904362870795}
   _itemTransform: {fileID: 0}
@@ -176,6 +177,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _distance: 0
   _isOnPoint: 0
 --- !u!1 &4467196708851214230
 GameObject:
@@ -186,7 +188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2508976308616668345}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: RightArmPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3154500166649578083}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: LeftArmPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1182258538609995332}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: ItemPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6884199142637117971}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5219079334178011742}
   - component: {fileID: 8249357904362870795}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: CM CameraPushkar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 56517ee9139bc4c448b67862875dc66e, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 56517ee9139bc4c448b67862875dc66e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -452,7 +454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 56517ee9139bc4c448b67862875dc66e, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -518,11 +520,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 286df2a34c3edaa4f99d920931fb8e16, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 286df2a34c3edaa4f99d920931fb8e16, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -588,11 +590,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8c724b8820530b347aad8484cd2062b4, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 8c724b8820530b347aad8484cd2062b4, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -658,7 +660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f90bb3ec2b31e3640a64dad18fb8a8bd, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: f90bb3ec2b31e3640a64dad18fb8a8bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -666,7 +668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: f90bb3ec2b31e3640a64dad18fb8a8bd, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -732,11 +734,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 757819ff114ce3f488d254e7fb9bf666, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 757819ff114ce3f488d254e7fb9bf666, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -802,11 +804,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f6356b0fd1f40ea448946884c31ebf93, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: f6356b0fd1f40ea448946884c31ebf93, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

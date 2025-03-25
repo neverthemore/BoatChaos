@@ -160,6 +160,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _distance: 0
   _isOnPoint: 0
 --- !u!114 &4302947603739076023
 MonoBehaviour:
@@ -173,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37238a7336b0c4abd2f5eab317c532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _illnessEvent: {fileID: 11400000, guid: 5d6cd77f6de768c4b82e94dd6bf462cf, type: 2}
   _characterName: Technar
   cmCamera: {fileID: 5989934283673341979}
   _itemTransform: {fileID: 0}
