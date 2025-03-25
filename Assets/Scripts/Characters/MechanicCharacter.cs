@@ -11,6 +11,7 @@ public class MechanicCharacter : CrewCharacter
     private float _secondsForFix = 1f;
     private float _clampedSeconds = 0f;
 
+
     private IFixable _currentFixable;
 
     protected override void Update()
@@ -20,23 +21,33 @@ public class MechanicCharacter : CrewCharacter
 
         //Тут переделать логику, из-за того, что со всеми объектами Фикс разный - то и проверка должна быть внутри Фикса?
 
-        if (inputActions.Crew.Attack.IsPressed() && GetItem()?.Name == "Hammer")  
+        if (inputActions.Crew.Attack.IsPressed() && GetItem()?.Name == "Hammer")
         {
+            //Где-то тут проверку на класс делаем -> если мачта, то зажатие, если мачта то множественное нажатие
             if (CastRayForFixAndCheck())
             { 
-                _clampedSeconds += Time.deltaTime;
-                Debug.Log("Чиним");
+                if (_currentFixable is Wheel)
+                {
+                    _clampedSeconds += Time.deltaTime;
+                    Debug.Log("Чиним штурвал");
+                }
+
+                if (_currentFixable is ShipMast)
+                {
+                    _currentFixable.StartFix();             //!!!Тут переделать, нам надо чтобы реагировало именно на нажатие кнопки!!!
+                    Debug.Log("Чиним мачту");
+                }
             }
             else _clampedSeconds = 0;
         }
         else _clampedSeconds = 0f;
+           
 
         if (_clampedSeconds >= _secondsForFix)
         {
             _currentFixable.StartFix();
             _clampedSeconds = 0f;
         }
-        
     }
 
     private bool CastRayForFixAndCheck()   //Зажато ЛКМ, попало в IFixable -> вызывается StartFix()
