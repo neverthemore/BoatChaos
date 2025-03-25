@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 2813291219969709528}
   - component: {fileID: 3870243946980695435}
   - component: {fileID: 3752392648440698292}
+  - component: {fileID: 6642289317651420237}
+  - component: {fileID: 8096667465534051505}
+  - component: {fileID: 6178563564564419545}
   m_Layer: 3
   m_Name: Pushkar
   m_TagString: Untagged
@@ -104,6 +107,76 @@ MonoBehaviour:
   _characterName: Pushkar
   cmCamera: {fileID: 8249357904362870795}
   _itemTransform: {fileID: 0}
+  inAiMod: 0
+--- !u!136 &6642289317651420237
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289289525167456300}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.87
+  m_Height: 3.48
+  m_Direction: 1
+  m_Center: {x: 0, y: -1.32, z: -0.45}
+--- !u!195 &8096667465534051505
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289289525167456300}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.66
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 3.21
+  m_BaseOffset: 2.54
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &6178563564564419545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289289525167456300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b73209a6d94a864bb59ba13a9292c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _isOnPoint: 0
 --- !u!1 &4467196708851214230
 GameObject:
   m_ObjectHideFlags: 0

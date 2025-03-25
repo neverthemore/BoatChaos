@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 385996421174449202}
   - component: {fileID: 7414268805882120831}
   - component: {fileID: 1509893874979398546}
+  - component: {fileID: 8399740490482909384}
+  - component: {fileID: 1426989401031897732}
+  - component: {fileID: 405363468635620398}
   m_Layer: 8
   m_Name: Technar
   m_TagString: Untagged
@@ -104,6 +107,76 @@ MonoBehaviour:
   _characterName: Technar
   cmCamera: {fileID: 5989934283673341979}
   _itemTransform: {fileID: 0}
+  inAiMod: 0
+--- !u!136 &8399740490482909384
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248692079710505833}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.92
+  m_Height: 3.12
+  m_Direction: 1
+  m_Center: {x: 0, y: -1.09, z: -0.37}
+--- !u!195 &1426989401031897732
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248692079710505833}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.66
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 3.21
+  m_BaseOffset: 2.54
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &405363468635620398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248692079710505833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b73209a6d94a864bb59ba13a9292c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _isOnPoint: 0
 --- !u!1 &1872708147702880843
 GameObject:
   m_ObjectHideFlags: 0
