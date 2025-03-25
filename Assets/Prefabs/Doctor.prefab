@@ -106,7 +106,7 @@ Transform:
   m_GameObject: {fileID: 268264493882972570}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.59, z: -13.68}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -254,6 +254,7 @@ MonoBehaviour:
   cmCamera: {fileID: 5073698422234969118}
   _itemTransform: {fileID: 0}
   inAiMod: 0
+  _healRange: 0
 --- !u!1 &4550119890407231752
 GameObject:
   m_ObjectHideFlags: 0

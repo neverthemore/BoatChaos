@@ -18,6 +18,9 @@ public class CrewCharacter : BaseCharacter
     private float _gravityForce = -5f;
     //Команда, может двигаться и ходить в отличие от кэпа
 
+    private Vector3 _lastShipPosition = Vector3.zero;
+    private Quaternion _lastShipRotation = new Quaternion(0,0,0,0);
+
 
     override protected void Start()
     {
@@ -77,12 +80,58 @@ public class CrewCharacter : BaseCharacter
             _jumpUp += _gravityForce * Time.deltaTime;
         else if (_jumpUp <= 0) _jumpUp = 0;
 
-        Vector2 direction = inputActions.Crew.Move.ReadValue<Vector2>();        
-        Vector3 move = new Vector3();
+        // 1. Вычисляем движение от корабля
+        Vector3 shipDelta = Ship.LastShipPosition - _lastShipPosition;
+        Quaternion shipRotationDelta = Ship.LastShipRotation * Quaternion.Inverse(_lastShipRotation);
+
+        // 2. Применяем вращение корабля к персонажу
+        Vector3 rotatedPosition = shipRotationDelta * (transform.position - _lastShipPosition);
+        Vector3 shipMove = (rotatedPosition + _lastShipPosition + shipDelta) - transform.position;
+
+        // 3. Движение от игрока
+        Vector2 direction = inputActions.Crew.Move.ReadValue<Vector2>();
+        Vector3 characterMove = transform.TransformDirection(
+            new Vector3(direction.x, 0, direction.y)) * _speedOfMoving * Time.deltaTime;
+
+        // 4. Комбинируем перемещения
+        Vector3 totalMove = shipMove + characterMove;
+        totalMove.y += _jumpUp;
+
+        // 5. Применяем движение
+        controller.Move(totalMove);
+
+        /*
+        //Вычисляем изменение позиции и вращения корабля
+        Vector3 deltaPosition = Ship.LastShipPosition - _lastShipPosition;
+        Quaternion deltaRotation = Ship.LastShipRotation * Quaternion.Inverse(_lastShipRotation);
+        // Применяем вращение к персонажу
+        Vector3 rotatedOffset = deltaRotation * (transform.position - Ship.LastShipPosition);
+        Vector3 targetPosition =  Ship.LastShipPosition + rotatedOffset;
+        // Вычисляем необходимое перемещение
+        Vector3 shipMove = targetPosition - transform.position + deltaPosition;
+
+
+        Vector2 direction = inputActions.Crew.Move.ReadValue<Vector2>();
+        Vector3 characterMove = transform.forward * direction.y + transform.right * direction.x;
+        characterMove *= _speedOfMoving * Time.deltaTime;
+
+        // Комбинируем оба перемещения
+        Vector3 totalMove = shipMove + characterMove;
+        totalMove.y = _jumpUp;
+
+        // Применяем движение
+        controller.Move(totalMove);
+        */
+        /*
+        //Vector3 move = new Vector3();
         move = transform.forward * direction.y + transform.right * direction.x;
         move *= _speedOfMoving * Time.deltaTime;
         move.y = _jumpUp;
         controller.Move(move);
+        */
+        // Обновляем предыдущие значения
+        _lastShipPosition = Ship.LastShipPosition;
+        _lastShipRotation = Ship.LastShipRotation;
 
         //анимация
         if (direction != Vector2.zero)

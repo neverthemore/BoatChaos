@@ -21,6 +21,12 @@ public class Ship : MonoBehaviour
     [SerializeField]private bool _isMoving = true;
     [SerializeField] private bool _isRotate = true;
 
+    private static Vector3 _lastShipPosition;
+    private static Quaternion _lastShipRotation;
+
+    public static Vector3 LastShipPosition { get { return _lastShipPosition; } }
+    public static Quaternion LastShipRotation {  get { return _lastShipRotation; } }
+
         private void OnEnable()
     {
         _mastBroken.OnMastBroken.AddListener(SetBrokenMastParameters);
@@ -71,6 +77,7 @@ public class Ship : MonoBehaviour
 
     void Update()
     {
+        
 
         if (_isMoving)
         {
@@ -81,7 +88,8 @@ public class Ship : MonoBehaviour
             RotateShip();
         }
 
-        
-        
+        _lastShipPosition = transform.position;
+        _lastShipRotation = transform.rotation;
+
     }
 }
