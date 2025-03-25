@@ -23,6 +23,7 @@ public class BrokenMastEvent : ShipEvent
     public void ReducePerSecond()
     {
         _currentFix -= Reduce_Per_seconds;
+        if (_currentFix < 0 ) _currentFix = 0;
     }
 
     public override void Activate()
