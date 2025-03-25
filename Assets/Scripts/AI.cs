@@ -3,17 +3,17 @@ using UnityEngine.AI;
 using System.Collections;
 
 public class AI : MonoBehaviour
-{
-    CrewCharacter aiCharacter;
+{    
     NavMeshAgent agent;
+    Animator animator;
     [SerializeField] GoalPoint[] points;
 
     [SerializeField] private float _distance;
 
     public bool _isOnPoint;
     void Start()
-    {
-        aiCharacter = GetComponent<CrewCharacter>();
+    {        
+        animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         StartCoroutine(AIMoving());
     }
@@ -31,11 +31,12 @@ public class AI : MonoBehaviour
             agent.SetDestination(point.position);
             yield return new WaitForFixedUpdate();
             point = points[randIndex].transform;
+            animator.SetBool("walking", true);
         }
-              
+
+        animator.SetBool("walking", false);
         yield return new WaitForSeconds(4);
-        ChangePointState(true);
-                
+        ChangePointState(true);                
     }
 
     public void SetNavMesh(bool conclusion)
