@@ -25,6 +25,7 @@ public class Cannon : MonoBehaviour, IInteractable
                 {
                 //”дал€ем это €дро, пушка зар€жена
                 interactor.GetComponent<BaseCharacter>().GetItem().UseItem();
+                interactor.GetComponent<Animator>()?.SetTrigger("use");
                 _ballLoaded = true;
                 Debug.Log("ядро загружено");
                 }
