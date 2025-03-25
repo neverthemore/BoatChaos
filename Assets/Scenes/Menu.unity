@@ -1395,7 +1395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsPanel: {fileID: 0}
-  gameSceneName: scene
+  gameSceneName: suck_my_balls
   objectToMove: {fileID: 801458759}
   moveSpeed: 5
   moveDuration: 2

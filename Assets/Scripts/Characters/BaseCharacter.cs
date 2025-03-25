@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public abstract class BaseCharacter : MonoBehaviour
-{    
+{
+    [SerializeField] private IllnesEvent _illnessEvent;
+
     [SerializeField] protected string _characterName;
     public string CharacterName { get { return _characterName; } }
 
@@ -26,6 +28,9 @@ public abstract class BaseCharacter : MonoBehaviour
     InteractionDetector _interactionDetector;
 
     protected bool _isActive; //Активен ли сейчас персонаж
+
+    protected bool _isIll;
+    public bool IsIll { get { return _isIll; } }
 
 
     virtual protected void Start()
@@ -50,7 +55,20 @@ public abstract class BaseCharacter : MonoBehaviour
         }
         
     }
-    
+
+    private void OnEnable()
+    {
+        _illnessEvent.OnIllnessStart.AddListener(StartIll);
+        _illnessEvent.OnIllnesEnd.AddListener(Cure);
+
+    }
+
+    private void OnDisable()
+    {
+        _illnessEvent.OnIllnessStart.RemoveListener(StartIll);
+        _illnessEvent.OnIllnesEnd.RemoveListener(Cure);
+    }
+
     protected virtual void RotateCamera()
     {
         Vector2 look = inputActions.Captain.Look.ReadValue<Vector2>();
@@ -92,4 +110,16 @@ public abstract class BaseCharacter : MonoBehaviour
     {
         return _itemState.Item;
     }
+
+    #region Illness
+    protected virtual void StartIll()  //Для события болезни
+    {
+        _isIll = true;
+    }
+
+    private void Cure()
+    {
+        _isIll = false;
+    }
+    #endregion
 }

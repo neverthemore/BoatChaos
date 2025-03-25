@@ -6,15 +6,18 @@ using UnityEngine.InputSystem;
 
 public class CrewCharacter : BaseCharacter
 {
+
     protected CharacterController controller;     
     protected Animator animator;
     protected AI ai;
 
     public bool inAiMod;
+
     private float _speedOfMoving = 5f;
     private float _jumpUp;
     private float _gravityForce = -5f;
     //Команда, может двигаться и ходить в отличие от кэпа
+
 
     override protected void Start()
     {
@@ -87,5 +90,5 @@ public class CrewCharacter : BaseCharacter
             animator.SetBool("walking", true);
         }
         else animator.SetBool("walking", false);
-    }    
+    }
 }
