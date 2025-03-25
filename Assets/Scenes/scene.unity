@@ -330,6 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5e3821c7cbc0747a8691217fefa81a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _illnessEvent: {fileID: 0}
   _characterName: Pushkar
   cmCamera: {fileID: 126782738}
   _itemTransform: {fileID: 0}
@@ -4509,6 +4510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82aeb090d37f30e4bbd5087d6594b854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _illnessEvent: {fileID: 0}
   _characterName: Doctor
   cmCamera: {fileID: 2040259469}
   _itemTransform: {fileID: 0}
@@ -5541,6 +5543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37238a7336b0c4abd2f5eab317c532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _illnessEvent: {fileID: 0}
   _characterName: Technar
   cmCamera: {fileID: 1180324891}
   _itemTransform: {fileID: 0}
@@ -5637,6 +5640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f3d411af337f64dbc3aa334155895e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _illnessEvent: {fileID: 0}
   _characterName: Captain
   cmCamera: {fileID: 701795787}
   _itemTransform: {fileID: 0}
@@ -6853,14 +6857,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7feef1110a768a34a82453ebf56e831f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 03da07338e3363b479a3359ed7db3977, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1

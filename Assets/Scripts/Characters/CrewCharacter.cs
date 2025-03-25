@@ -1,4 +1,4 @@
-using NUnit.Framework.Constraints;
+п»їusing NUnit.Framework.Constraints;
 using Unity.Jobs;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -17,7 +17,9 @@ public class CrewCharacter : BaseCharacter
     private float _gravityForce = -5f;
 
     private Ship _ship;
-    //Команда, может двигаться и ходить в отличие от кэпа
+    //РљРѕРјР°РЅРґР°, РјРѕР¶РµС‚ РґРІРёРіР°С‚СЊСЃСЏ Рё С…РѕРґРёС‚СЊ РІ РѕС‚Р»РёС‡РёРµ РѕС‚ РєСЌРїР°
+    private Vector3 _lastShipPosition = Vector3.zero;
+    private Quaternion _lastShipRotation = new Quaternion(0, 0, 0, 0);
 
 
     override protected void Start()
@@ -82,18 +84,28 @@ public class CrewCharacter : BaseCharacter
     }
     private void Move()
     {
-        if (!controller.isGrounded)        
+        if (!controller.isGrounded)
             _jumpUp += _gravityForce * Time.deltaTime;
         else if (_jumpUp <= 0) _jumpUp = 0;
 
-        Vector2 direction = inputActions.Crew.Move.ReadValue<Vector2>();
-        Vector3 move = new Vector3();
-        move = transform.forward * direction.y + transform.right * direction.x;
-        move *= _speedOfMoving * Time.deltaTime;
-        move.y = _jumpUp;
-        controller.Move(move);        
+        Vector3 shipDelta = Ship.LastShipPosition - _lastShipPosition;
+        Quaternion shipRotationDelta = Ship.LastShipRotation * Quaternion.Inverse(_lastShipRotation);
 
-        //анимация
+        Vector3 rotatedPosition = shipRotationDelta * (transform.position - _lastShipPosition);
+        Vector3 shipMove = (rotatedPosition + _lastShipPosition + shipDelta) - transform.position;
+
+        Vector2 direction = inputActions.Crew.Move.ReadValue<Vector2>();
+        Vector3 characterMove = transform.TransformDirection(
+            new Vector3(direction.x, 0, direction.y)) * _speedOfMoving * Time.deltaTime;
+
+        Vector3 totalMove = shipMove + characterMove;
+        totalMove.y += _jumpUp;
+        controller.Move(totalMove);
+
+        _lastShipPosition = Ship.LastShipPosition;
+        _lastShipRotation = Ship.LastShipRotation;
+
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (direction != Vector2.zero)
         {
             animator.SetBool("walking", true);

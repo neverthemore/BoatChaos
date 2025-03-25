@@ -30,7 +30,7 @@ public class EventsManager : MonoBehaviour
         //ѕо приколу запускаю все событи€ (дл€ проверки)
         foreach (ShipEvent e in _allEvents)
         {
-            e.Activate(); 
+            //e.Activate(); 
         }
         
     }
