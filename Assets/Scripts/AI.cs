@@ -27,8 +27,9 @@ public class AI : MonoBehaviour
         Transform point = points[randIndex].transform;
         while (Vector3.Distance(transform.position, point.position) > 3f)
         {
-            _distance = Vector3.Distance(transform.position, point.position);
-            agent.SetDestination(point.position);
+        _distance = Vector3.Distance(transform.position, point.position);
+        if (agent.enabled && agent.navMeshOwner != null) agent.SetDestination(point.position);
+
             yield return new WaitForFixedUpdate();
             point = points[randIndex].transform;
             animator.SetBool("walking", true);

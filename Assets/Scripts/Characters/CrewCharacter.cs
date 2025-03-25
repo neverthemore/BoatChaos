@@ -12,14 +12,19 @@ public class CrewCharacter : BaseCharacter
     
     public bool inAiMod;
 
+    private bool _isNeedToStopCoroutine = true;
+    private bool _isNeedToSwitchOnNavMesh = false;
+
     private float _speedOfMoving = 5f;
     private float _jumpUp;
     private float _gravityForce = -5f;
 
+    private bool _isFirstMove = true;
+
     private Ship _ship;
     //Команда, может двигаться и ходить в отличие от кэпа
-    private Vector3 _lastShipPosition = Vector3.zero;
-    private Quaternion _lastShipRotation = new Quaternion(0, 0, 0, 0);
+    private Vector3 _lastShipPosition = Ship.LastShipPosition;
+    private Quaternion _lastShipRotation = Ship.LastShipRotation;
 
 
     override protected void Start()
@@ -52,17 +57,33 @@ public class CrewCharacter : BaseCharacter
 
     protected override void Update()
     {
+        base.Update();
         if (_isActive)
         {
-            base.Update();
+            if (_isNeedToStopCoroutine)
+            {
+                ai.StopAllCoroutines();
+                ai.SetNavMesh(false);
 
-            Move();
+                _isNeedToStopCoroutine = false;
+                _isNeedToSwitchOnNavMesh = true;
+            }   
 
-            RotateCamera();         
+                Move();
+
+                RotateCamera();         
             
         }
         else
         {
+            if (_isNeedToSwitchOnNavMesh)
+            {
+                ai.SetNavMesh(true);
+                _isNeedToSwitchOnNavMesh = false;
+                _isNeedToStopCoroutine = true;
+                ai.ChangePointState(true);
+                _isFirstMove = true;
+            }
             AIMod();
         }
 
@@ -75,9 +96,9 @@ public class CrewCharacter : BaseCharacter
     }
     protected override void AIMod()
     {
-        base.AIMod();
         if (ai._isOnPoint)
         {
+            ai.ChangePointState(false);
             ai._isOnPoint = false;
             StartCoroutine(ai.AIMoving());
         }
@@ -91,6 +112,13 @@ public class CrewCharacter : BaseCharacter
         Vector3 shipDelta = Ship.LastShipPosition - _lastShipPosition;
         Quaternion shipRotationDelta = Ship.LastShipRotation * Quaternion.Inverse(_lastShipRotation);
 
+        if (_isFirstMove)
+        {
+            shipDelta = Vector3.zero;
+            shipRotationDelta = new Quaternion(0, 0, 0, 0);
+            _isFirstMove = false;
+        }
+         
         Vector3 rotatedPosition = shipRotationDelta * (transform.position - _lastShipPosition);
         Vector3 shipMove = (rotatedPosition + _lastShipPosition + shipDelta) - transform.position;
 
@@ -105,7 +133,6 @@ public class CrewCharacter : BaseCharacter
         _lastShipPosition = Ship.LastShipPosition;
         _lastShipRotation = Ship.LastShipRotation;
 
-        //��������
         if (direction != Vector2.zero)
         {
             animator.SetBool("walking", true);
