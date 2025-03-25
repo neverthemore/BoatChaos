@@ -160,13 +160,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 3.83
+  m_Height: 3.3
   m_Radius: 0.84
   m_SlopeLimit: 45
   m_StepOffset: 1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.25, z: 0}
 --- !u!136 &2552265006132511555
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -254,6 +254,7 @@ MonoBehaviour:
   cmCamera: {fileID: 5073698422234969118}
   _itemTransform: {fileID: 0}
   inAiMod: 0
+  _healRange: 0
 --- !u!1 &4550119890407231752
 GameObject:
   m_ObjectHideFlags: 0
