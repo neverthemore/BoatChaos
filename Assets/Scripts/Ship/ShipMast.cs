@@ -5,6 +5,7 @@ public class ShipMast : MonoBehaviour, IFixable
     //Чисто скрипт для поломки мачты
     [SerializeField] private BrokenMastEvent _brokenMastEvent;
 
+    private float _currentClickReduceCooldown = 0f;
     private bool _isBroken;
 
     private void OnEnable()
@@ -19,6 +20,20 @@ public class ShipMast : MonoBehaviour, IFixable
         _brokenMastEvent.OnMastBroken.RemoveListener(BreakTheMast);
         _brokenMastEvent.OnMastFixed.RemoveListener(FixTheMast);
         
+    }
+
+    private void Update()
+    {
+        if (_isBroken)
+        {
+            _currentClickReduceCooldown -= Time.deltaTime;
+
+            if (_currentClickReduceCooldown < 0f)
+            {
+                _brokenMastEvent.ReducePerSecond();
+                _currentClickReduceCooldown = 1f;
+            }
+        }        
     }
 
     private void BreakTheMast()
