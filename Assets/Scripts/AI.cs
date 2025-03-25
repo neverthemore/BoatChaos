@@ -28,6 +28,6 @@ public class AI : MonoBehaviour
         {
             agent.SetDestination(point.position);
         }        
-        else yield return new WaitForSeconds(1f);
+        else yield return new WaitForSeconds(6f);
     }
 }
