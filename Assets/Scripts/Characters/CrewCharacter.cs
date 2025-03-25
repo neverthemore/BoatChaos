@@ -8,7 +8,9 @@ public class CrewCharacter : BaseCharacter
 {
     protected CharacterController controller;     
     protected Animator animator;
+    protected AI ai;
 
+    public bool inAiMod;
     private float _speedOfMoving = 5f;
     private float _jumpUp;
     private float _gravityForce = -5f;
@@ -16,7 +18,8 @@ public class CrewCharacter : BaseCharacter
 
     override protected void Start()
     {
-        base.Start();        
+        base.Start();       
+        ai = GetComponent<AI>();
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         inputActions = new InputSystem_Actions();
@@ -32,10 +35,12 @@ public class CrewCharacter : BaseCharacter
     public override void Activate()
     {
         base.Activate();        
+        inAiMod = false;
     }
     public override void Deactivate()
     {
         base.Deactivate();
+        inAiMod = true;
     }
 
     protected override void Update()
@@ -48,8 +53,21 @@ public class CrewCharacter : BaseCharacter
 
             RotateCamera();            
         }
+        else
+        {
+            AIMod();
+        }
         
-    }  
+    }
+    protected override void AIMod()
+    {
+        base.AIMod();
+        if (ai._isOnPoint)
+        {
+            ai._isOnPoint = false;
+            StartCoroutine(ai.AIMoving());
+        }
+    }
     private void Move()
     {
         if (!controller.isGrounded)        
