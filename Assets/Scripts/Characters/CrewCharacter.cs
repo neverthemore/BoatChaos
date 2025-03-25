@@ -5,23 +5,25 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CrewCharacter : BaseCharacter
-{
-
+{    
     protected CharacterController controller;     
     protected Animator animator;
-    protected AI ai;
-
+    protected AI ai;    
+    
     public bool inAiMod;
 
     private float _speedOfMoving = 5f;
     private float _jumpUp;
     private float _gravityForce = -5f;
+
+    private Ship _ship;
     //Команда, может двигаться и ходить в отличие от кэпа
 
 
     override protected void Start()
     {
         base.Start();       
+        _ship = GetComponentInParent<Ship>();
         ai = GetComponent<AI>();
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
@@ -54,13 +56,20 @@ public class CrewCharacter : BaseCharacter
 
             Move();
 
-            RotateCamera();            
+            RotateCamera();         
+            
         }
         else
         {
             AIMod();
         }
-        
+
+        if (GetItem() != null)
+        {
+            animator.SetBool("carring", true);
+        }
+        else animator.SetBool("carring", false);
+
     }
     protected override void AIMod()
     {
@@ -77,12 +86,12 @@ public class CrewCharacter : BaseCharacter
             _jumpUp += _gravityForce * Time.deltaTime;
         else if (_jumpUp <= 0) _jumpUp = 0;
 
-        Vector2 direction = inputActions.Crew.Move.ReadValue<Vector2>();        
+        Vector2 direction = inputActions.Crew.Move.ReadValue<Vector2>();
         Vector3 move = new Vector3();
         move = transform.forward * direction.y + transform.right * direction.x;
         move *= _speedOfMoving * Time.deltaTime;
         move.y = _jumpUp;
-        controller.Move(move);
+        controller.Move(move);        
 
         //анимация
         if (direction != Vector2.zero)

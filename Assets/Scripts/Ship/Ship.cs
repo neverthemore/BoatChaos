@@ -15,7 +15,7 @@ public class Ship : MonoBehaviour
     private float _shipAngle;
     [SerializeField] private float _maxAngle = 24f;
     [SerializeField] private float _maxIncline = 10f;
-    [SerializeField] private float _shipSpeed = 2f;  
+    [SerializeField] public float _shipSpeed = 2f;  
     private float _brokenMastCoef = 1.5f; //Коэф сломаной мачты
 
     [SerializeField]private bool _isMoving = true;

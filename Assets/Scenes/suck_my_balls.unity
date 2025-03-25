@@ -3460,7 +3460,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 41242abcdcbfc244681416e0991e34b7, type: 3}
   - {fileID: 21300000, guid: e5b9eda268243574a831679e2c1dcfa2, type: 3}
   - {fileID: 21300000, guid: 71997550245e0574d98326d80eafc521, type: 3}
-  - {fileID: 21300000, guid: e99c514094fc65244a22d98719b659bb, type: 3}
+  - {fileID: 21300000, guid: 11d5f2ca3407d7f408ec76fa32531a59, type: 3}
   - {fileID: 21300000, guid: 8884ffe4bff804b40a2041bdc1cbafbc, type: 3}
   - {fileID: 21300000, guid: 54e91506a5f322d4baf8aaf6463ecaa8, type: 3}
   - {fileID: 21300000, guid: 2ec2a5db08891254092a34e742b44e30, type: 3}
@@ -5228,6 +5228,10 @@ PrefabInstance:
       propertyPath: 'points.Array.data[9]'
       value: 
       objectReference: {fileID: 929783539}
+    - target: {fileID: 7831283131997511945, guid: 684f093bec52148468f43df863ac8d55, type: 3}
+      propertyPath: _healRange
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
