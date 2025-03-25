@@ -8,7 +8,7 @@ public class Iceberg : MonoBehaviour
         GameObject obj = other.gameObject;
         if (obj.tag == "Ship")
         {            
-            obj.GetComponent<Stats>().ShipHP -= _damage;
+            obj.GetComponent<UIStatistic>().ShipHP -= _damage;
             Destroy(gameObject);
         }
     }     

@@ -1,3 +1,4 @@
+using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ public class Ship : MonoBehaviour
 {
     [SerializeField] private BrokenMastEvent _mastBroken;
     Wheel wheel;
-    Stats stats;
+    UIStatistic UIStatistic;
     CharacterController controller;
 
     private float _incline = 0f; //Наклон
@@ -25,7 +26,7 @@ public class Ship : MonoBehaviour
 
     void Start()
     {
-        stats = GetComponent<Stats>();
+        UIStatistic = GetComponent<UIStatistic>();
         wheel = FindAnyObjectByType<Wheel>();
         controller = GetComponent<CharacterController>();
     }
@@ -46,7 +47,7 @@ public class Ship : MonoBehaviour
     {
         Vector3 move = transform.forward * _shipSpeed * Time.deltaTime;
         controller.Move(move);
-        stats.RemainingDistanse -= _shipSpeed * Time.deltaTime;
+        UIStatistic.RemainingDistance -= _shipSpeed * Time.deltaTime;
     }
 
     private void RotateShip()
@@ -67,7 +68,7 @@ public class Ship : MonoBehaviour
 
     void Update()
     {
-        //MoveShip();
+        MoveShip();
 
         RotateShip();
     }
