@@ -4,7 +4,16 @@ using UnityEngine;
 public class Cannon : MonoBehaviour, IInteractable
 {    
     private bool _ballLoaded = false;
+    private bool _isFiring;
+    [SerializeField] private float _firePower;
 
+    [SerializeField] private GameObject _ballPrefab;    
+    private Animator _animator;
+
+    private void Start()
+    {
+        _animator = GetComponent<Animator>();        
+    }
 
     public void Interact(GameObject interactor)
     {
@@ -22,13 +31,16 @@ public class Cannon : MonoBehaviour, IInteractable
         }
         else
         {
-            Fire();
-            //Стреляем
+            _animator.SetTrigger("firing");
         }
     }
     private void Fire()
     {
-        Debug.Log("FIRE!!!");
+        Debug.Log("FIRE");
         _ballLoaded = false;
-    }       
+        GameObject ball = Instantiate(_ballPrefab, transform.position + new Vector3(1.5f, 0, 0), Quaternion.identity);
+        ball.GetComponent<Ball>()?.FireTheBall(transform.forward, _firePower);
+        _isFiring = false;        
+              
+    }    
 }
