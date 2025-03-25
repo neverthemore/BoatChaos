@@ -3847,6 +3847,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1362795430}
   - component: {fileID: 1362795431}
+  - component: {fileID: 1362795432}
   m_Layer: 0
   m_Name: Popug
   m_TagString: Untagged
@@ -3895,6 +3896,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1362795432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362795429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b2f689711cb55c4fa24f7032315b156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parrotAnimator: {fileID: 0}
+  flySpeed: 5
+  flyAwayOffset: {x: -10, y: 5, z: 0}
+  flySound: {fileID: 0}
 --- !u!4 &1388857956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0066ac3d6b2e6cd4985d0002b661ac71, type: 3}
