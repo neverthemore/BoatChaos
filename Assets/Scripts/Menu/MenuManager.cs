@@ -98,7 +98,7 @@ public class MenuController : MonoBehaviour
 
         while (elapsedTime < moveDuration)
         {
-            objectToMove.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            objectToMove.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
