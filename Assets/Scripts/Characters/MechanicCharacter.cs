@@ -18,10 +18,9 @@ public class MechanicCharacter : CrewCharacter
         if (!_isActive) return;
         base.Update();
 
-        //Добавить проверку на наличие молотка в инвентаре
-        //Debug.Log(GetItem()?.Name);
-        
-        if (inputActions.Crew.Attack.IsPressed() && GetItem()?.Name == "Hammer")  //Если кнопка зажата сколько то секунд (например одну), то запускается один раз StartFix()
+        //Тут переделать логику, из-за того, что со всеми объектами Фикс разный - то и проверка должна быть внутри Фикса?
+
+        if (inputActions.Crew.Attack.IsPressed() && GetItem()?.Name == "Hammer")  
         {
             if (CastRayForFixAndCheck())
             { 
