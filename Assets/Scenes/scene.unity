@@ -4575,6 +4575,8 @@ MonoBehaviour:
   _maxAngle: 24
   _maxIncline: 10
   _shipSpeed: 2
+  _isMoving: 1
+  _isRotate: 1
 --- !u!4 &1607097700
 Transform:
   m_ObjectHideFlags: 0
