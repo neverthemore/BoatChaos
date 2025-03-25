@@ -24,10 +24,16 @@ public class AI : MonoBehaviour
         Debug.Log("корутина началась");
         int randIndex = Random.Range(0, points.Length);
         Transform point = points[randIndex].transform;
-        if (!_isOnPoint)
-        {
-            agent.SetDestination(point.position);
-        }        
-        else yield return new WaitForSeconds(6f);
+
+        agent.SetDestination(point.position);
+        yield return new WaitUntil(() => agent.remainingDistance < 0.1f);
+        yield return new WaitForSeconds(4);
+        ChangePointState(true);
+                
+    }
+
+    public void SetNavMesh(bool conclusion)
+    {
+        agent.enabled = conclusion;
     }
 }

@@ -17,7 +17,7 @@ public class GoalPoint : MonoBehaviour
             || name == WhoCanEnteract.Pushkar.ToString()
             || name == WhoCanEnteract.Doctor.ToString())
         {
-            obj.GetComponent<AI>().ChangePointState(true);
+            //obj.GetComponent<AI>().ChangePointState(true);
         }        
     }
 }

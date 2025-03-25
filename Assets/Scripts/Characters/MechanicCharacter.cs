@@ -17,13 +17,13 @@ public class MechanicCharacter : CrewCharacter
 
     protected override void Update()
     {
-        if (!_isActive) return;
         base.Update();
+        if (!_isActive) return;
 
         // Переменные для отслеживания состояния кнопки
         bool isAttackPressed = inputActions.Crew.Attack.IsPressed();
         bool isAttackTriggered = isAttackPressed && !_wasAttackPressedLastFrame;
-        //Тут переделать логику, из-за того, что со всеми объектами Фикс разный - то и проверка должна быть внутри Фикса?
+
         if (GetItem()?.Name == "Hammer")
         {
             bool isFixableHit = CastRayForFixAndCheck();
@@ -68,35 +68,7 @@ public class MechanicCharacter : CrewCharacter
 
         // Обновляем состояние кнопки для следующего кадра
         _wasAttackPressedLastFrame = isAttackPressed;
-
-        /*
-        if (inputActions.Crew.Attack.IsPressed() && GetItem()?.Name == "Hammer")
-        {
-            //Где-то тут проверку на класс делаем -> если мачта, то зажатие, если мачта то множественное нажатие
-            if (CastRayForFixAndCheck())
-            { 
-                if (_currentFixable is Wheel)
-                {
-                    _clampedSeconds += Time.deltaTime;
-                    Debug.Log("Чиним штурвал");
-                }
-
-                if (_currentFixable is ShipMast)
-                {
-                    _currentFixable.StartFix();             //!!!Тут переделать, нам надо чтобы реагировало именно на нажатие кнопки!!!
-                    Debug.Log("Чиним мачту");
-                }
-            }
-            else _clampedSeconds = 0;
-        }
-        else _clampedSeconds = 0f;
-           
-
-        if (_clampedSeconds >= _secondsForFix)
-        {
-            _currentFixable.StartFix();
-            _clampedSeconds = 0f;
-        }*/
+        
     }
 
     private bool CastRayForFixAndCheck()   //Зажато ЛКМ, попало в IFixable -> вызывается StartFix()

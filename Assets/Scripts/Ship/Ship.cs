@@ -18,7 +18,10 @@ public class Ship : MonoBehaviour
     [SerializeField] private float _shipSpeed = 2f;  
     private float _brokenMastCoef = 1.5f; //Коэф сломаной мачты
 
-    private void OnEnable()
+    [SerializeField]private bool _isMoving = true;
+    [SerializeField] private bool _isRotate = true;
+
+        private void OnEnable()
     {
         _mastBroken.OnMastBroken.AddListener(SetBrokenMastParameters);
         _mastBroken.OnMastFixed.AddListener(SetNormalMastParameters);
@@ -68,8 +71,17 @@ public class Ship : MonoBehaviour
 
     void Update()
     {
-        MoveShip();
 
-        RotateShip();
+        if (_isMoving)
+        {
+            MoveShip();
+        }
+        if (_isRotate)
+        {
+            RotateShip();
+        }
+
+        
+        
     }
 }

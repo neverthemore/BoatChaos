@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2418136267502320709}
   - component: {fileID: 385996421174449202}
   - component: {fileID: 7414268805882120831}
-  - component: {fileID: 1509893874979398546}
   - component: {fileID: 8399740490482909384}
   - component: {fileID: 1426989401031897732}
   - component: {fileID: 405363468635620398}
+  - component: {fileID: 4302947603739076023}
   m_Layer: 8
   m_Name: Technar
   m_TagString: Untagged
@@ -88,26 +88,10 @@ CharacterController:
   m_Height: 3.22
   m_Radius: 0.84
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: -1.02, z: -0.45}
---- !u!114 &1509893874979398546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 248692079710505833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82aeb090d37f30e4bbd5087d6594b854, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterName: Technar
-  cmCamera: {fileID: 5989934283673341979}
-  _itemTransform: {fileID: 0}
-  inAiMod: 0
 --- !u!136 &8399740490482909384
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -177,6 +161,23 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _isOnPoint: 0
+--- !u!114 &4302947603739076023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248692079710505833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e37238a7336b0c4abd2f5eab317c532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterName: Technar
+  cmCamera: {fileID: 5989934283673341979}
+  _itemTransform: {fileID: 0}
+  inAiMod: 0
+  _fixRange: 5
 --- !u!1 &1872708147702880843
 GameObject:
   m_ObjectHideFlags: 0

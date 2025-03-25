@@ -39,11 +39,6 @@ public abstract class BaseCharacter : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!_isActive)
-        {
-            AIMod();
-            return;
-        }
         if (_isActive && inputActions.Crew.Use.triggered)
         {
             _interactionDetector.SendARay();
