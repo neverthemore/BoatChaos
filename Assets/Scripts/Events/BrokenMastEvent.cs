@@ -11,7 +11,7 @@ public class BrokenMastEvent : ShipEvent
     public int Amount_For_Fix = 4;
     private int _currentFix = 0;
 
-    public void AddOneFix() //Починить на одну
+    public void AddOneFix() //Нажимать много раз, чтобы выполнить
     {
         _currentFix++;
         Debug.Log("Мачта: " + _currentFix + ": " + Amount_For_Fix);
