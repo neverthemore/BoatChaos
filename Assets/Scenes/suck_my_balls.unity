@@ -596,6 +596,7 @@ MonoBehaviour:
   _allEvents:
   - {fileID: 11400000, guid: 9ce682475e61fe34ba74a3b87c3f3cf9, type: 2}
   - {fileID: 11400000, guid: f9c40afd81a060d4290eaf7100439352, type: 2}
+  - {fileID: 11400000, guid: 5d6cd77f6de768c4b82e94dd6bf462cf, type: 2}
   timerDuration: 10
 --- !u!4 &109383244
 Transform:
