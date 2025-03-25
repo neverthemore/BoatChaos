@@ -333,6 +333,7 @@ MonoBehaviour:
   _characterName: Pushkar
   cmCamera: {fileID: 126782738}
   _itemTransform: {fileID: 0}
+  inAiMod: 0
 --- !u!1 &24501183
 GameObject:
   m_ObjectHideFlags: 0
@@ -4577,6 +4578,7 @@ MonoBehaviour:
   _characterName: Doctor
   cmCamera: {fileID: 2040259469}
   _itemTransform: {fileID: 0}
+  inAiMod: 0
 --- !u!143 &1588358784
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5621,6 +5623,7 @@ MonoBehaviour:
   _characterName: Technar
   cmCamera: {fileID: 1180324891}
   _itemTransform: {fileID: 0}
+  inAiMod: 0
   _fixRange: 5
 --- !u!4 &1966836838 stripped
 Transform:
