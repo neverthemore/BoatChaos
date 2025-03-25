@@ -9,18 +9,18 @@ public class CaptainCharacter : BaseCharacter
     protected override void Update()
     {
         if (_isIll) return;
-        base.Update();
 
         if (!_isActive) return;
+        base.Update();
         RotateCamera();
         
     }
 
     protected override void RotateCamera()  //Тут что-то не работает
     {
-        base.RotateCamera();              
-        mouseX = Mathf.Clamp(mouseX, -80f, 80f);
-        cmCameraGameObject.transform.localEulerAngles = new Vector3(mouseY, mouseX, 0f);
+        base.RotateCamera();
+        cmCameraGameObject.transform.localEulerAngles = new Vector3(mouseY, 0f, 0f);
+        transform.localEulerAngles = new Vector3(0f, mouseX, 0f);
     }
 
     private void SwitchCharacter(int index) //Вроде метод не используется

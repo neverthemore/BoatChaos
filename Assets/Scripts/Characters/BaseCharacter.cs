@@ -114,11 +114,13 @@ public abstract class BaseCharacter : MonoBehaviour
     #region Illness
     protected virtual void StartIll()  //Для события болезни
     {
+        Debug.Log(_characterName + " заболел");
         _isIll = true;
     }
 
-    private void Cure()
+    public void Cure()
     {
+        Debug.Log(_characterName + " вылечен");
         _isIll = false;
     }
     #endregion

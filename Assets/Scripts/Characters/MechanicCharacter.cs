@@ -17,8 +17,10 @@ public class MechanicCharacter : CrewCharacter
 
     protected override void Update()
     {
+        if (_isIll) return; //Перестает что-либо делать
         base.Update();
         if (!_isActive) return;
+
 
         // Переменные для отслеживания состояния кнопки
         bool isAttackPressed = inputActions.Crew.Attack.IsPressed();
