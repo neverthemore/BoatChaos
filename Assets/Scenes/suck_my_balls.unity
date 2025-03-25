@@ -2750,7 +2750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c334c1ac8fecf4cadcf8f8e287525b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _firePower: 0
+  _firePower: 75
   _ballPrefab: {fileID: 7120720433450771250, guid: e84e54cd1c89b9f4199052c1d1687b5e, type: 3}
 --- !u!65 &970032367
 BoxCollider:
