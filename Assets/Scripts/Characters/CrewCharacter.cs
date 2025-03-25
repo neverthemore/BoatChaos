@@ -11,9 +11,6 @@ public class CrewCharacter : BaseCharacter
     protected AI ai;
 
     public bool inAiMod;
-    private bool _isNeedToStopCoroutine = true;
-    private bool _isNeedToSwitchOnNavMesh = false;
-
     private float _speedOfMoving = 5f;
     private float _jumpUp;
     private float _gravityForce = -5f;
@@ -48,41 +45,26 @@ public class CrewCharacter : BaseCharacter
 
     protected override void Update()
     {
-        base.Update();
         if (_isActive)
         {
-            if (_isNeedToStopCoroutine)
-            {
-                ai.StopAllCoroutines(); //ќфф корутины
-                ai.SetNavMesh(false);   //ќфф NavAgent
+            base.Update();
 
-                _isNeedToStopCoroutine = false;
-                _isNeedToSwitchOnNavMesh = true;
-            }
-            
             Move();
 
             RotateCamera();            
         }
         else
         {
-            if (_isNeedToSwitchOnNavMesh)
-            {
-                ai.SetNavMesh(true);
-                _isNeedToSwitchOnNavMesh = false;
-                _isNeedToStopCoroutine = true;
-                ai.ChangePointState(true);
-            }
-            AIMod();
+            //AIMod();
         }
         
     }
     protected override void AIMod()
     {
-        
+        base.AIMod();
         if (ai._isOnPoint)
         {
-            ai.ChangePointState(false);
+            ai._isOnPoint = false;
             StartCoroutine(ai.AIMoving());
         }
     }
@@ -96,8 +78,6 @@ public class CrewCharacter : BaseCharacter
         Vector3 move = new Vector3();
         move = transform.forward * direction.y + transform.right * direction.x;
         move *= _speedOfMoving * Time.deltaTime;
-
-
         move.y = _jumpUp;
         controller.Move(move);
 

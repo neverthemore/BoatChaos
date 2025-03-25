@@ -24,16 +24,23 @@ public class Ball : BaseItem
         _interactor.GetComponent<BaseCharacter>().AddItem(this);
         GetComponent<Collider>().enabled = false;
     }
-
     public override void DropItem()
     {
         _rb.isKinematic = false;
         GetComponent<Collider>().enabled = true;
-    }
-    
+    }    
     public override void UseItem()
     {
         //Удаляем нахуй этот объект (!!!не проебать ошибки!!!)
         Destroy(gameObject);
+    }
+    public void SpawnObject(Transform placement)
+    {
+        Instantiate(gameObject, placement);
+    }
+    public void FireTheBall(Vector3 direction, float power)
+    {
+        _rb = GetComponent<Rigidbody>();
+        _rb.AddForce(direction * power, ForceMode.Impulse);
     }
 }
