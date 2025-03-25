@@ -8,6 +8,8 @@ public class AI : MonoBehaviour
     NavMeshAgent agent;
     [SerializeField] GoalPoint[] points;
 
+    [SerializeField] private float _distance;
+
     public bool _isOnPoint;
     void Start()
     {
@@ -21,12 +23,16 @@ public class AI : MonoBehaviour
     }
     public IEnumerator AIMoving()
     {        
-        Debug.Log("корутина началась");
         int randIndex = Random.Range(0, points.Length);
         Transform point = points[randIndex].transform;
-
-        agent.SetDestination(point.position);
-        yield return new WaitUntil(() => agent.remainingDistance < 0.1f);
+        while (Vector3.Distance(transform.position, point.position) > 3f)
+        {
+            _distance = Vector3.Distance(transform.position, point.position);
+            agent.SetDestination(point.position);
+            yield return new WaitForFixedUpdate();
+            point = points[randIndex].transform;
+        }
+              
         yield return new WaitForSeconds(4);
         ChangePointState(true);
                 
