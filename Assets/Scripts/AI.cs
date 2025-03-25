@@ -1,40 +1,33 @@
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.AI;
+using System.Collections;
 
 public class AI : MonoBehaviour
 {
     CrewCharacter aiCharacter;
     NavMeshAgent agent;
-    [SerializeField] Transform[] points;
+    [SerializeField] GoalPoint[] points;
 
-    [SerializeField] private bool _isOnPoint;
+    public bool _isOnPoint;
     void Start()
     {
         aiCharacter = GetComponent<CrewCharacter>();
         agent = GetComponent<NavMeshAgent>();
-        //StartCoroutine(AIMoving());
+        StartCoroutine(AIMoving());
     }
-
-    private bool IsOnPoint(Transform point)
+    public void ChangePointState(bool state)
     {
-        Collider collider = point.GetComponent<Collider>();
-        
-        return true;
+        _isOnPoint = state;
     }
-
-    /*IEnumerator AIMoving()
-    {
-        while (true)
+    public IEnumerator AIMoving()
+    {        
+        Debug.Log("корутина началась");
+        int randIndex = Random.Range(0, points.Length);
+        Transform point = points[randIndex].transform;
+        if (!_isOnPoint)
         {
-            Transform point = points[Random.Range(0, points.Length)];
-            if (IsOnPoint(point))
-            {
-                agent.SetDestination(point.position);                
-            }
-            else
-            {
-                yield return new WaitUntil(() => );
-            }            
-        }    */
+            agent.SetDestination(point.position);
+        }        
+        else yield return new WaitForSeconds(1f);
+    }
 }

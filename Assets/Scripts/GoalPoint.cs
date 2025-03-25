@@ -1,7 +1,15 @@
 using UnityEngine;
 
 public class GoalPoint : MonoBehaviour
-{    private void OnTriggerEnter(Collider other)
+{    
+    [SerializeField] private int _pointIndex;
+
+    public int GetPointIndex()
+    {
+        return _pointIndex;
+    }
+    
+    private void OnTriggerEnter(Collider other)
     {
         GameObject obj = other.gameObject;
         string name = obj.GetComponent<BaseCharacter>()?.name;
@@ -9,7 +17,7 @@ public class GoalPoint : MonoBehaviour
             || name == WhoCanEnteract.Pushkar.ToString()
             || name == WhoCanEnteract.Doctor.ToString())
         {
-            
-        }
+            obj.GetComponent<AI>().ChangePointState(true);
+        }        
     }
 }
