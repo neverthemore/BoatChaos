@@ -44,7 +44,9 @@ public abstract class BaseCharacter : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (_isActive && inputActions.Crew.Use.triggered)
+        if (_isIll || !_isActive) return;
+
+        if (inputActions.Crew.Use.triggered)
         {
             _interactionDetector.SendARay();
         }

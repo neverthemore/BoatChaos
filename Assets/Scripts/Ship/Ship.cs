@@ -9,6 +9,7 @@ public class Ship : MonoBehaviour
     UIStatistic UIStatistic;
     CharacterController controller;
 
+
     private float _incline = 0f; //Наклон
     private bool _rightIncline = true;
 

@@ -43,5 +43,5 @@ public class AI : MonoBehaviour
     public void SetNavMesh(bool conclusion)
     {
         agent.enabled = conclusion;
-    }
+    }    
 }

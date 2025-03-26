@@ -33,7 +33,7 @@ public class CrewCharacter : BaseCharacter
         _ship = GetComponentInParent<Ship>();
         ai = GetComponent<AI>();
         animator = GetComponent<Animator>();
-        controller = GetComponent<CharacterController>();
+        controller = GetComponent<CharacterController>();        
         inputActions = new InputSystem_Actions();
         inputActions.Enable();
         cmCameraGameObject = GameObject.Find("CM Camera" + _characterName);
@@ -46,13 +46,18 @@ public class CrewCharacter : BaseCharacter
     }
     public override void Activate()
     {
+        controller = GetComponent<CharacterController>();
+        controller.enabled = true;
         base.Activate();        
         inAiMod = false;
+        
     }
     public override void Deactivate()
     {
+        controller = GetComponent<CharacterController>();
+        controller.enabled = false;
         base.Deactivate();
-        inAiMod = true;
+        inAiMod = true;        
     }
 
     protected override void Update()
@@ -67,8 +72,8 @@ public class CrewCharacter : BaseCharacter
 
                 _isNeedToStopCoroutine = false;
                 _isNeedToSwitchOnNavMesh = true;
-            }   
-
+            }
+            if (_isIll) return;
                 Move();
 
                 RotateCamera();         

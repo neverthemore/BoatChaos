@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a1f2118a4cdd947962ece895619114, type: 3}
   m_Name: Illnes Event
   m_EditorClassIdentifier: 
-  _eventData: {fileID: 0}
+  _EventData: {fileID: 11400000, guid: c6d396993424f3843992449cbebe4077, type: 2}
   OnIllnessStart:
     m_PersistentCalls:
       m_Calls: []

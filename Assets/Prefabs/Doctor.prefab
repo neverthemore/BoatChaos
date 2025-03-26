@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6289391914240684}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.035277605, y: 0.89, z: 0.94}
+  m_LocalPosition: {x: 0, y: 0.89, z: 0.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -86,10 +86,10 @@ GameObject:
   - component: {fileID: 644790513858167584}
   - component: {fileID: 7996645178312568664}
   - component: {fileID: 203476943333848913}
-  - component: {fileID: 2552265006132511555}
   - component: {fileID: 5978669911962820813}
   - component: {fileID: 3743504222251707943}
   - component: {fileID: 7831283131997511945}
+  - component: {fileID: 3337944669338818796}
   m_Layer: 6
   m_Name: Doctor
   m_TagString: Untagged
@@ -167,29 +167,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &2552265006132511555
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 268264493882972570}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.87
-  m_Height: 3.77
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &5978669911962820813
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -210,7 +187,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 3.21
   m_BaseOffset: 1.57
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!114 &3743504222251707943
 MonoBehaviour:
@@ -255,6 +232,29 @@ MonoBehaviour:
   _itemTransform: {fileID: 0}
   inAiMod: 0
   _healRange: 5
+--- !u!136 &3337944669338818796
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268264493882972570}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.84
+  m_Height: 3.3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4550119890407231752
 GameObject:
   m_ObjectHideFlags: 0

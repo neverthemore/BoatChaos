@@ -8,13 +8,15 @@ public class EventsManager : MonoBehaviour
 {
     public static EventsManager Instance;
 
-    [SerializeField] private List<ShipEvent> _allEvents = new List<ShipEvent>();
+    [SerializeField] private List<ShipEvent> _allEvents;
 
     [SerializeField]float timerDuration = 10f;
 
     float timeRemaining;
     bool isTimerRunning = false;
     int _totalPriority = 0;
+
+    bool _isEventActivated = false;
 
     private void Awake()
     {
@@ -25,14 +27,17 @@ public class EventsManager : MonoBehaviour
 
     void Start()
     {
-        //StartTimer(); В другом месте (например при начале игры (после обучения и тд))
+        InitializeEvents();
 
-        //По приколу запускаю все события (для проверки)
-        foreach (ShipEvent e in _allEvents)
+        StartTimer(); //В другом месте (например при начале игры (после обучения и тд))       
+    }
+
+    private void InitializeEvents()
+    {
+        foreach (ShipEvent e in _allEvents) //Чтобы в начале игры ScriptableObj не сохранил параметры с прошлого раза
         {
-            //e.Activate(); 
+            e.Initialize();
         }
-        
     }
 
     private void StartTimer()
@@ -43,31 +48,42 @@ public class EventsManager : MonoBehaviour
        
     public void StartChosenEvent(ShipEvent name) 
     {
-        Debug.Log("Starting event: " + name);
-        //Старт через сам класс Event
-        //name.StartEvent(); //Например вот старт первого в массиве
+        //Debug.Log("Starting event: " + name._EventData._name);
+        name.Activate();
     }
 
-    /*
+    
     public void ChooseEvent()
     {
-        foreach (Event e in events)
+        _totalPriority = 0;
+        foreach (var ev in _allEvents) //Сумируем вес только если ивент не запущен
         {
-            _totalPriority += e._priority;
+            if (ev.CanActivate()) _totalPriority += ev._EventData._priority;           
         }
+
         int randowValue = Random.Range(0, _totalPriority);
         int currentPriority = 0;
-        foreach (Event e in events)
+
+        foreach (var ev in _allEvents)
         {
-            currentPriority += e._priority;
-            if (randowValue < currentPriority)
+            currentPriority += ev._EventData._priority;
+
+            if (randowValue < currentPriority && ev.CanActivate())  //Проверка, чтобы ивент был неактивен
             {
-                StartChosenEvent(e);
+                StartChosenEvent(ev);
+                _isEventActivated = true;
                 break;
             }
         }
+
+        if (!_isEventActivated) //Если ивент не запустился, то запускаем таймер повторно
+        {
+            Debug.Log("Ивент не активирован");
+            StartTimer();
+        }
+        _isEventActivated = false;
     }
-    */
+   
 
     void Update()
     {
@@ -78,7 +94,10 @@ public class EventsManager : MonoBehaviour
             {
                 timeRemaining = 0;
                 isTimerRunning = false;
+
+                ChooseEvent();
                 StartTimer();
+                
             }
         }
     }
