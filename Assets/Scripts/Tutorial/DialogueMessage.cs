@@ -159,11 +159,7 @@ public class DialogueSystem : MonoBehaviour
             {
                 waitForInput = false;
                 ShowNextSentence();
-            }
-            else
-            {
-                ShowNextSentence();
-            }
+            }        
         }
     }
 }
