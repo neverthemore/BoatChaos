@@ -47,16 +47,17 @@ public class CrewCharacter : BaseCharacter
     public override void Activate()
     {
         controller = GetComponent<CharacterController>();
+        controller.enabled = true;
         base.Activate();        
         inAiMod = false;
-        controller.enabled = true;
+        
     }
     public override void Deactivate()
     {
         controller = GetComponent<CharacterController>();
-        base.Deactivate();
-        inAiMod = true;
         controller.enabled = false;
+        base.Deactivate();
+        inAiMod = true;        
     }
 
     protected override void Update()
