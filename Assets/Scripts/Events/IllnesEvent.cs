@@ -16,7 +16,7 @@ public class IllnesEvent : ShipEvent
     {
         base.Activate();
         _amountIllness = 0;
-        OnIllnessStart.Invoke();
+        OnIllnessStart?.Invoke();
     }
 
     public override void Complete()
@@ -29,6 +29,6 @@ public class IllnesEvent : ShipEvent
     public void HealOneCharacter()
     {
         _amountIllness += 1;
-        if (_amountIllness == 3) Complete();
+        if (_amountIllness >= 3) Complete();
     }
 }

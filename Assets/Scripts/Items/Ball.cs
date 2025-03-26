@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ball : BaseItem
 {
+    private bool _friendly = true;
+
     protected override void Start()
     {
         base.Start();
@@ -38,9 +40,32 @@ public class Ball : BaseItem
     {
         Instantiate(gameObject, placement);
     }
-    public void FireTheBall(Vector3 direction, float power)
+    public void FireTheBall(Vector3 direction, float power, bool enemyBall = false)
     {
+        //После выстрела если попадает в корабль, то что-то вызывает 
+        //Если во вражеский, то топим
+        //Если в наш, то снимаем хп
+
+        _friendly = !enemyBall;
         _rb = GetComponent<Rigidbody>();
         _rb.AddForce(direction * power, ForceMode.Impulse);
+        transform.SetParent(null);
+
+        //Уничтожение через пару секунд (5)
+        Destroy(gameObject, 5);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<EnemyShip>() != null && _friendly)
+        {
+            collision.gameObject.GetComponentInParent<EnemyShip>()?.SinkTheShip();
+        }
+
+        if (collision.gameObject.GetComponent<Ship>() != null && !_friendly)
+        {
+            //Логика попадания снаряда по нам
+        }
+    }
+
 }

@@ -29,6 +29,11 @@ public class EventsManager : MonoBehaviour
     {
         InitializeEvents();
 
+        foreach (ShipEvent e in _allEvents)
+        {
+            e.Activate();
+        }
+
         StartTimer(); //В другом месте (например при начале игры (после обучения и тд))       
     }
 

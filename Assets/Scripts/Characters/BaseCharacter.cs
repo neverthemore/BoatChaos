@@ -61,14 +61,12 @@ public abstract class BaseCharacter : MonoBehaviour
     private void OnEnable()
     {
         _illnessEvent.OnIllnessStart.AddListener(StartIll);
-        _illnessEvent.OnIllnesEnd.AddListener(Cure);
 
     }
 
     private void OnDisable()
     {
         _illnessEvent.OnIllnessStart.RemoveListener(StartIll);
-        _illnessEvent.OnIllnesEnd.RemoveListener(Cure);
     }
 
     protected virtual void RotateCamera()
@@ -124,6 +122,7 @@ public abstract class BaseCharacter : MonoBehaviour
     {
         Debug.Log(_characterName + " вылечен");
         _isIll = false;
+        _illnessEvent.HealOneCharacter();
     }
     #endregion
 }

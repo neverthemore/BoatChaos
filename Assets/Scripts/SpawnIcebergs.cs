@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class SpawnIcebergs : MonoBehaviour
 {
     Transform mainObject;
+    [SerializeField] Transform water;
     [SerializeField] GameObject[] icebergObjs;
     List <GameObject> spawnedIcebergs;
 
@@ -42,6 +43,7 @@ public class SpawnIcebergs : MonoBehaviour
             Vector3 newSize = Vector3.one * oneSideScale;
             icebergObjs[numOfObj].transform.localScale = newSize;
             GameObject obj = Instantiate(icebergObjs[numOfObj], point, Quaternion.Euler(0, rotation, 0));
+            obj.transform.SetParent(water);
             spawnedIcebergs.Add(obj);
             _numberOfSpawned += 1;
 

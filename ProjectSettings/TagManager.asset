@@ -7,6 +7,7 @@ TagManager:
   - Ball
   - Gun
   - Ship
+  - EnemyShip
   layers:
   - Default
   - TransparentFX
