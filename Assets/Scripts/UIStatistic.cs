@@ -77,7 +77,7 @@ public class UIStatistic : MonoBehaviour
 
         hpSlider.value = ShipHP;
       
-        distanceSlider.value = 1000 - RemainingDistance;
+        distanceSlider.value = 8500 - RemainingDistance;
     }
     void UpdateShipPosition()
     {
