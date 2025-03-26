@@ -2,15 +2,38 @@ using UnityEngine;
 
 public class EnemyShip : MonoBehaviour
 {
-    [SerializeField] GameObject _enemyShipPrefab;
+    [SerializeField] private Vector3 _offset;
+    [SerializeField] private float _smoothTime = 2f; // ¬рем€ дл€ выравнивани€
+    [SerializeField] private float _rotationSpeed = 5f; // —корость поворота
 
-    [SerializeField] Vector3 _offset = new Vector3(50, 0, -150);
+    private Vector3 _velocity = Vector3.zero;
 
-
-   private void SpawnShip()
+    private void Update()
     {
-        Instantiate(_enemyShipPrefab, Ship.LastShipPosition + _offset, Ship.LastShipRotation);
+        // ѕолучаем текущие позицию и поворот основного корабл€
+        Vector3 targetPosition = Ship.LastShipPosition + Ship.LastShipRotation * _offset;
+        Quaternion targetRotation = Ship.LastShipRotation;
+
+        // ѕлавное перемещение к цели
+        transform.position = Vector3.SmoothDamp(
+            transform.position,
+            targetPosition,
+            ref _velocity,
+            _smoothTime
+        );
+
+        // ѕлавный поворот в сторону основного корабл€
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            targetRotation,
+            _rotationSpeed * Time.deltaTime
+        );
+
+
     }
 
-    //«атем этот корабль должен быстренько поравн€тьс€ с нашим кораблем (быть параллельно ему)
+    public void SetOffset(Vector3 offset)
+    {
+        _offset = offset;
+    }
 }
