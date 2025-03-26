@@ -10,6 +10,10 @@ public class Cannon : MonoBehaviour, IInteractable
     [SerializeField] private GameObject _ballPrefab;    
     private Animator _animator;
 
+    [SerializeField] Transform _ballAttackPoint;
+
+    [SerializeField] bool _enemyCannon = false;
+
     private void Start()
     {
         _animator = GetComponent<Animator>();        
@@ -35,13 +39,21 @@ public class Cannon : MonoBehaviour, IInteractable
             _animator.SetTrigger("firing");
         }
     }
-    private void Fire()
+    public void Fire() //Потом переделать (сделать не паблик)
     {
-        Debug.Log("FIRE");
         _ballLoaded = false;
-        GameObject ball = Instantiate(_ballPrefab, transform.position + new Vector3(1.5f, 0, 0), Quaternion.identity);
-        ball.GetComponent<Ball>()?.FireTheBall(transform.forward, _firePower);
-        _isFiring = false;        
+
+        GameObject ball = Instantiate(_ballPrefab, _ballAttackPoint);
+
+        float currentFirePower = _firePower;
+
+        if (_enemyCannon)
+        {
+            currentFirePower = Random.Range(_firePower/3, _firePower);
+        }
+        ball.GetComponent<Ball>()?.FireTheBall(transform.forward, currentFirePower, _enemyCannon);
+        _isFiring = false;
+        
               
     }    
 }

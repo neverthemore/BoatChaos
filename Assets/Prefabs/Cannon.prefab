@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1946925072885643874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2060519554560732869}
+  m_Layer: 0
+  m_Name: Ball Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2060519554560732869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946925072885643874}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.005, y: -0.184, z: 1.408}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6809791649928203298}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4434200518953532660
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,6 +65,7 @@ Transform:
   m_Children:
   - {fileID: 7820830704409588998}
   - {fileID: 5419119473378096554}
+  - {fileID: 2060519554560732869}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!95 &8508491287577796053
@@ -72,6 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firePower: 75
   _ballPrefab: {fileID: 7120720433450771250, guid: e84e54cd1c89b9f4199052c1d1687b5e, type: 3}
+  _ballAttackPoint: {fileID: 2060519554560732869}
 --- !u!65 &2346645855761378827
 BoxCollider:
   m_ObjectHideFlags: 0
