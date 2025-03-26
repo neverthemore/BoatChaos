@@ -555,6 +555,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pushkar
       objectReference: {fileID: 0}
+    - target: {fileID: 3870243946980695435, guid: 97a8f632b23834e4ba53aec70015f0f9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6178563564564419545, guid: 97a8f632b23834e4ba53aec70015f0f9, type: 3}
       propertyPath: 'points.Array.data[0]'
       value: 
@@ -628,7 +632,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 668865490}
+    m_TransformParent: {fileID: 4287359519991274366}
     m_Modifications:
     - target: {fileID: 248692079710505833, guid: fd7fd2d53321cd24fb9c0a11f853efe2, type: 3}
       propertyPath: m_Name
@@ -680,7 +684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2418136267502320709, guid: fd7fd2d53321cd24fb9c0a11f853efe2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.719928
+      value: 6.8599277
       objectReference: {fileID: 0}
     - target: {fileID: 2418136267502320709, guid: fd7fd2d53321cd24fb9c0a11f853efe2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -712,6 +716,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2418136267502320709, guid: fd7fd2d53321cd24fb9c0a11f853efe2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414268805882120831, guid: fd7fd2d53321cd24fb9c0a11f853efe2, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -925,7 +933,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1010249082}
-  - {fileID: 1234390907}
   - {fileID: 1308120612}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2811,6 +2818,11 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!4 &4287359519991274366 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 557572228881534714, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+  m_PrefabInstance: {fileID: 4378385286613390724}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4378385286613390724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2873,7 +2885,7 @@ PrefabInstance:
       objectReference: {fileID: 888810286045220019}
     - target: {fileID: 6944450098349184432, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_VoxelSize
-      value: 0.1
+      value: 0.22000001
       objectReference: {fileID: 0}
     - target: {fileID: 6944450098349184432, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_DefaultArea
@@ -2898,7 +2910,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 587827606221809428, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 557572228881534714, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1234390907}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
 --- !u!224 &4432995333620513537
