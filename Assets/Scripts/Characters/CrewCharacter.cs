@@ -55,7 +55,7 @@ public class CrewCharacter : BaseCharacter
         }
         else
         {
-            AIMod();
+            //AIMod();
         }
         
     }
