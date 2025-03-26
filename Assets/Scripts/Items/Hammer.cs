@@ -22,6 +22,7 @@ public class Hammer : BaseItem
     {
         _rb.isKinematic = true;
         _interactor.GetComponent<BaseCharacter>().AddItem(this);
+        transform.localRotation = Quaternion.identity;
         GetComponent<Collider>().enabled = false;
     }
 
