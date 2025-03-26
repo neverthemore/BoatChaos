@@ -17,6 +17,8 @@ public class UIStatistic : MonoBehaviour
     private RectTransform sliderRect;
     private float sliderWidth;
 
+    [SerializeField] private float timeToLose;
+
     private float initialShipY;
 
     public float ShipHP;
@@ -43,6 +45,12 @@ public class UIStatistic : MonoBehaviour
         {
             Debug.Log("LOSE");
         }
+        if (timeToLose <= 0)
+        {
+            Debug.Log("LOSE");                                                                                                                                                                                              //пенис 
+            
+        }
+      
       
         InitializeSliders();
         UpdateShipPosition();

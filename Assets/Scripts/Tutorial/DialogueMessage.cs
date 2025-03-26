@@ -48,6 +48,7 @@ public class DialogueSystem : MonoBehaviour
 
     public void StartDialogue(string[] lines)
     {
+        Cursor.lockState = CursorLockMode.None;
         sentences.Clear();
         foreach (string line in lines)
             sentences.Enqueue(line);
@@ -147,6 +148,7 @@ public class DialogueSystem : MonoBehaviour
     void EndDialogue()
     {
         ToggleDialoguePanel(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
