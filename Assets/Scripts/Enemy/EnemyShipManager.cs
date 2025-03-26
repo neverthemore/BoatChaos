@@ -14,6 +14,9 @@ public class EnemyShipManager : MonoBehaviour
 
     [SerializeField] Vector3 _goalOffset = new Vector3(50, 0, 0); //Оффет от корабля (корабль стоит в 0 0 0)
 
+    GameObject _enemyShip;
+    bool _wasSpawning = false;
+
     private void OnEnable()
     {
         _enemyEvent.OnEnemyStart.AddListener(SpawnShip);
@@ -31,12 +34,27 @@ public class EnemyShipManager : MonoBehaviour
         //SpawnShip();
     }
 
+    private void Update()
+    {
+        if (!_wasSpawning) return;
+        CheckForEndEvent();
+    }
+
+    private void CheckForEndEvent()
+    {
+        if (_enemyShip == null)
+        {
+            _enemyEvent.Complete();
+            _wasSpawning = false;
+        }
+    }
+
     private void SpawnShip()
     {
-        Debug.Log("Появился вражеский корабль");
-        GameObject enemyShip = Instantiate(_enemyShipPrefab, _spawnOffset, Quaternion.identity);
+        _enemyShip = Instantiate(_enemyShipPrefab, _spawnOffset, Quaternion.identity);
+        _wasSpawning = true;
 
-        EnemyShip movement = enemyShip.GetComponent<EnemyShip>();
+        EnemyShip movement = _enemyShip.GetComponent<EnemyShip>();
         if (movement != null)
         {
             movement.SetOffset(_goalOffset);
