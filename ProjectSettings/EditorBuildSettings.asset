@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
-    path: Assets/Scenes/scene.unity
-    guid: 6890827f01eb09247a0d931808c34bd5
   - enabled: 1
     path: Assets/Scenes/suck_my_balls.unity
     guid: 5c7c48e33bee48d4081d70a5dcfffa29
+  - enabled: 1
+    path: Assets/Scenes/Titles.unity
+    guid: 9c91a0ce93938024ca65179bfc2a62a7
+  - enabled: 0
+    path: Assets/Scenes/scene.unity
+    guid: 6890827f01eb09247a0d931808c34bd5
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
