@@ -1,6 +1,7 @@
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIStatistic : MonoBehaviour
 {
@@ -17,7 +18,9 @@ public class UIStatistic : MonoBehaviour
     private RectTransform sliderRect;
     private float sliderWidth;
 
-    [SerializeField] private float timeToLose;
+    [SerializeField] private TMP_Text timerText;
+
+    [SerializeField] private float timeToLose = 720f;
 
     private float initialShipY;
 
@@ -25,7 +28,7 @@ public class UIStatistic : MonoBehaviour
     public float RemainingDistance;
     void Start()
     {
-        RemainingDistance = 1000f;
+        RemainingDistance = 8500f;
         ShipHP = 100f;
 
         sliderRect = distanceSlider.GetComponent<RectTransform>();
@@ -37,6 +40,7 @@ public class UIStatistic : MonoBehaviour
     
     void Update()
     {
+        timeToLose -= Time.deltaTime;
         if (RemainingDistance <= 0)
         {
             Debug.Log("777 BIG WIN 777");
@@ -50,12 +54,21 @@ public class UIStatistic : MonoBehaviour
             Debug.Log("LOSEforTime");                                                                                                                                                                                              //пенис 
             
         }
-      
-      
+
+        UpdateDisplay();
         InitializeSliders();
         UpdateShipPosition();
     }
 
+    void UpdateDisplay()
+    {
+        if (timerText != null)
+        {
+            int minutes = Mathf.FloorToInt(timeToLose / 60);
+            int seconds = Mathf.FloorToInt(timeToLose % 60);
+            timerText.text = $"{minutes:00}:{seconds:00}";
+        }
+    }
 
     void InitializeSliders()
     {

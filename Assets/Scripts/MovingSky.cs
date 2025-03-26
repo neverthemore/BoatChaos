@@ -5,23 +5,36 @@ public class MovingSky : MonoBehaviour
     [Header("Skybox Settings")]
     [SerializeField] private float rotationSpeed = 0.1f;
 
-    private Material skyboxMaterial;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Material originalSkybox;
+    private Material dynamicSkybox;
+    private float currentRotation;
+
     void Start()
     {
-        if (RenderSettings.skybox != null)
+        // Сохраняем оригинальный материал и создаем копию
+        originalSkybox = RenderSettings.skybox;
+
+        if (originalSkybox != null)
         {
-            skyboxMaterial = RenderSettings.skybox;
+            dynamicSkybox = new Material(originalSkybox);
+            RenderSettings.skybox = dynamicSkybox;
+            currentRotation = dynamicSkybox.GetFloat("_Rotation");
+        }
+        else
+        {
+            Debug.LogError("Skybox material not found in Render Settings!");
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (skyboxMaterial != null)
+        if (dynamicSkybox != null)
         {
-            float currentRotation = skyboxMaterial.GetFloat("_Rotation");
-            skyboxMaterial.SetFloat("_Rotation", currentRotation + rotationSpeed * Time.deltaTime);
+            currentRotation += rotationSpeed * Time.deltaTime;
+            currentRotation %= 360; // Сохраняем значение в диапазоне 0-360
+            dynamicSkybox.SetFloat("_Rotation", currentRotation);
         }
     }
+
+   
 }
