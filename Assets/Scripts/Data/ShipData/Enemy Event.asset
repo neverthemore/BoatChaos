@@ -9,15 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35161927b6b5c0745995f42518be48af, type: 3}
-  m_Name: Broken Mast Event
+  m_Script: {fileID: 11500000, guid: cfd5da2f376a1884c92961c1567ca932, type: 3}
+  m_Name: Enemy Event
   m_EditorClassIdentifier: 
-  _EventData: {fileID: 11400000, guid: a0bf29f18c25a174ab6475d276bfc40a, type: 2}
-  OnMastBroken:
+  _EventData: {fileID: 11400000, guid: f06c2b9675a25c94fbd3a0b6844ad275, type: 2}
+  OnEnemyStart:
     m_PersistentCalls:
       m_Calls: []
-  OnMastFixed:
+  OnEnemyEnd:
     m_PersistentCalls:
       m_Calls: []
-  Amount_For_Fix: 30
-  Reduce_Per_seconds: 3

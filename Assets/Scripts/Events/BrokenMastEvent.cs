@@ -22,6 +22,7 @@ public class BrokenMastEvent : ShipEvent
 
     public void ReducePerSecond()
     {
+        
         _currentFix -= Reduce_Per_seconds;
         if (_currentFix < 0 ) _currentFix = 0;
     }
@@ -36,7 +37,7 @@ public class BrokenMastEvent : ShipEvent
     public override void Complete()
     {
         base.Complete();
-        _currentFix = 0;
         OnMastFixed?.Invoke();
+        _currentFix = 0;
     }
 }

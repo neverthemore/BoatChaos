@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1426989401031897732}
   - component: {fileID: 405363468635620398}
   - component: {fileID: 4302947603739076023}
+  - component: {fileID: 6912418584145813762}
   m_Layer: 8
   m_Name: Technar
   m_TagString: Untagged
@@ -156,6 +157,29 @@ MonoBehaviour:
   _itemTransform: {fileID: 0}
   inAiMod: 0
   _fixRange: 5
+--- !u!136 &6912418584145813762
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248692079710505833}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.84
+  m_Height: 3.81
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1872708147702880843
 GameObject:
   m_ObjectHideFlags: 0

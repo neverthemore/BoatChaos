@@ -3,35 +3,44 @@ using UnityEngine;
 
 public class EnemyShipManager : MonoBehaviour
 {
+    public static EnemyShipManager Instance; //Хз пока что
+
+    [SerializeField] private EnemyEvent _enemyEvent;
+
+
     [SerializeField] GameObject _enemyShipPrefab;
 
-    [SerializeField] Vector3 _offset = new Vector3(50, 0, -150);
+    [SerializeField] Vector3 _spawnOffset = new Vector3(50, 0, -150);
+
+    [SerializeField] Vector3 _goalOffset = new Vector3(50, 0, 0); //Оффет от корабля (корабль стоит в 0 0 0)
+
+    private void OnEnable()
+    {
+        _enemyEvent.OnEnemyStart.AddListener(SpawnShip);
+    }
+
+    private void OnDisable()
+    {
+        _enemyEvent.OnEnemyStart.RemoveListener(SpawnShip);
+    }
 
     private void Start()
     {
-        StartCoroutine(Spa());
+        Instance = this;
+
+        //SpawnShip();
     }
 
     private void SpawnShip()
     {
-         // Спавним корабль с учетом текущего поворота основного
-        Vector3 spawnPosition = Ship.LastShipPosition + Ship.LastShipRotation * _offset;
-        GameObject enemyShip = Instantiate(_enemyShipPrefab, spawnPosition, Ship.LastShipRotation);
-        //GameObject enemyShip = Instantiate(_enemyShipPrefab, Ship.LastShipPosition + _offset, Ship.LastShipRotation);
+        Debug.Log("Появился вражеский корабль");
+        GameObject enemyShip = Instantiate(_enemyShipPrefab, _spawnOffset, Quaternion.identity);
 
-        // Передаем смещение в скрипт движения
         EnemyShip movement = enemyShip.GetComponent<EnemyShip>();
         if (movement != null)
         {
-            movement.SetOffset(_offset);
+            movement.SetOffset(_goalOffset);
         }
     }
-
-    private IEnumerator Spa()
-    {
-        Debug.Log("Скоро заспавним корабль");
-        yield return new WaitForSeconds(3);
-        SpawnShip();
-
-    }
+    
 }

@@ -17,9 +17,8 @@ public class MechanicCharacter : CrewCharacter
 
     protected override void Update()
     {
-        if (_isIll) return; //Перестает что-либо делать
         base.Update();
-        if (!_isActive) return;
+        if (_isIll || !_isActive) return; //Перестает что-либо делать
 
 
         // Переменные для отслеживания состояния кнопки
@@ -38,7 +37,6 @@ public class MechanicCharacter : CrewCharacter
                     if (isAttackPressed)
                     {
                         _clampedSeconds += Time.deltaTime;
-                        Debug.Log("Чиним штурвал");
                     }
 
                     // При достижении времени чиним
@@ -54,7 +52,6 @@ public class MechanicCharacter : CrewCharacter
                     if (isAttackTriggered)
                     {
                         _currentFixable.StartFix();
-                        Debug.Log("Чиним мачту");
                     }
                 }
             }

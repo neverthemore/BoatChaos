@@ -1,11 +1,16 @@
 using UnityEngine;
 
-public enum EventState {Inactive, Active, Соmpleted }
+public enum EventState {Inactive, Active}
 public abstract class ShipEvent : ScriptableObject
 {
     [Header("Base Settings")]
-    [SerializeField]protected EventData _eventData;
+    [SerializeField]public EventData _EventData;
     public EventState State { get; protected set; } = EventState.Inactive;
+
+    public void Initialize()
+    {
+        State = EventState.Inactive;
+    }
 
     public virtual bool CanActivate()
     {
@@ -21,6 +26,5 @@ public abstract class ShipEvent : ScriptableObject
     public virtual void Complete()
     {
         State = EventState.Inactive; //Или Complete смотря как ивенты будут
-        //Логика звершения события
     }
 }

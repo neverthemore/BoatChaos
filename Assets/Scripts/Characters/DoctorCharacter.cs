@@ -32,6 +32,7 @@ public class DoctorCharacter : CrewCharacter
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, _healRange))
         {
+            Debug.Log("Пробуем вылечить");
             BaseCharacter _character = hit.collider.GetComponent<BaseCharacter>();
             if (_character != null)
             {

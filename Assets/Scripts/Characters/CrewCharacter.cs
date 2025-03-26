@@ -72,8 +72,8 @@ public class CrewCharacter : BaseCharacter
 
                 _isNeedToStopCoroutine = false;
                 _isNeedToSwitchOnNavMesh = true;
-            }   
-
+            }
+            if (_isIll) return;
                 Move();
 
                 RotateCamera();         

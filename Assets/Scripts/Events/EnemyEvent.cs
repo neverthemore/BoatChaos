@@ -8,9 +8,7 @@ public class EnemyEvent : ShipEvent
     public UnityEvent OnEnemyStart;
     public UnityEvent OnEnemyEnd;
 
-
-    //“ипы подплывают р€дом сзади, затем ровн€ютс€, затем следуют за нами
-    //ѕериодически стрел€ют
+    //ѕериодически стрел€ют (вызыва€ пробоины)
 
     public override void Activate()
     {

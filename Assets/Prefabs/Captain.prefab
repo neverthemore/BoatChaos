@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 3796715057372972262}
   - component: {fileID: 89915340138136580}
   - component: {fileID: 3848943616524346220}
+  - component: {fileID: 7079595819714267440}
   m_Layer: 0
   m_Name: Captain
   m_TagString: Untagged
@@ -126,6 +127,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _brokenWheelEvent: {fileID: 11400000, guid: 9ce682475e61fe34ba74a3b87c3f3cf9, type: 2}
+--- !u!136 &7079595819714267440
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6608634839887915451}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.84
+  m_Height: 3.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.35, z: 0}
 --- !u!1 &7323114182080760625
 GameObject:
   m_ObjectHideFlags: 0
