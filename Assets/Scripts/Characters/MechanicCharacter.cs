@@ -12,6 +12,7 @@ public class MechanicCharacter : CrewCharacter
     private float _secondsForFix = 1f;
     private float _clampedSeconds = 0f;
 
+    private bool _wasBreachOpened = false;
 
     private IFixable _currentFixable;
 
@@ -54,15 +55,57 @@ public class MechanicCharacter : CrewCharacter
                         _currentFixable.StartFix();
                     }
                 }
+                // Обработка пробоин
+                else if (_currentFixable is Breach)
+                {
+                    Debug.Log("Навелись на протечку");
+                    if (inputActions.Crew.Use.triggered && !_wasBreachOpened)
+                    {
+                        Debug.Log("Пытаемся чинить");
+                        //Открываем UI
+                        _currentFixable.StartFix();
+                        _wasBreachOpened = true;                       
+                    }
+                    else if (inputActions.Crew.Use.triggered && _wasBreachOpened)
+                    {
+                        UIBranch.Instance.CloseUI();
+                        if (UIBranch.Instance.Success) 
+                        {
+                            UIBranch.Instance.FixBreach(GetCurrentObj()); 
+                        }
+                        _wasBreachOpened = false;
+
+                    }
+                }
             }
             else
             {
                 _clampedSeconds = 0f;
+
+                if (_wasBreachOpened)
+                {
+                    UIBranch.Instance.CloseUI();
+                    if (UIBranch.Instance.Success)
+                    {
+                        UIBranch.Instance.FixBreach(GetCurrentObj());
+                    }
+                    _wasBreachOpened = false;
+                }
             }
         }
         else
         {
             _clampedSeconds = 0f;
+
+            if (_wasBreachOpened)
+            {
+                UIBranch.Instance.CloseUI();
+                if (UIBranch.Instance.Success)
+                {
+                    UIBranch.Instance.FixBreach(GetCurrentObj());
+                }
+                _wasBreachOpened = false;
+            }
         }
 
         // Обновляем состояние кнопки для следующего кадра
@@ -70,10 +113,24 @@ public class MechanicCharacter : CrewCharacter
         
     }
 
+    private GameObject GetCurrentObj()
+    {
+        Ray ray = new Ray(cmCamera.transform.position, cmCamera.transform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, _fixRange))
+        {
+            return hit.collider.gameObject;
+        }
+        return null;
+    }
+
     private bool CastRayForFixAndCheck()   //Зажато ЛКМ, попало в IFixable -> вызывается StartFix()
     {
         Ray ray = new Ray(cmCamera.transform.position, cmCamera.transform.forward);
         RaycastHit hit;
+
+        Debug.DrawRay(ray.origin, ray.direction * _fixRange, UnityEngine.Color.red);
+
         if (Physics.Raycast(ray, out hit, _fixRange))
         {
             IFixable fixable = hit.collider.GetComponent<IFixable>();
