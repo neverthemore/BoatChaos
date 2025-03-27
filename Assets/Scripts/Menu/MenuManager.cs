@@ -8,11 +8,16 @@ public class MenuController : MonoBehaviour
     [Header("UI Settings")]
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private string gameSceneName = "scene";
+ 
+   
+
+
 
     [Header("Movement Settings")]
     [SerializeField] private GameObject objectToMove; // Объект для движения
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float moveDuration = 2f; // Время движения
+    
 
     [Header("Fade Settings")]
     [SerializeField] private Image fadeImage; // Затемняющая картинка
@@ -28,7 +33,8 @@ public class MenuController : MonoBehaviour
 
     void Start()
     {
-        // Инициализируем ссылку на материал skybox
+  
+
         if (RenderSettings.skybox != null)
         {
             skyboxMaterial = RenderSettings.skybox;
@@ -49,13 +55,15 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    
+   
+
     public void OnPlayButtonClick()
     {
         if (!menuMovingShip)
         {
             StartCoroutine(StartGameSequence());
         }
+      
     }
 
     private IEnumerator StartGameSequence()
@@ -95,10 +103,12 @@ public class MenuController : MonoBehaviour
     private IEnumerator MoveObject()
     {
         float elapsedTime = 0f;
+      
+        
 
         while (elapsedTime < moveDuration)
         {
-            objectToMove.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+            objectToMove.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
