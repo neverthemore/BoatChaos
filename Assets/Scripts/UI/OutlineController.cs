@@ -14,7 +14,7 @@ public class OutlineController : MonoBehaviour
 
     void Start()
     {
-        outlineMaterial = GetComponent<Material>();
+        //outlineMaterial = GetComponent<Material>();
         objectRenderer = GetComponent<Renderer>();
         originalMaterial = objectRenderer.material;
         

@@ -54,11 +54,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1433fdef3ac494408627d3cb036e52d, type: 3}
   m_Name: OutlinesOfItems
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   renderPassEvent: 300
   outlinesLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1024
   outlineSettings:
     outlineColor: {r: 1, g: 1, b: 1, a: 1}
     outlineScale: 0.5

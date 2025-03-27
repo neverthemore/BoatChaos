@@ -7,11 +7,8 @@ public class HintInterract : MonoBehaviour
 {
     [Header("Настройки Подсказки")]
     [SerializeField] private string _hintText;    
-    [SerializeField] private float interactDistance;
-    [SerializeField] private LayerMask interactableLayer;
-    [SerializeField] private Material outlineMaterial;
-
-    private OutlineController currentOutlinedObject;    
+    [SerializeField] private float interactDistance;    
+    
     private GameObject _toolTip;
     private CharacterManager _manager;
     private BaseCharacter _activeCharacter;
@@ -21,35 +18,25 @@ public class HintInterract : MonoBehaviour
         _manager = GameObject.Find("Manager").GetComponent<CharacterManager>();        
         _toolTip = Instantiate(Resources.Load<GameObject>("Hint"));
         _toolTip.SetActive(false);
-    }    
+    }
     private void HandleOutline()
     {
-        Transform cameraTransform = _activeCharacter.GetComponentInChildren<CinemachineCamera>()?.gameObject.transform;
-        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, interactDistance, interactableLayer))
+        _activeCharacter = _manager.FindActive();
+        if (_activeCharacter != null)
         {
-            OutlineController outlineController = hit.collider.GetComponent<OutlineController>();
+            Transform cameraTransform = _activeCharacter.GetComponentInChildren<CinemachineCamera>()?.gameObject.transform;
+            Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+            RaycastHit hit;
 
-            if (outlineController != null && outlineController != currentOutlinedObject)
+            if (Physics.Raycast(ray, out hit, interactDistance, LayerMask.NameToLayer("Item"))
+                || Physics.Raycast(ray, out hit, interactDistance, LayerMask.NameToLayer("ItemOutline")))
             {
-                // Убираем обводку с предыдущего объекта
-                if (currentOutlinedObject != null)
-                    currentOutlinedObject.DisableOutline();
-
-                // Добавляем обводку новому объекту
-                currentOutlinedObject = outlineController;
-                currentOutlinedObject.EnableOutline();
+                Debug.Log("Смотрим на объект");
+                gameObject.layer = LayerMask.NameToLayer("ItemOutline");
             }
-        }
-        else
-        {
-            // Убираем обводку, если не смотрим на объект
-            if (currentOutlinedObject != null)
+            else
             {
-                currentOutlinedObject.DisableOutline();
-                currentOutlinedObject = null;
+                gameObject.layer = LayerMask.NameToLayer("Item");
             }
         }
     }    
