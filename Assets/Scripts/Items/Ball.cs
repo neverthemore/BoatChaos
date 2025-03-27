@@ -65,9 +65,7 @@ public class Ball : BaseItem
 
         if (collision.gameObject.GetComponentInParent<Ship>() != null && !_friendly)
         {
-            //Логика попадания снаряда по нам
             //Взрыв визуальный
-            Debug.Log("Нам пизда");
             if (!_isTakeDamage)
             {
                 UIBranch.Instance.SpawnBreach();

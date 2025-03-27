@@ -7,7 +7,7 @@ public enum WhoCanEnteract          //Список названий
 }
 
 [RequireComponent(typeof(Rigidbody))]
-public class BaseItem : HintInterract, IInteractable
+public class BaseItem : MonoBehaviour, IInteractable
 {
     //Скрипт для шмоток
     public string Name; //МБ нужно будет делать Scriptable
@@ -30,9 +30,8 @@ public class BaseItem : HintInterract, IInteractable
         Debug.Log("Это " + interactor.GetComponent<BaseCharacter>().CharacterName);
     }
 
-    protected override void Start()
+    protected virtual void Start()
     {
-        base.Start();
         _rb = GetComponent<Rigidbody>();
     }
 
