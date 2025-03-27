@@ -35,13 +35,11 @@ public class EventsManager : MonoBehaviour
         {
             if (e is EnemyEvent)
             {
-                //e.Activate();
+                e.Activate();
             }
         }
 
-        if (_startTimer) StartTimer();
-
-        //StartTimer(); //В другом месте (например при начале игры (после обучения и тд))       
+        if (_startTimer) StartTimer();     
     }
 
     private void InitializeEvents()
@@ -68,9 +66,9 @@ public class EventsManager : MonoBehaviour
     public void ChooseEvent()
     {
         _totalPriority = 0;
-        foreach (var ev in _allEvents) //Сумируем вес только если ивент не запущен
+        foreach (var ev in _allEvents)
         {
-            if (ev.CanActivate()) _totalPriority += ev._EventData._priority;           
+            _totalPriority += ev._EventData._priority;           
         }
 
         int randowValue = Random.Range(0, _totalPriority);
@@ -80,10 +78,13 @@ public class EventsManager : MonoBehaviour
         {
             currentPriority += ev._EventData._priority;
 
-            if (randowValue < currentPriority && ev.CanActivate())  //Проверка, чтобы ивент был неактивен
+            if (randowValue < currentPriority)  //Проверка, чтобы ивент был неактивен
             {
-                StartChosenEvent(ev);
-                _isEventActivated = true;
+                if (ev.CanActivate())
+                {
+                    StartChosenEvent(ev);
+                    _isEventActivated = true;
+                }
                 break;
             }
         }

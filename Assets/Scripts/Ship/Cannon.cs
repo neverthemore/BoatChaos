@@ -49,7 +49,7 @@ public class Cannon : MonoBehaviour, IInteractable
 
         if (_enemyCannon)
         {
-            currentFirePower = Random.Range(_firePower/3, _firePower);
+            currentFirePower = Random.Range(_firePower/3, _firePower * 1.5f);
         }
         ball.GetComponent<Ball>()?.FireTheBall(transform.forward, currentFirePower, _enemyCannon);
         _isFiring = false;
