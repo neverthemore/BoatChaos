@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 public class DialogueSystem : MonoBehaviour
 {
+    [SerializeField] private MonoBehaviour targetScript;
+    
+
     [Header("UI Elements")]
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private GameObject dialoguePanel;
@@ -25,6 +28,10 @@ public class DialogueSystem : MonoBehaviour
     [Header("Input Settings")]
     [SerializeField] private KeyCode continueKey = KeyCode.Space;
 
+    [Header("Animator Settings")]
+    [SerializeField] private Animator characterAnimator; // Аниматор персонажа
+    
+
     private AudioSource audioSource;
     private Queue<string> sentences = new Queue<string>();
     private Coroutine typingCoroutine;
@@ -42,6 +49,7 @@ public class DialogueSystem : MonoBehaviour
 
     void Start()
     {
+        
         if (startOnAwake && dialogueLines.Length > 0)
             StartDialogue(dialogueLines);
     }
@@ -121,6 +129,7 @@ public class DialogueSystem : MonoBehaviour
     void CompleteSentence()
     {
         isTyping = false;
+        characterAnimator.SetBool("talk", false);
         waitForInput = true;
 
         if (continueIcon != null)
@@ -139,6 +148,7 @@ public class DialogueSystem : MonoBehaviour
 
     void PlayTypeSound()
     {
+        characterAnimator.SetBool("talk", true);
         if (typeSound == null) return;
 
         audioSource.pitch = Random.Range(1f - pitchVariation, 1f + pitchVariation);
@@ -147,8 +157,10 @@ public class DialogueSystem : MonoBehaviour
 
     void EndDialogue()
     {
+        characterAnimator.SetBool("talk", false);
         ToggleDialoguePanel(false);
         Cursor.lockState = CursorLockMode.Locked;
+        
     }
 
     void Update()
@@ -159,11 +171,7 @@ public class DialogueSystem : MonoBehaviour
             {
                 waitForInput = false;
                 ShowNextSentence();
-            }
-            else
-            {
-                ShowNextSentence();
-            }
+            }        
         }
     }
 }
