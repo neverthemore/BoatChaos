@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Cannon : MonoBehaviour, IInteractable
 {    
@@ -12,11 +13,14 @@ public class Cannon : MonoBehaviour, IInteractable
 
     [SerializeField] Transform _ballAttackPoint;
 
+    private VisualEffect _effect;
+
     [SerializeField] bool _enemyCannon = false;
 
     private void Start()
     {
-        _animator = GetComponent<Animator>();        
+        _animator = GetComponent<Animator>();  
+        _effect = GetComponentInChildren<VisualEffect>();
     }
 
     public void Interact(GameObject interactor)
@@ -44,6 +48,7 @@ public class Cannon : MonoBehaviour, IInteractable
         _ballLoaded = false;
 
         GameObject ball = Instantiate(_ballPrefab, _ballAttackPoint);
+        SpawnEffect();
 
         float currentFirePower = _firePower;
 
@@ -55,5 +60,10 @@ public class Cannon : MonoBehaviour, IInteractable
         _isFiring = false;
         
               
-    }    
+    } 
+    
+    private void SpawnEffect()
+    {
+        if (_effect != null) _effect.Play();
+    }
 }
