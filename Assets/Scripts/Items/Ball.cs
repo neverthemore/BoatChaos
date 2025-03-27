@@ -6,6 +6,7 @@ public class Ball : BaseItem
 {
     private bool _friendly = true;
 
+    private bool _isTakeDamage = false;
     protected override void Start()
     {
         base.Start();
@@ -62,9 +63,17 @@ public class Ball : BaseItem
             collision.gameObject.GetComponentInParent<EnemyShip>()?.SinkTheShip();
         }
 
-        if (collision.gameObject.GetComponent<Ship>() != null && !_friendly)
+        if (collision.gameObject.GetComponentInParent<Ship>() != null && !_friendly)
         {
             //Логика попадания снаряда по нам
+            //Взрыв визуальный
+            Debug.Log("Нам пизда");
+            if (!_isTakeDamage)
+            {
+                UIBranch.Instance.SpawnBreach();
+                _isTakeDamage = true;
+            }
+            Destroy(gameObject, 2f);
         }
     }
 
