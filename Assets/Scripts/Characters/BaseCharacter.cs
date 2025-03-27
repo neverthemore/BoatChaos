@@ -18,7 +18,7 @@ public abstract class BaseCharacter : MonoBehaviour
     #region Rotate protected Variables
     protected float mouseX;
     protected float mouseY;
-    protected float sensivity = 10f;
+    public float Sensitivity = 10f;
     #endregion
 
     protected ItemState _itemState;            //Ячейка инвентаря
@@ -72,8 +72,8 @@ public abstract class BaseCharacter : MonoBehaviour
     protected virtual void RotateCamera()
     {
         Vector2 look = inputActions.Captain.Look.ReadValue<Vector2>();
-        mouseX += look.x * Time.deltaTime * sensivity;
-        mouseY -= look.y * Time.deltaTime * sensivity;
+        mouseX += look.x * Time.deltaTime * Sensitivity;
+        mouseY -= look.y * Time.deltaTime * Sensitivity;
         mouseY = Mathf.Clamp(mouseY, -75, 75);        
     }
 

@@ -1491,10 +1491,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 533187063}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.36900002, y: 0.5175926}
-  m_AnchorMax: {x: 0.6, y: 0.574}
-  m_AnchoredPosition: {x: 9.5, y: -10}
-  m_SizeDelta: {x: -283, y: -30}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -22.5, y: 39.5}
+  m_SizeDelta: {x: 195, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &579362151
 MonoBehaviour:
@@ -7963,6 +7963,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firePower: 75
   _ballPrefab: {fileID: 7120720433450771250, guid: e84e54cd1c89b9f4199052c1d1687b5e, type: 3}
+  _ballAttackPoint: {fileID: 0}
+  _enemyCannon: 0
 --- !u!136 &3805484980703200833
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8053,6 +8055,7 @@ MonoBehaviour:
   _characterName: Captain
   cmCamera: {fileID: 8062351545525358036}
   _itemTransform: {fileID: 0}
+  _isActive: 0
   wheel: {fileID: 8047057750740744955}
 --- !u!1 &3889487774357453381
 GameObject:
@@ -8448,7 +8451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3700533857482275633, guid: 36c0907879c1f7e48a887b9dbfc0c127, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -121
+      value: -120.999756
       objectReference: {fileID: 0}
     - target: {fileID: 3700533857482275633, guid: 36c0907879c1f7e48a887b9dbfc0c127, type: 3}
       propertyPath: m_AnchoredPosition.y
