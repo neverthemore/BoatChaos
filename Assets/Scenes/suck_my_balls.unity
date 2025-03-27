@@ -703,6 +703,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eba6df9f88df0a41a9fa9431d366c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hintText: 
+  _color: {r: 0, g: 0, b: 0, a: 0}
+  _width: 0.5
+  _interactDistance: 0
   Name: 
 --- !u!136 &114100986
 CapsuleCollider:
@@ -1645,6 +1649,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eba6df9f88df0a41a9fa9431d366c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hintText: 
+  _color: {r: 0, g: 0, b: 0, a: 0}
+  _width: 0.5
+  _interactDistance: 0
   Name: 
 --- !u!136 &491810273
 CapsuleCollider:
@@ -3502,6 +3510,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eba6df9f88df0a41a9fa9431d366c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hintText: 
+  _color: {r: 0, g: 0, b: 0, a: 0}
+  _width: 0.5
+  _interactDistance: 0
   Name: 
 --- !u!136 &1331578171
 CapsuleCollider:
@@ -3669,6 +3681,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eba6df9f88df0a41a9fa9431d366c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hintText: 
+  _color: {r: 0, g: 0, b: 0, a: 0}
+  _width: 0.5
+  _interactDistance: 0
   Name: 
 --- !u!136 &1352856125
 CapsuleCollider:
@@ -3945,6 +3961,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eba6df9f88df0a41a9fa9431d366c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hintText: 
+  _color: {r: 0, g: 0, b: 0, a: 0}
+  _width: 0.5
+  _interactDistance: 0
   Name: 
 --- !u!136 &1452104036
 CapsuleCollider:
@@ -4149,7 +4169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a251d7b31e9442408a85b8331c33e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shipSpeed: 15
+  _shipSpeed: 5
   _maxAngle: 24
   _wheel: {fileID: 339323607}
 --- !u!114 &1470650041
@@ -4421,6 +4441,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eba6df9f88df0a41a9fa9431d366c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hintText: 
+  _color: {r: 0, g: 0, b: 0, a: 0}
+  _width: 0.5
+  _interactDistance: 0
   Name: 
 --- !u!136 &1520723832
 CapsuleCollider:
@@ -5186,6 +5210,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eba6df9f88df0a41a9fa9431d366c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hintText: 
+  _color: {r: 0, g: 0, b: 0, a: 0}
+  _width: 0.5
+  _interactDistance: 0
   Name: 
 --- !u!136 &1743714030
 CapsuleCollider:
@@ -5667,6 +5695,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eba6df9f88df0a41a9fa9431d366c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hintText: 
+  _color: {r: 0, g: 0, b: 0, a: 0}
+  _width: 0.5
+  _interactDistance: 0
   Name: 
 --- !u!136 &1940145129
 CapsuleCollider:
@@ -7078,6 +7110,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.01
       objectReference: {fileID: 0}
+    - target: {fileID: 90333955642471880, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 557572228881534714, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7131,16 +7167,24 @@ PrefabInstance:
       value: 400.3
       objectReference: {fileID: 0}
     - target: {fileID: 2827094225320307474, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: _minDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827094225320307474, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: _maxOneSizeScale
-      value: 6.43
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2827094225320307474, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: _maxTimeInterval
-      value: 26
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2827094225320307474, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: _minOneSizeScale
-      value: 4.27
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827094225320307474, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: _minTimeInterval
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3277903974508535188, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: hpSlider
