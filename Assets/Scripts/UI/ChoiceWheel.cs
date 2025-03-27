@@ -1,3 +1,4 @@
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -16,7 +17,7 @@ public class ChoiceWheel : MonoBehaviour
     CharacterManager manager;
     bool _selected = false;
 
-    bool _isNeedToClose = false;
+    bool _isNeedToClose = true;
 
     private void OnDestroy()
     {
@@ -40,20 +41,19 @@ public class ChoiceWheel : MonoBehaviour
      
     public void Close()
     {
-        if (_currentSelection >= 0 && _currentSelection <= 3)
-        {
-            manager.SwitchCharacter(_selectedCharacter);
+        //if (_currentSelection >= 0 && _currentSelection <= 3)
+        //{
+        _selectedCharacter = _currentSelection;
+        manager.SwitchCharacter(_selectedCharacter);
             int indexOfMassive = 4 * _selectedCharacter + _currentSelection;
-            _selectedCharacter = _currentSelection;
             selectionWheel.sprite = backGroundImages[indexOfMassive];
-        }
+        //}
         wheelCanvasGroup.alpha = 0f; 
         
         Cursor.lockState = CursorLockMode.Locked;
 
         _isNeedToClose = false;
         //Cursor.visible = false;
-        //Закрытие колеса и тд
     }
 
     private void Start()
@@ -65,7 +65,7 @@ public class ChoiceWheel : MonoBehaviour
         GameObject wheel = GameObject.Find("ChoiseWheel");
         wheelCanvasGroup = wheel.GetComponent<CanvasGroup>();
 
-        Close();
+        //Close();
     }
 
     private void Update() //Есть трабл, что Close запускается каждый кадр
@@ -80,6 +80,7 @@ public class ChoiceWheel : MonoBehaviour
         if (_selected)
         {
             _currentSelection = selection;
+            Debug.Log(_currentSelection);
             int indexOfMassive = 4 * _selectedCharacter + _currentSelection;
             selectionWheel.sprite = backGroundImages[indexOfMassive];
         }
@@ -89,18 +90,22 @@ public class ChoiceWheel : MonoBehaviour
     public void setSelectionUp() //Выборка выделения кнопки
     {
         SetSelection(2);
+        
     }
     public void setSelectionDown()
     {
         SetSelection(0);
+        
     }
     public void setSelectionRight()
     {
         SetSelection(3);
+        
     }
     public void setSelectionLeft() 
     {
         SetSelection(1);
+        
     }
 
 

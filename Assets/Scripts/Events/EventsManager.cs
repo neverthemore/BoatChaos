@@ -18,6 +18,8 @@ public class EventsManager : MonoBehaviour
 
     bool _isEventActivated = false;
 
+    [SerializeField] private bool _startTimer = true;
+
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
@@ -33,9 +35,11 @@ public class EventsManager : MonoBehaviour
         {
             if (e is EnemyEvent)
             {
-                e.Activate();
+                //e.Activate();
             }
         }
+
+        if (_startTimer) StartTimer();
 
         //StartTimer(); //В другом месте (например при начале игры (после обучения и тд))       
     }

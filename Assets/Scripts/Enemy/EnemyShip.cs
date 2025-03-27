@@ -76,4 +76,12 @@ public class EnemyShip : MonoBehaviour
         //Медленно погружается под воду 
         //Запускает событие, что утонул
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<Iceberg>() != null)
+        {
+            SinkTheShip();
+        }
+    }
 }
