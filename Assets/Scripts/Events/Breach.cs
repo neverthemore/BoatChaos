@@ -1,71 +1,61 @@
+using System.Collections;
 using UnityEngine;
 
 public class Breach : MonoBehaviour, IFixable
 {
-    [Header("MiniGame Settings")]
-    [SerializeField] private float _sliderSpeed = 1f;
-    [SerializeField, Range(0, 1)] private float _targetZoneSize = 0.3f;
+    //Весит на объекте
+    bool _isActive = false;
+    public bool IsActive => _isActive;
 
-    private bool _isFixed;
-    private float _sliderValue;
-    private float _targetPosition;
-    private bool _isMiniGameActive;
-
-    public float FixProgress => _sliderValue;
-    public bool IsFixed => _isFixed;
-
+    bool _isUIOpen = false;
+    bool _isCoroutineStarted = false;
 
     private void Update()
     {
-        if (!_isMiniGameActive || _isFixed) return;
-
-        // Движение ползунка
-        _sliderValue += Time.deltaTime * _sliderSpeed;
-        if (_sliderValue > 1f) _sliderValue = 0f;
-    }
-
-
-    public void StartFix()
-    {
-        if (!NeedToFix()) return;
-
-        //Открываем панель UI
-        ResetFix();
-        TryFix();
-
-    }
-
-    public void ExitGame()
-    {
-        //Скрываем панель UI
-        _isMiniGameActive = false;
-    }
-
-    public bool TryFix()
-    {
-        // Проверка попадания в зону
-        bool isInZone = Mathf.Abs(_sliderValue - _targetPosition) < _targetZoneSize / 2;
-
-        if (isInZone)
+        if (_isUIOpen && !_isCoroutineStarted)
         {
-            _isFixed = true;
-            gameObject.SetActive(false);
+            _isCoroutineStarted = true;
+            StartCoroutine(WaitUI());
         }
-
-        return isInZone;
     }
 
-    public void ResetFix()
+    IEnumerator WaitUI()
     {
-        _isMiniGameActive = true;
-        _sliderValue = 0f;
-        _targetPosition = Random.Range(0.1f, 0.9f); // Случайная позиция зоны
+        yield return new WaitUntil(() => !UIBranch.Instance.IsActive);  //Ждем пока UI не закроется
+        //Если выполнено, то пробоина выключается и перестает хп тратить
+        //Если не выполнено, то ничего не делаем
+        _isCoroutineStarted = false;
     }
+
+    public void StartFix()      //Скрипт для начала фикса (когда навелись и нажали E)
+    {
+        OpenUI();
+        //Пока UI открыт мы ждем корутиной когда она закроется, после чего получаем bool (выполнено или нет)
+    }
+
+    public void OpenUI()
+    {
+        UIBranch.Instance.OpenUI();
+    }
+
 
     public bool NeedToFix()
     {
-        if (_isFixed) return false;
-        return true;
-       
+        return _isActive;
+    }
+
+    public void ActivateBreach()
+    {
+        //Включает визуал
+        _isActive = true;
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        Debug.Log("Протечка");
+    }
+
+    public void DeactivateBreach()
+    {
+        _isActive = false;
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        Debug.Log("Починили");
     }
 }
