@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class UIStatistic : MonoBehaviour
 {
+    
 
     [Header("UI Elements")]
     [SerializeField] Slider hpSlider;

@@ -4,6 +4,11 @@ using UnityEngine;
 public class Breach : MonoBehaviour, IFixable
 {
     //Весит на объекте
+    [SerializeField] private float _damage = 1f;
+    [SerializeField] private float _inSeconds = 2f;
+
+    private float _currentCooldown = 0;
+
     bool _isActive = false;
     public bool IsActive => _isActive;
 
@@ -16,6 +21,11 @@ public class Breach : MonoBehaviour, IFixable
         {
             _isCoroutineStarted = true;
             StartCoroutine(WaitUI());
+        }
+
+        if (_isActive && _currentCooldown <= 0)
+        {
+            //Урон
         }
     }
 
@@ -48,6 +58,7 @@ public class Breach : MonoBehaviour, IFixable
     {
         //Включает визуал
         _isActive = true;
+        _currentCooldown = 0;
         gameObject.GetComponent<MeshRenderer>().enabled = true;
         Debug.Log("Протечка");
     }

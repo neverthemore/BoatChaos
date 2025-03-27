@@ -6,6 +6,7 @@ public class Ball : BaseItem
 {
     private bool _friendly = true;
 
+    private bool _isTakeDamage = false;
     protected override void Start()
     {
         base.Start();
@@ -67,7 +68,11 @@ public class Ball : BaseItem
             //Логика попадания снаряда по нам
             //Взрыв визуальный
             Debug.Log("Нам пизда");
-            UIBranch.Instance.SpawnBreach();
+            if (!_isTakeDamage)
+            {
+                UIBranch.Instance.SpawnBreach();
+                _isTakeDamage = true;
+            }
             Destroy(gameObject, 2f);
         }
     }
