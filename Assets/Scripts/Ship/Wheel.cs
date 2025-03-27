@@ -65,7 +65,7 @@ public class Wheel : MonoBehaviour, IFixable
             else if (input < 0) _currentAngle -= _angularSpeed * Time.deltaTime;
             _currentAngle = Mathf.Clamp(_currentAngle, -1080f, 1080f);
 
-            _wheel.localEulerAngles = new Vector3(-_currentAngle, -90f, 90f);
+            _wheel.localEulerAngles = new Vector3(_currentAngle, 90f, 0f);
         }        
     }
     public float GetCurrentAngle() { return _currentAngle; }
