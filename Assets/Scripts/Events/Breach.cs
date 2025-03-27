@@ -1,11 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Breach : MonoBehaviour, IFixable
 {
     //Весит на объекте
     [SerializeField] private float _damage = 1f;
-    [SerializeField] private float _inSeconds = 2f;
+    [SerializeField] private float _inSeconds = 5f;
+
+    private VisualEffect _effect;
 
     private float _currentCooldown = 0;
 
@@ -14,6 +17,12 @@ public class Breach : MonoBehaviour, IFixable
 
     bool _isUIOpen = false;
     bool _isCoroutineStarted = false;
+
+    private void Start()
+    {
+        _effect = GetComponentInChildren<VisualEffect>();
+        _effect.Stop();
+    }
 
     private void Update()
     {
@@ -25,8 +34,12 @@ public class Breach : MonoBehaviour, IFixable
 
         if (_isActive && _currentCooldown <= 0)
         {
-            //Урон
+            UIStatistic.Instance.ShipHP -= _damage;
+            _currentCooldown = _inSeconds;
         }
+
+        _currentCooldown -= Time.deltaTime;
+        if (_currentCooldown < 0) _currentCooldown = 0;
     }
 
     IEnumerator WaitUI()
@@ -59,6 +72,7 @@ public class Breach : MonoBehaviour, IFixable
         //Включает визуал
         _isActive = true;
         _currentCooldown = 0;
+        _effect.Play();
         gameObject.GetComponent<MeshRenderer>().enabled = true;
         Debug.Log("Протечка");
     }
@@ -66,6 +80,7 @@ public class Breach : MonoBehaviour, IFixable
     public void DeactivateBreach()
     {
         _isActive = false;
+        _effect.Stop();
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         Debug.Log("Починили");
     }

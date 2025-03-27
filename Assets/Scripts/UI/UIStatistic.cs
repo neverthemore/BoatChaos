@@ -5,7 +5,7 @@ using TMPro;
 
 public class UIStatistic : MonoBehaviour
 {
-    
+    public static UIStatistic Instance;
 
     [Header("UI Elements")]
     [SerializeField] Slider hpSlider;
@@ -29,6 +29,7 @@ public class UIStatistic : MonoBehaviour
     public float RemainingDistance;
     void Start()
     {
+        Instance = this;
         RemainingDistance = 8500f;
         ShipHP = 100f;
 
