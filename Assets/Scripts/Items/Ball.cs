@@ -62,9 +62,13 @@ public class Ball : BaseItem
             collision.gameObject.GetComponentInParent<EnemyShip>()?.SinkTheShip();
         }
 
-        if (collision.gameObject.GetComponent<Ship>() != null && !_friendly)
+        if (collision.gameObject.GetComponentInParent<Ship>() != null && !_friendly)
         {
             //Логика попадания снаряда по нам
+            //Взрыв визуальный
+            Debug.Log("Нам пизда");
+            UIBranch.Instance.SpawnBreach();
+            Destroy(gameObject, 2f);
         }
     }
 

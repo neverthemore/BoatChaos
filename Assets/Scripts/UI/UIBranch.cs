@@ -96,7 +96,7 @@ public class UIBranch : MonoBehaviour
         breach.GetComponent<Breach>()?.DeactivateBreach();
     }
 
-    private void SpawnBreach()
+    public void SpawnBreach()
     {
         int _randomIndex = Random.Range(0, _allBreaches.Length);
         if (!_allBreaches[_randomIndex].IsActive)

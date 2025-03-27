@@ -31,7 +31,10 @@ public class EventsManager : MonoBehaviour
 
         foreach (ShipEvent e in _allEvents)
         {
-            //e.Activate();
+            if (e is EnemyEvent)
+            {
+                e.Activate();
+            }
         }
 
         //StartTimer(); //В другом месте (например при начале игры (после обучения и тд))       
