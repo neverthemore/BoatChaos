@@ -47,12 +47,14 @@ public class SpawnIcebergs : MonoBehaviour
             spawnedIcebergs.Add(obj);
             _numberOfSpawned += 1;
 
+            /*
             spawnedIcebergs.RemoveAll(obj =>
             {
                 bool shouldRemove = (obj.transform.position.z - mainObject.position.z < -_minDistance);
-                if (shouldRemove) Destroy(obj.gameObject);
+                //if (shouldRemove) Destroy(obj.gameObject);
                 return shouldRemove;
             });
+            */
 
             yield return new WaitForSeconds(_nextSpawnInterval);
         }        
