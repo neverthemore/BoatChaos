@@ -6,21 +6,16 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class HintInterract : MonoBehaviour
-{
-    [Header("Настройки Подсказки")]
-    [SerializeField] private string _hintText;    
+{    
     [SerializeField] private float interactDistance;
 
-    private GameObject _currentObj;
-    private GameObject _toolTip;
+    private GameObject _currentObj;    
     private CharacterManager _manager;
     private BaseCharacter _activeCharacter;
 
     protected virtual void Start()
     {
         _manager = GameObject.Find("Manager").GetComponent<CharacterManager>();        
-        _toolTip = Instantiate(Resources.Load<GameObject>("Hint"));
-        _toolTip.SetActive(false);
     }
     private void UpdateURPRenderer()
     {
@@ -56,7 +51,8 @@ public class HintInterract : MonoBehaviour
             }
             UpdateURPRenderer();
         }
-    }    
+    }   
+
     void Update()
     {
         HandleOutline();        
