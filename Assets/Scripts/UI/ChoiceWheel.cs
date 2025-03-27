@@ -79,7 +79,6 @@ public class ChoiceWheel : MonoBehaviour
         if (_selected)
         {
             _currentSelection = selection;
-            Debug.Log(_currentSelection);
             int indexOfMassive = 4 * _selectedCharacter + _currentSelection;
             selectionWheel.sprite = backGroundImages[indexOfMassive];
         }

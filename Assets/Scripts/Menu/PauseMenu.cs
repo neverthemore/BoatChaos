@@ -26,11 +26,11 @@ public class PauseMenu : MonoBehaviour
             else
                 Pause();
         }
+
     }
 
     public void Pause()
     {
-        Cursor.lockState = CursorLockMode.None;
         isPaused = true;
         Time.timeScale = 0f;
         pauseMenuUI.SetActive(true);
@@ -44,7 +44,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         isPaused = false;
         Time.timeScale = 1f;
         pauseMenuUI.SetActive(false);
@@ -52,18 +51,18 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         volumeSlider.value = AudioListener.volume;
+        sensitivitySlider.value = MouseSense;
+    }
+
+    public void SetVolume()
+    {
+        AudioListener.volume = volumeSlider.value;
+        //AudioListener.volume = volume;
+    }
+
+    public void SetSensitivity()
+    {
         MouseSense = sensitivitySlider.value;
-    }
-
-    public void SetVolume(float volume)
-    {
-        AudioListener.volume = volume;
-    }
-
-    public void SetSensitivity(float sensitivity)
-    {
-        if (currentCharacter != null)
-            currentCharacter.Sensitivity = sensitivity;
     }
 
     public void QuitToMainMenu()
