@@ -44,6 +44,8 @@ public abstract class BaseCharacter : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (Sensitivity != PauseMenu.MouseSense) Sensitivity = PauseMenu.MouseSense;
+
         if (_isIll || !_isActive) return;
 
         if (inputActions.Crew.Use.triggered)

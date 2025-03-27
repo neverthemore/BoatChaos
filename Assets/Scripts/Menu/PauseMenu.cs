@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
+using NUnit.Framework;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class PauseMenu : MonoBehaviour
 
     private BaseCharacter currentCharacter;
     private bool isPaused = false;
+
+    public static float MouseSense; //Публичное статичное поле
 
     void Update()
     {
@@ -24,18 +28,6 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    private void FindActiveCharacter()
-    {
-        foreach (BaseCharacter character in FindObjectsOfType<BaseCharacter>())
-        {
-            if (character._isActive)
-            {
-                currentCharacter = character;
-                break;
-            }
-        }
-    }
-
     public void Pause()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -45,13 +37,9 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        FindActiveCharacter();
-
+        
         // Получаем текущие значения
-        volumeSlider.value = AudioListener.volume;
-
-        if (currentCharacter != null)
-            sensitivitySlider.value = currentCharacter.Sensitivity;
+               
     }
 
     public void Resume()
@@ -62,6 +50,9 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        volumeSlider.value = AudioListener.volume;
+        MouseSense = sensitivitySlider.value;
     }
 
     public void SetVolume(float volume)
