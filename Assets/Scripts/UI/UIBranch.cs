@@ -9,14 +9,15 @@ public class UIBranch : MonoBehaviour
     //Вызывает пробоины и чинит
     [SerializeField] private GameObject BreachPoints;
     private Breach[] _allBreaches;
-    //[SerializeField] private List<Breach> _allBreaches;
 
     [SerializeField] private Scrollbar _progressScrollbar;
     [SerializeField] private RectTransform _targetZone;
     //[SerializeField] private Image _background;
 
-    [SerializeField, Range(1, 10)] private float _sliderTime = 5f;  //Например время прохождение слайдера 5 секунд
+    [SerializeField, Range(1, 10)] private float _minSliderTime = 2f;  //Например время прохождение слайдера 5 секунд
+    [SerializeField, Range(1, 10)] private float _maxSliderTime = 5f;
 
+    private float _currentSliderTime;
 
     public static UIBranch Instance;
 
@@ -48,7 +49,7 @@ public class UIBranch : MonoBehaviour
     private void Update()
     {
         if (!_isActive) return;
-        _sliderValue += Time.deltaTime / _sliderTime; //Заполняет шкалу за время
+        _sliderValue += Time.deltaTime / _currentSliderTime; //Заполняет шкалу за время
         UpdateUI();
 
         if (_sliderValue >= 1) CloseUI();
@@ -72,6 +73,7 @@ public class UIBranch : MonoBehaviour
         _isActive = true;
         _sliderValue = 0f;
         _targetPosition = Random.Range(0.1f, 0.9f); //Позиция для целевой зоны
+        _currentSliderTime = Random.Range(_minSliderTime, _maxSliderTime);
 
         Debug.Log("Позиция: "+ _targetPosition);
         _targetZonePosition = new Vector2(0 , -300 + 600 * _targetPosition);  //Координаты Зоны выставляем
