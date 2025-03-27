@@ -9,16 +9,14 @@ public class CaptainCharacter : BaseCharacter
     protected override void Update()
     {
         base.Update();
-        if (_isIll || !_isActive) return;
         RotateCamera();
-        
+        if (_isIll || !_isActive) return;           
     }
-
     protected override void RotateCamera()  //Тут что-то не работает
     {
+        inputActions.Enable();
         base.RotateCamera();
-        cmCameraGameObject.transform.localEulerAngles = new Vector3(mouseY, 0f, 0f);
-        transform.localEulerAngles = new Vector3(0f, mouseX, 0f);
+        cmCameraGameObject.transform.localEulerAngles = new Vector3(mouseY, mouseX, 0f);              
     }
 
     private void SwitchCharacter(int index) //Вроде метод не используется

@@ -16,8 +16,8 @@ public abstract class BaseCharacter : MonoBehaviour
     protected InputSystem_Actions inputActions;
 
     #region Rotate protected Variables
-    protected float mouseX;
-    protected float mouseY;
+    [SerializeField] protected float mouseX;
+    [SerializeField] protected float mouseY;
     public float Sensitivity = 10f;
     #endregion
 
@@ -39,7 +39,7 @@ public abstract class BaseCharacter : MonoBehaviour
         inputActions = new InputSystem_Actions();   
         _interactionDetector = gameObject.AddComponent<InteractionDetector>();
         _itemState = gameObject.AddComponent<ItemState>();
-        _itemTransform = transform.Find("ItemPivot");
+        _itemTransform = transform.Find("ItemPivot");        
     }
 
     protected virtual void Update()
