@@ -9,6 +9,14 @@ public class CharacterManager : MonoBehaviour
     //Нужно хранить инфу о том, какой у нас сейчас персонаж (Индекс?)
     private BaseCharacter _currentCharacter;
 
+    public BaseCharacter FindActive()
+    {
+        foreach (BaseCharacter character in characters) {
+            if (character._isActive) return character;
+        }        
+        return null;
+    }
+
     private void Awake()
     {
         Instance = this;

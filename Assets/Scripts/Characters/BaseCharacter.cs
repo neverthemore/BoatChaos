@@ -27,7 +27,7 @@ public abstract class BaseCharacter : MonoBehaviour
 
     InteractionDetector _interactionDetector;
 
-    protected bool _isActive; //Активен ли сейчас персонаж
+    public bool _isActive; //Активен ли сейчас персонаж
 
     protected bool _isIll;
     public bool IsIll { get { return _isIll; } }

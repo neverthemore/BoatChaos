@@ -69,8 +69,16 @@ PrefabInstance:
       value: CannonBall
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f6d79c0dae66b1643877a8edda692223, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f6d79c0dae66b1643877a8edda692223, type: 3}
       propertyPath: m_TagString
       value: Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: f6d79c0dae66b1643877a8edda692223, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -84,7 +92,7 @@ PrefabInstance:
       addedObject: {fileID: 119893388817273713}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f6d79c0dae66b1643877a8edda692223, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2560226086024005361}
+      addedObject: {fileID: 4563987152974139723}
   m_SourcePrefab: {fileID: 100100000, guid: f6d79c0dae66b1643877a8edda692223, type: 3}
 --- !u!1 &7120720433450771250 stripped
 GameObject:
@@ -141,7 +149,7 @@ CapsuleCollider:
   m_Height: 0.51
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: -0.06}
---- !u!114 &2560226086024005361
+--- !u!114 &4563987152974139723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,4 +161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eba6df9f88df0a41a9fa9431d366c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hintText: "\u0412\u0417\u042F\u0422\u042C \u041C\u042F\u0427"
+  _color: {r: 0.9529412, g: 0.86284226, b: 0.113725476, a: 0}
+  _width: 2
+  _interactDistance: 5
   Name: 
