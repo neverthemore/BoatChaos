@@ -50,7 +50,7 @@ public class WaterMoving : MonoBehaviour
         float angle = _wheel.GetCurrentAngle();
         _resultAngle = Mathf.Clamp(angle / (1080 / _maxAngle), -_maxAngle, _maxAngle);
         
-        waterPivot.Rotate(0f, _resultAngle * turnSpeedMultiplier * Time.deltaTime, 0f);
+        waterPivot.Rotate(0f, -_resultAngle * turnSpeedMultiplier * Time.deltaTime, 0f);
         
         //    Вне зависимости от поворота корабля, объект воды всегда движется вдоль мировых координат -Z.
         _plane.transform.Translate(Vector3.forward * -_shipSpeed * Time.deltaTime, Space.World);
