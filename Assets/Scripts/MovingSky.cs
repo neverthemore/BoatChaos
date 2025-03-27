@@ -30,7 +30,7 @@ public class MovingSky : MonoBehaviour
     {
         if (dynamicSkybox != null)
         {
-            currentRotation += rotationSpeed * Time.deltaTime;
+            currentRotation -= rotationSpeed * Time.deltaTime;
             currentRotation %= 360; // Сохраняем значение в диапазоне 0-360
             dynamicSkybox.SetFloat("_Rotation", currentRotation);
         }
