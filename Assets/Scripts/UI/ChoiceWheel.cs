@@ -16,6 +16,8 @@ public class ChoiceWheel : MonoBehaviour
     CharacterManager manager;
     bool _selected = false;
 
+    bool _isNeedToClose = false;
+
     private void OnDestroy()
     {
         if (inputActions != null)
@@ -30,7 +32,7 @@ public class ChoiceWheel : MonoBehaviour
         wheelCanvasGroup.alpha = 1f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
+        _isNeedToClose = true;
         //Показываем колесо, включаем мышку, далее в зависимости от положения меняем _currentSelection
         //Ну и анимация мб, но это уже UI (подсветка выбранного в UI в данный момент перса)
 
@@ -49,6 +51,7 @@ public class ChoiceWheel : MonoBehaviour
         
         Cursor.lockState = CursorLockMode.Locked;
 
+        _isNeedToClose = false;
         //Cursor.visible = false;
         //Закрытие колеса и тд
     }
@@ -60,14 +63,16 @@ public class ChoiceWheel : MonoBehaviour
         manager = CharacterManager.Instance;
         inputActions.Enable();
         GameObject wheel = GameObject.Find("ChoiseWheel");
-        wheelCanvasGroup = wheel.GetComponent<CanvasGroup>();        
+        wheelCanvasGroup = wheel.GetComponent<CanvasGroup>();
+
+        Close();
     }
 
     private void Update() //Есть трабл, что Close запускается каждый кадр
     {
         _selected = inputActions.Captain.CircleMenu.IsPressed();
         if (_selected) Open();
-        else Close();        
+        else if (_isNeedToClose) Close();        
     }
 
     private void SetSelection(int selection)
