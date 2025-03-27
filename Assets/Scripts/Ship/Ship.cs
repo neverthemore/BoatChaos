@@ -5,11 +5,11 @@ using UnityEngine;
 public class Ship : MonoBehaviour
 {
     [SerializeField] private BrokenMastEvent _mastBroken;
-    Wheel wheel;
+    Wheel _wheel;
     UIStatistic UIStatistic;
     CharacterController controller;
 
-
+    private float _resultAngle;
     private float _incline = 0f; //Наклон
     private bool _rightIncline = true;
 
@@ -37,7 +37,7 @@ public class Ship : MonoBehaviour
     void Start()
     {
         UIStatistic = GetComponent<UIStatistic>();
-        wheel = FindAnyObjectByType<Wheel>();
+        _wheel = FindAnyObjectByType<Wheel>();
         controller = GetComponent<CharacterController>();
     }
     private void SetBrokenMastParameters() 
@@ -51,39 +51,26 @@ public class Ship : MonoBehaviour
         _maxIncline /= _brokenMastCoef;
         _shipSpeed *= _brokenMastCoef;
         Debug.Log("Мачта починена");
-    }
-        
-    private void MoveShip()
-    {
-        Vector3 move = transform.forward * _shipSpeed * Time.deltaTime;
-        controller.Move(move);
-        UIStatistic.RemainingDistance -= _shipSpeed * Time.deltaTime;
-    }
+    }    
 
     private void RotateShip()
     {
-        float angle = wheel.GetCurrentAngle();
-        _shipAngle = Mathf.Clamp(angle / (1080 / _maxAngle), -_maxAngle, _maxAngle);
-        float deltaIncline;
-        
-        deltaIncline = 1 * Time.deltaTime * 4;
-        
+        /*float angle = _wheel.GetCurrentAngle();
+        _resultAngle = Mathf.Clamp((angle / (1080 / _maxAngle)), -_maxAngle, _maxAngle);
+        transform.localEulerAngles = new Vector3(0f, _resultAngle, 0f);*/
+
+        float deltaIncline;        
+        deltaIncline = 1 * Time.deltaTime * 4;        
         Mathf.Clamp(deltaIncline, 0.2f, 0.5f);
         _incline += deltaIncline * ((_rightIncline) ? 1f : -1f);
         if (_incline >= _maxIncline) _rightIncline = false;
         else if (_incline <= -_maxIncline) _rightIncline = true;
         
-        transform.localEulerAngles = new Vector3(0f, _shipAngle, _incline);
+        transform.localEulerAngles = new Vector3(0f, 0f, _incline);
     }
 
     void Update()
-    {
-        
-
-        if (_isMoving)
-        {
-            MoveShip();
-        }
+    {        
         if (_isRotate)
         {
             RotateShip();
