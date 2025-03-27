@@ -43,7 +43,7 @@ public class UIBranch : MonoBehaviour
     {
         _allBreaches = BreachPoints.GetComponentsInChildren<Breach>();
 
-        SpawnBreach();
+        //SpawnBreach();
     }
 
     private void Update()
