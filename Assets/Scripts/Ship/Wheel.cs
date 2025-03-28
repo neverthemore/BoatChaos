@@ -43,19 +43,22 @@ public class Wheel : MonoBehaviour, IFixable, IPromtable
         inputActions = new InputSystem_Actions();
         inputActions.Enable();
 
-        Transform parent = transform.parent;
+        Transform parent = transform.parent;      
         slider = canvas.GetComponentInChildren<Slider>();
+        HidePromt();
     }
 
     public void SetBrokenWheelParameters()
     {
         _isBroken = true;
+        ShowPromt();
         _currentFix = 0;
         Debug.Log("Штурвал сломан!");
     }
     public void SetNormalWheelParameters()
     {
         _isBroken = false;
+        HidePromt();
         Debug.Log("Штурвал починен!");
     }
 
@@ -77,6 +80,12 @@ public class Wheel : MonoBehaviour, IFixable, IPromtable
 
             _wheel.localEulerAngles = new Vector3(_currentAngle, 90f, 0f);
         }
+
+        if (_isPromtShow)
+        {
+            canvas.transform.LookAt(Camera.main.transform);
+        }
+
         slider.value = _currentFix;
     }
     public float GetCurrentAngle() { return _currentAngle; }
@@ -94,6 +103,7 @@ public class Wheel : MonoBehaviour, IFixable, IPromtable
 
     public void ShowPromt()
     {
+        if (_isPromtShow && !_isBroken) return;
         canvas.gameObject.SetActive(true);
         _isPromtShow = true;
         canvas.transform.LookAt(Camera.main.transform);
@@ -101,6 +111,7 @@ public class Wheel : MonoBehaviour, IFixable, IPromtable
 
     public void HidePromt()
     {
+        if (_isBroken) return;
         _isPromtShow = false;
         canvas.gameObject.SetActive(false);
     }
