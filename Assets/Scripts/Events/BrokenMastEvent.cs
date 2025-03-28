@@ -12,6 +12,7 @@ public class BrokenMastEvent : ShipEvent
     public int Reduce_Per_seconds = 3;
     private int _currentFix = 0;
 
+    public int Current_Fix => _currentFix;
 
     public void AddOneFix() //Нажимать много раз, чтобы выполнить
     {

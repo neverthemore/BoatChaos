@@ -61,9 +61,10 @@ public class MechanicCharacter : CrewCharacter
                 // Обработка ShipMast (одиночные нажатия)
                 else if (_currentFixable is ShipMast)
                 {
-                    if (isAttackTriggered)
+                    if (inputActions.Crew.Attack.triggered)
                     {
                         _currentFixable.StartFix();
+                        Debug.Log("Фикс мачты");
                     }
                 }
                 // Обработка пробоин
@@ -158,7 +159,7 @@ public class MechanicCharacter : CrewCharacter
         Ray ray = new Ray(cmCamera.transform.position, cmCamera.transform.forward);
         RaycastHit hit;
 
-        Debug.DrawRay(ray.origin, ray.direction * _fixRange, UnityEngine.Color.red);
+        //Debug.DrawRay(ray.origin, ray.direction * _fixRange, UnityEngine.Color.red);
 
         if (Physics.Raycast(ray, out hit, _fixRange))
         {
