@@ -73,4 +73,6 @@ public class EnemyShipManager : MonoBehaviour
     {
         _canvas.gameObject.SetActive(false);
     }
+
+
 }

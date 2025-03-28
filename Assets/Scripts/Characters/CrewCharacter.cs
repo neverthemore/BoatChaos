@@ -26,6 +26,9 @@ public class CrewCharacter : BaseCharacter
     private Vector3 _lastShipPosition = Ship.LastShipPosition;
     private Quaternion _lastShipRotation = Ship.LastShipRotation;
 
+    [SerializeField]private AudioSource _audioSource;
+    [SerializeField] private float pitchVariation = 0.1f; // Величина изменения питча
+
 
     override protected void Start()
     {
@@ -107,6 +110,13 @@ public class CrewCharacter : BaseCharacter
             ai._isOnPoint = false;
             StartCoroutine(ai.AIMoving());
         }
+    }
+
+    public void PlaySound()
+    {
+        if (_audioSource == null) return;
+        _audioSource.pitch = 1f + Random.Range(-pitchVariation, pitchVariation);
+        _audioSource.Play();
     }
     private void Move()
     {
