@@ -82,7 +82,8 @@ public class UIStatistic : MonoBehaviour
         }
         if (timeToLose <= 0)
         {
-            Debug.Log("LOSEforTime");                                                                                                                                                                                              //пенис 
+            Debug.Log("LOSEforTime");
+            _gameOver.OnGameOver?.Invoke(); 
 
         }
     }
