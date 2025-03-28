@@ -42,5 +42,9 @@ public class Iceberg : MonoBehaviour
 
             Destroy(gameObject);
         }
+        else if(other.CompareTag("EnemyShip"))
+        {
+
+        }
     }
 }

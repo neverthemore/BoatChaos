@@ -52,7 +52,11 @@ public class HintInterract : MonoBehaviour
                         _hintWindow.transform.LookAt(_activeCharacter.transform.position);
                     }
                     */
-                    _currentObj.layer = LayerMask.NameToLayer("ItemOutline");                                        
+                    _currentObj.layer = LayerMask.NameToLayer("ItemOutline");     
+                    foreach(Transform child in _currentObj.GetComponentInChildren<Transform>(true))
+                    {
+                        child.gameObject.layer = LayerMask.NameToLayer("ItemOutline");
+                    }
                     
                     ShowHint();
                 }                
@@ -60,6 +64,10 @@ public class HintInterract : MonoBehaviour
             else if(_currentObj != null)
             {
                 _currentObj.layer = LayerMask.NameToLayer("Item");
+                foreach (Transform child in _currentObj.GetComponentInChildren<Transform>(true))
+                {
+                    child.gameObject.layer = LayerMask.NameToLayer("Item");
+                }
                 HideHint();
                 _currentObj = null;
 
