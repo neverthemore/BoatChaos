@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using static Unity.VisualScripting.Member;
 
 public class UI_GameOver : MonoBehaviour
 {
@@ -9,15 +10,17 @@ public class UI_GameOver : MonoBehaviour
     //Подписка на событие 
     [SerializeField] GameOver _gameOver;
 
-    [SerializeField] AudioSource winclip;
-    [SerializeField] AudioSource loseclip;
     [SerializeField] private Image _GameOverImage;
     [SerializeField] private Image _VictoryImage;
     [SerializeField] private string _mainMenuSceneName = "Menu";
     [SerializeField, Range(1, 10)] private float _showSpeed = 5f;
 
+
     private bool _isImageShow = false;
 
+
+
+   
     private void OnEnable()
     {
         _gameOver.OnGameOver.AddListener(GameOver);
@@ -32,18 +35,20 @@ public class UI_GameOver : MonoBehaviour
 
     private void GameOver()
     {
-        winclip.Play();
+
         StartCoroutine(ShowPanel(_GameOverImage));
     }
 
     private void Victory()
     {
-        loseclip.Play();
+        
         StartCoroutine(ShowPanel(_VictoryImage));
     }
 
     IEnumerator ShowPanel(Image img)
     {
+       
+        
         img.gameObject.SetActive(true);
         Color color = img.color;
         float elapsedTime = 0f;

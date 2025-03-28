@@ -9,7 +9,8 @@ public class UIStatistic : MonoBehaviour
     public static UIStatistic Instance;
 
     public GameOver _gameOver;
-
+    [SerializeField] AudioSource winclip;
+    [SerializeField] AudioSource loseclip;
     [Header("UI Elements")]
     [SerializeField] Slider hpSlider;
     [SerializeField] Slider distanceSlider;
@@ -74,16 +75,22 @@ public class UIStatistic : MonoBehaviour
         {
             _gameOver.OnGameVictory?.Invoke();
             Debug.Log("777 BIG WIN 777");
+            winclip.Play();
+            RemainingDistance = 1000f;
         }
         if (ShipHP <= 0)
         {
             Debug.Log("LOSE");
             _gameOver.OnGameOver?.Invoke();
+            loseclip.Play();
+            ShipHP = 1000f;
         }
         if (timeToLose <= 0)
         {
             Debug.Log("LOSEforTime");
-            _gameOver.OnGameOver?.Invoke(); 
+            loseclip.Play();
+            _gameOver.OnGameOver?.Invoke();
+            timeToLose = 1000f;
 
         }
     }
