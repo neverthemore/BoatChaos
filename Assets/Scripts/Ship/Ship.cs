@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -80,4 +81,11 @@ public class Ship : MonoBehaviour
         _lastShipRotation = transform.rotation;
 
     }
+
+    public void SinkShip()
+    {
+
+    }
+
+   
 }

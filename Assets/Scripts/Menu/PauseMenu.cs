@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using NUnit.Framework;
 
+
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuUI;
@@ -15,7 +16,7 @@ public class PauseMenu : MonoBehaviour
     private BaseCharacter currentCharacter;
     private bool isPaused = false;
 
-    public static float MouseSense; //Публичное статичное поле
+    public static float MouseSense = 1f; //Публичное статичное поле
 
     void Update()
     {
