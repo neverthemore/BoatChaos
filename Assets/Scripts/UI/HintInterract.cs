@@ -6,16 +6,20 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class HintInterract : MonoBehaviour
-{    
-    [SerializeField] private float interactDistance;
+{
+    public static HintInterract Instance;
 
+    [SerializeField] private float interactDistance;
+    private Vector3 _hintPosition;
+
+    private GameObject _hintWindow;
     private GameObject _currentObj;    
     private CharacterManager _manager;
     private BaseCharacter _activeCharacter;
 
     protected virtual void Start()
     {
-        _manager = GameObject.Find("Manager").GetComponent<CharacterManager>();        
+        _manager = GameObject.Find("Manager").GetComponent<CharacterManager>();  
     }
     private void UpdateURPRenderer()
     {
@@ -38,20 +42,36 @@ public class HintInterract : MonoBehaviour
                 if (hit.collider != null && hit.collider.gameObject != _currentObj)
                 {
                     Debug.Log("Смотрим на объект");
-                    _currentObj = hit.collider.gameObject;
-                    _currentObj.layer = LayerMask.NameToLayer("ItemOutline");                    
-                    _currentObj.GetComponentInChildren<MeshRenderer>().gameObject.layer = LayerMask.NameToLayer("ItemOutline");
+                    _currentObj = hit.collider.gameObject;                    
+                    _hintWindow = _currentObj.transform.parent.GetComponentInChildren<Canvas>().gameObject;
+                    _hintWindow.transform.position = _currentObj.transform.position + new Vector3(0, 1f, 0);
+                    _hintWindow.transform.LookAt(_activeCharacter.transform.position);                    
+                    _currentObj.layer = LayerMask.NameToLayer("ItemOutline");                                        
+                    
+                    ShowHint();
                 }                
             }
             else if(_currentObj != null)
             {
-                _currentObj.layer = LayerMask.NameToLayer("Item");
-                _currentObj.GetComponentInChildren<MeshRenderer>().gameObject.layer = LayerMask.NameToLayer("Item");
+                _currentObj.layer = LayerMask.NameToLayer("Item");               
                 _currentObj = null;
+
+                HideHint();
             }
             UpdateURPRenderer();
         }
     }   
+    void ShowHint()
+    {        
+        Canvas canvas = _hintWindow.GetComponent<Canvas>();
+        canvas.enabled = true;        
+    }   
+
+    void HideHint()
+    {
+        Canvas canvas = _hintWindow.GetComponent<Canvas>();
+        canvas.enabled = false;
+    }
 
     void Update()
     {

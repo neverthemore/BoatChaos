@@ -25,6 +25,7 @@ public class UIStatistic : MonoBehaviour
 
     private float initialShipY;
 
+    public bool GameStart = false;
     public float ShipHP;
     public float RemainingDistance;
     void Start()
@@ -42,19 +43,9 @@ public class UIStatistic : MonoBehaviour
     
     void Update()
     {
-        timeToLose -= Time.deltaTime;
-        if (RemainingDistance <= 0)
+        if (GameStart)
         {
-            Debug.Log("777 BIG WIN 777");
-        }
-        if (ShipHP <= 0)
-        {
-            Debug.Log("LOSE");
-        }
-        if (timeToLose <= 0)
-        {
-            Debug.Log("LOSEforTime");                                                                                                                                                                                              //пенис 
-            
+            StartGame();
         }
 
         UpdateDisplay();
@@ -72,6 +63,23 @@ public class UIStatistic : MonoBehaviour
         }
     }
 
+    void StartGame()
+    {
+        timeToLose -= Time.deltaTime;
+        if (RemainingDistance <= 0)
+        {
+            Debug.Log("777 BIG WIN 777");
+        }
+        if (ShipHP <= 0)
+        {
+            Debug.Log("LOSE");
+        }
+        if (timeToLose <= 0)
+        {
+            Debug.Log("LOSEforTime");                                                                                                                                                                                              //пенис 
+
+        }
+    }
     void InitializeSliders()
     {
         sliderRect = distanceSlider.GetComponent<RectTransform>();
