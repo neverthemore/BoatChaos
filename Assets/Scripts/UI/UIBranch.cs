@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIBranch : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class UIBranch : MonoBehaviour
 
     [SerializeField, Range(1, 10)] private float _minSliderTime = 2f;  //Например время прохождение слайдера 5 секунд
     [SerializeField, Range(1, 10)] private float _maxSliderTime = 5f;
+
+    [SerializeField] GameObject _BreachPanel;
+    [SerializeField] TMP_Text _howMuchText;
+
+    int _activeBreach = 0;
 
     private float _currentSliderTime;
 
@@ -42,11 +48,21 @@ public class UIBranch : MonoBehaviour
     {
         _allBreaches = BreachPoints.GetComponentsInChildren<Breach>();
 
+        _BreachPanel.gameObject.SetActive(false);
         //SpawnBreach();
     }
 
     private void Update()
     {
+        if (_activeBreach > 0 )
+        {
+            _BreachPanel.gameObject.SetActive(true);
+            _howMuchText.text = "Всего пробоин:" + _activeBreach.ToString();
+        }
+        else
+        {
+            _BreachPanel.gameObject.SetActive(false);
+        }
         if (!_isActive) return;
         _sliderValue += Time.deltaTime / _currentSliderTime; //Заполняет шкалу за время
         UpdateUI();
@@ -95,6 +111,8 @@ public class UIBranch : MonoBehaviour
     public void FixBreach(GameObject breach)
     {
         breach.GetComponent<Breach>()?.DeactivateBreach();
+        _activeBreach--;
+
     }
 
     public void SpawnBreach()
@@ -103,6 +121,7 @@ public class UIBranch : MonoBehaviour
         if (!_allBreaches[_randomIndex].IsActive)
         {
             _allBreaches[_randomIndex].ActivateBreach();
+            _activeBreach++;
         }
     }
 }

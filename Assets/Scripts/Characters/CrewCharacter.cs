@@ -115,6 +115,7 @@ public class CrewCharacter : BaseCharacter
     public void PlaySound()
     {
         if (_audioSource == null) return;
+        _audioSource.Stop();
         _audioSource.pitch = 1f + Random.Range(-pitchVariation, pitchVariation);
         _audioSource.Play();
     }

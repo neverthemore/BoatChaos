@@ -39,7 +39,11 @@ public abstract class BaseCharacter : MonoBehaviour
         inputActions = new InputSystem_Actions();   
         _interactionDetector = gameObject.AddComponent<InteractionDetector>();
         _itemState = gameObject.AddComponent<ItemState>();
-        _itemTransform = transform.Find("ItemPivot");        
+        if (_itemTransform == null)
+        {
+            _itemTransform = transform.Find("ItemPivot");
+        }
+                
     }
 
     protected virtual void Update()

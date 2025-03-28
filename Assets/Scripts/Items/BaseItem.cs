@@ -27,7 +27,7 @@ public class BaseItem : MonoBehaviour, IInteractable
 
         _interactor = interactor;
         IsInteractionAllowed = true;
-        Debug.Log("Это " + interactor.GetComponent<BaseCharacter>().CharacterName);
+        //Debug.Log("Это " + interactor.GetComponent<BaseCharacter>().CharacterName);
     }
 
     protected virtual void Start()
