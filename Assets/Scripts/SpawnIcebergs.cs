@@ -37,7 +37,7 @@ public class SpawnIcebergs : MonoBehaviour
     void Start()
     {
         spawnedIcebergs = new List<GameObject>();
-        StartCoroutine(SpawnInFront());
+        //StartCoroutine(SpawnInFront());
     }
 
     void StartGame()
