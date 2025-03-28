@@ -25,7 +25,7 @@ public class UIStatistic : MonoBehaviour
 
     [SerializeField] private TMP_Text timerText;
 
-    [SerializeField] private float timeToLose = 720f;
+    [SerializeField] private float timeToLose = 840f;
 
     private float initialShipY;
 
@@ -35,7 +35,7 @@ public class UIStatistic : MonoBehaviour
     void Start()
     {
         Instance = this;
-        RemainingDistance = 8500f;
+        RemainingDistance = 5500f;
         ShipHP = 100f;
 
         sliderRect = distanceSlider.GetComponent<RectTransform>();
@@ -101,7 +101,7 @@ public class UIStatistic : MonoBehaviour
 
         hpSlider.value = ShipHP;
       
-        distanceSlider.value = 8500 - RemainingDistance;
+        distanceSlider.value = 5500 - RemainingDistance;
     }
     void UpdateShipPosition()
     {

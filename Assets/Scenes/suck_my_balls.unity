@@ -3610,7 +3610,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0428\u0442\u0443\u0440\u0432\u0430\u043B \u0441\u043B\u043E\u043C\u0430\u043D!\n"
+  m_text: "\u0428\u0442\u0443\u0440\u0432\u0430\u043B \u0441\u043B\u043E\u043C\u0430\u043D!\n\u0421\u043A\u043E\u0440\u0435\u0435
+    \u0432\u043E\u0437\u044C\u043C\u0438 \u043C\u043E\u043B\u043E\u0442\u043E\u043A
+    \u0432 \u043A\u0430\u044E\u0442\u0435!\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -5397,7 +5399,7 @@ MonoBehaviour:
   _maxAngle: 24
   turnSpeedMultiplier: 1
   waterPivot: {fileID: 1470650039}
-  _shipSpeed: 5
+  _shipSpeed: 8
   _wheel: {fileID: 637334396}
 --- !u!114 &1470650041
 MonoBehaviour:
@@ -5423,7 +5425,7 @@ MonoBehaviour:
   waveHeight: 0.4
   waveSpeed: 2
   timerText: {fileID: 709935371}
-  timeToLose: 720
+  timeToLose: 840
   GameStart: 0
   ShipHP: 100
   RemainingDistance: 0
@@ -8253,7 +8255,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 8500
+  m_MaxValue: 5500
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -8960,16 +8962,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2827094225320307474, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: _maxTimeInterval
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2827094225320307474, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: _minTimeInterval
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2827094225320307474, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: icebergObjs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827094225320307474, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: 'icebergObjs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7931229812403778141, guid: e75b2f0e45158e3429b34b73f42f2a05, type: 3}
     - target: {fileID: 3867623155967883621, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: _illEffect
       value: 
       objectReference: {fileID: 1614402512}
+    - target: {fileID: 4149841440985506060, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: _shipSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4475943092714118141, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.79
