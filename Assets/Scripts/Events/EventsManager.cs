@@ -25,12 +25,13 @@ public class EventsManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _gameOver.OnGameOver.AddListener(StartTimer);
+        _gameOver.OnGameStart.AddListener(StartTimer);
+        
     }
 
     private void OnDisable()
     {
-        _gameOver.OnGameOver.RemoveListener(StartTimer);
+        _gameOver.OnGameStart.RemoveListener(StartTimer);
     }
 
     private void Awake()
@@ -65,7 +66,6 @@ public class EventsManager : MonoBehaviour
 
     private void StartTimer()
     {
-        if (isTimerRunning) return;
         timeRemaining = timerDuration;
         isTimerRunning = true;
     }

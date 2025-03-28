@@ -42,10 +42,13 @@ public class HintInterract : MonoBehaviour
                 if (hit.collider != null && hit.collider.gameObject != _currentObj)
                 {
                     Debug.Log("Смотрим на объект");
-                    _currentObj = hit.collider.gameObject;                    
-                    _hintWindow = _currentObj.transform.parent.GetComponentInChildren<Canvas>().gameObject;
-                    _hintWindow.transform.position = _currentObj.transform.position + new Vector3(0, 1f, 0);
-                    _hintWindow.transform.LookAt(_activeCharacter.transform.position);                    
+                    _currentObj = hit.collider.gameObject;
+                    if (_currentObj.transform.parent.GetComponentInChildren<Canvas>() != null)
+                    {
+                        _hintWindow = _currentObj.transform.parent.GetComponentInChildren<Canvas>()?.gameObject;
+                        _hintWindow.transform.position = _currentObj.transform.position + new Vector3(0, 1f, 0);
+                        _hintWindow.transform.LookAt(_activeCharacter.transform.position);
+                    }
                     _currentObj.layer = LayerMask.NameToLayer("ItemOutline");                                        
                     
                     ShowHint();
@@ -62,13 +65,15 @@ public class HintInterract : MonoBehaviour
         }
     }   
     void ShowHint()
-    {        
+    {
+        if (_hintWindow == null) return;
         Canvas canvas = _hintWindow.GetComponent<Canvas>();
         canvas.enabled = true;        
     }   
 
     void HideHint()
     {
+        if (_hintWindow == null) return;
         Canvas canvas = _hintWindow.GetComponent<Canvas>();
         canvas.enabled = false;
     }
