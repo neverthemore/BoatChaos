@@ -61,10 +61,12 @@ public class Ball : BaseItem
         if (collision.gameObject.GetComponent<EnemyShip>() != null && _friendly)
         {
             collision.gameObject.GetComponentInParent<EnemyShip>()?.SinkTheShip();
+            Debug.Log("Попали во врага: " + _friendly);
         }
 
         if (collision.gameObject.GetComponentInParent<Ship>() != null && !_friendly)
         {
+            Debug.Log("Попали в нас");
             //Взрыв визуальный
             if (!_isTakeDamage)
             {
