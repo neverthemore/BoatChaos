@@ -927,6 +927,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d6cd77f6de768c4b82e94dd6bf462cf, type: 2}
   - {fileID: 11400000, guid: a1711da725b35654585928bdfca26af3, type: 2}
   timerDuration: 10
+  _gameOver: {fileID: 0}
   _startTimer: 1
 --- !u!4 &109383244
 Transform:
@@ -1439,7 +1440,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 248692079710505833, guid: fd7fd2d53321cd24fb9c0a11f853efe2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1282556645}
   m_SourcePrefab: {fileID: 100100000, guid: fd7fd2d53321cd24fb9c0a11f853efe2, type: 3}
 --- !u!1 &350378511
 GameObject:
@@ -3829,7 +3833,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4302947603739076023, guid: fd7fd2d53321cd24fb9c0a11f853efe2, type: 3}
   m_PrefabInstance: {fileID: 339907531}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1282556639}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e37238a7336b0c4abd2f5eab317c532, type: 3}
@@ -3910,6 +3914,108 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241865087}
   m_CullTransparentMesh: 1
+--- !u!1 &1282556639 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 248692079710505833, guid: fd7fd2d53321cd24fb9c0a11f853efe2, type: 3}
+  m_PrefabInstance: {fileID: 339907531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1282556645
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282556639}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f36752e0905dc41489487bd622ebe5e9, type: 3}
+  m_Resource: {fileID: 8300000, guid: f36752e0905dc41489487bd622ebe5e9, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1290824847
 GameObject:
   m_ObjectHideFlags: 0
@@ -7162,6 +7268,10 @@ PrefabInstance:
       propertyPath: water
       value: 
       objectReference: {fileID: 90939281}
+    - target: {fileID: 2827094225320307474, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 11400000, guid: 880435c62b36dc542bcb270a0eb5ff32, type: 2}
     - target: {fileID: 3190602546580275622, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_Size.x
       value: 2.4404767
@@ -7813,6 +7923,7 @@ MonoBehaviour:
   charsPerSecond: 16
   continueKey: 32
   characterAnimator: {fileID: 1373272579}
+  _gameOver: {fileID: 11400000, guid: 880435c62b36dc542bcb270a0eb5ff32, type: 2}
 --- !u!222 &9114772124003427188
 CanvasRenderer:
   m_ObjectHideFlags: 0

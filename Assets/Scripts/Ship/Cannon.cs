@@ -17,11 +17,14 @@ public class Cannon : MonoBehaviour, IInteractable
 
     [SerializeField] bool _enemyCannon = false;
 
+    AudioSource _audioSource;
+
     private void Start()
     {
         _animator = GetComponent<Animator>();  
         _effect = GetComponentInChildren<VisualEffect>();
         _effect.Stop();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void Interact(GameObject interactor)
@@ -50,6 +53,7 @@ public class Cannon : MonoBehaviour, IInteractable
 
         GameObject ball = Instantiate(_ballPrefab, _ballAttackPoint);
         SpawnEffect();
+        PlayAudio();
 
         float currentFirePower = _firePower;
 
@@ -66,5 +70,10 @@ public class Cannon : MonoBehaviour, IInteractable
     private void SpawnEffect()
     {
         if (_effect != null) _effect.Play();
+    }
+
+    private void PlayAudio()
+    {
+        _audioSource.Play();
     }
 }
