@@ -9,8 +9,8 @@ public class UI_GameOver : MonoBehaviour
     //Подписка на событие 
     [SerializeField] GameOver _gameOver;
 
-    [SerializeField] AudioClip winclip;
-    [SerializeField] AudioClip loseclip;
+    [SerializeField] AudioSource winclip;
+    [SerializeField] AudioSource loseclip;
     [SerializeField] private Image _GameOverImage;
     [SerializeField] private Image _VictoryImage;
     [SerializeField] private string _mainMenuSceneName = "Menu";
@@ -32,12 +32,13 @@ public class UI_GameOver : MonoBehaviour
 
     private void GameOver()
     {
-       
+        winclip.Play();
         StartCoroutine(ShowPanel(_GameOverImage));
     }
 
     private void Victory()
     {
+        loseclip.Play();
         StartCoroutine(ShowPanel(_VictoryImage));
     }
 
