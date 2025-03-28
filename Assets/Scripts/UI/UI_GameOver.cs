@@ -39,6 +39,7 @@ public class UI_GameOver : MonoBehaviour
 
     IEnumerator ShowPanel(Image img)
     {
+        img.gameObject.SetActive(true);
         Color color = img.color;
         float elapsedTime = 0f;
         while(elapsedTime < _showSpeed)

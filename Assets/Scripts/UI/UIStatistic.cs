@@ -2,10 +2,13 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class UIStatistic : MonoBehaviour
 {
     public static UIStatistic Instance;
+
+    public GameOver _gameOver;
 
     [Header("UI Elements")]
     [SerializeField] Slider hpSlider;
@@ -39,6 +42,7 @@ public class UIStatistic : MonoBehaviour
         initialShipY = shipIcon.anchoredPosition.y;
         InitializeSliders();
         UpdateShipPosition();
+        _gameOver.OnGameOver?.Invoke();
     }
     
     void Update()
@@ -68,11 +72,13 @@ public class UIStatistic : MonoBehaviour
         timeToLose -= Time.deltaTime;
         if (RemainingDistance <= 0)
         {
+            _gameOver.OnGameVictory?.Invoke();
             Debug.Log("777 BIG WIN 777");
         }
         if (ShipHP <= 0)
         {
             Debug.Log("LOSE");
+            _gameOver.OnGameOver?.Invoke();
         }
         if (timeToLose <= 0)
         {
