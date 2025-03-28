@@ -12,9 +12,18 @@ public class MechanicCharacter : CrewCharacter
     private float _secondsForFix = 1f;
     private float _clampedSeconds = 0f;
 
+    private AudioSource _audioSource;
+    private bool _isAudioPlay = false;
+
     private bool _wasBreachOpened = false;
 
     private IFixable _currentFixable;
+
+    protected override void Start()
+    {
+        base.Start();
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     protected override void Update()
     {
@@ -61,6 +70,7 @@ public class MechanicCharacter : CrewCharacter
                     Debug.Log("Навелись на протечку");
                     if (inputActions.Crew.Use.triggered && !_wasBreachOpened)
                     {
+
                         Debug.Log("Пытаемся чинить");
                         //Открываем UI
                         _currentFixable.StartFix();
@@ -90,6 +100,23 @@ public class MechanicCharacter : CrewCharacter
                         UIBranch.Instance.FixBreach(GetCurrentObj());
                     }
                     _wasBreachOpened = false;
+                }
+            }
+
+            if (inputActions.Crew.Attack.IsPressed())
+            {
+                if (!_isAudioPlay)
+                {
+                    _isAudioPlay = true;
+                    _audioSource.Play();
+                }
+            }
+            else
+            {
+                if (_isAudioPlay)
+                {
+                    _isAudioPlay = false;
+                    _audioSource.Stop();
                 }
             }
         }

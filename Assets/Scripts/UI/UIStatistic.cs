@@ -42,7 +42,7 @@ public class UIStatistic : MonoBehaviour
         initialShipY = shipIcon.anchoredPosition.y;
         InitializeSliders();
         UpdateShipPosition();
-        _gameOver.OnGameOver?.Invoke();
+        //_gameOver.OnGameOver?.Invoke();
     }
     
     void Update()
