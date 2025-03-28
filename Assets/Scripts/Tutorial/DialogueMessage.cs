@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class DialogueSystem : MonoBehaviour
 {
@@ -31,8 +32,7 @@ public class DialogueSystem : MonoBehaviour
     [Header("Animator Settings")]
     [SerializeField] private Animator characterAnimator; // Аниматор персонажа
 
-
-    
+    [SerializeField] GameOver _gameOver;
 
     private AudioSource audioSource;
     private Queue<string> sentences = new Queue<string>();
@@ -162,6 +162,8 @@ public class DialogueSystem : MonoBehaviour
         ToggleDialoguePanel(false);
         Cursor.lockState = CursorLockMode.Locked;
         UIStatistic.Instance.GameStart = true;
+
+        _gameOver.OnGameStart?.Invoke();
 
     }
 

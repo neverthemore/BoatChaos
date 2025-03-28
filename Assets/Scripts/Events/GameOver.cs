@@ -6,5 +6,7 @@ public class GameOver: ScriptableObject
 {
     //Говорим, что игра закончилась
     public UnityEvent OnGameOver;
-    public UnityEvent OnGameVictory;   
+    public UnityEvent OnGameVictory;
+
+    public UnityEvent OnGameStart;
 }

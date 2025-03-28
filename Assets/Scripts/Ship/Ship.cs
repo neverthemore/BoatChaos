@@ -28,7 +28,7 @@ public class Ship : MonoBehaviour
 
     private Vector3 _sinkPosition = new Vector3(0, -5, 0);
     private Vector3 _sinkVelocity = Vector3.zero;
-    [SerializeField] private float _sinkTime = 10f;
+    [SerializeField] private float _sinkTime = 5f;
 
     private static Vector3 _lastShipPosition;
     private static Quaternion _lastShipRotation;
@@ -73,9 +73,6 @@ public class Ship : MonoBehaviour
 
     private void RotateShip()
     {
-        /*float angle = _wheel.GetCurrentAngle();
-        _resultAngle = Mathf.Clamp((angle / (1080 / _maxAngle)), -_maxAngle, _maxAngle);
-        transform.localEulerAngles = new Vector3(0f, _resultAngle, 0f);*/
 
         float deltaIncline;        
         deltaIncline = 1 * Time.deltaTime * 4;        
@@ -101,7 +98,6 @@ public class Ship : MonoBehaviour
 
     public void SinkShip()
     {
-        //Тонем
         StartCoroutine(Sink());
 
     }
@@ -109,7 +105,8 @@ public class Ship : MonoBehaviour
     IEnumerator Sink()
     {
         bool _isEndSink = false;
-        while (_isEndSink)
+        Debug.Log("Корабль тонет");
+        while (!_isEndSink)
         {
             transform.position = Vector3.SmoothDamp(
                 transform.position,
@@ -121,6 +118,8 @@ public class Ship : MonoBehaviour
             if (Vector3.Distance(transform.position, _sinkPosition) < 1f) _isEndSink = true;
             yield return null;
         }
+
+        Debug.Log("Утонул");
     }
 
    

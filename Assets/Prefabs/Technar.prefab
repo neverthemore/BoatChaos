@@ -42,7 +42,6 @@ Transform:
   - {fileID: 1293217935176206461}
   - {fileID: 7242235032410720935}
   - {fileID: 5053778121122416166}
-  - {fileID: 4383100766817651643}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &385996421174449202
@@ -154,7 +153,11 @@ MonoBehaviour:
   _illnessEvent: {fileID: 11400000, guid: 5d6cd77f6de768c4b82e94dd6bf462cf, type: 2}
   _characterName: Technar
   cmCamera: {fileID: 5989934283673341979}
+  mouseX: 0
+  mouseY: 0
+  Sensitivity: 10
   _itemTransform: {fileID: 0}
+  _isActive: 0
   inAiMod: 0
   _fixRange: 5
 --- !u!136 &6912418584145813762
@@ -204,13 +207,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872708147702880843}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13817455, y: 0.18514654, z: -0.0068045845, w: 0.97292465}
-  m_LocalPosition: {x: -0.141, y: -0.99, z: 0.546}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2418136267502320709}
-  m_LocalEulerAnglesHint: {x: 15.747, y: 21.861, z: 2.258}
+  m_Father: {fileID: 7242235032410720935}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3769104422557056532
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,6 +244,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7622835041422005792}
+  - {fileID: 4383100766817651643}
   m_Father: {fileID: 2418136267502320709}
   m_LocalEulerAnglesHint: {x: -86.223, y: 0, z: 0}
 --- !u!1 &5743485338498173587
