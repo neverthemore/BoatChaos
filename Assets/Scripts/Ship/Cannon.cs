@@ -21,6 +21,7 @@ public class Cannon : MonoBehaviour, IInteractable
     {
         _animator = GetComponent<Animator>();  
         _effect = GetComponentInChildren<VisualEffect>();
+        _effect.Stop();
     }
 
     public void Interact(GameObject interactor)

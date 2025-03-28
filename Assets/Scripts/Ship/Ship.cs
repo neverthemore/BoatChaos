@@ -1,11 +1,14 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
     [SerializeField] private BrokenMastEvent _mastBroken;
+    [SerializeField] private GameOver _gameOver;
     Wheel _wheel;
     UIStatistic UIStatistic;
     CharacterController controller;
@@ -23,16 +26,30 @@ public class Ship : MonoBehaviour
     [SerializeField]private bool _isMoving = true;
     [SerializeField] private bool _isRotate = true;
 
+    private Vector3 _sinkPosition = new Vector3(0, -5, 0);
+    private Vector3 _sinkVelocity = Vector3.zero;
+    [SerializeField] private float _sinkTime = 10f;
+
     private static Vector3 _lastShipPosition;
     private static Quaternion _lastShipRotation;
 
     public static Vector3 LastShipPosition { get { return _lastShipPosition; } }
     public static Quaternion LastShipRotation {  get { return _lastShipRotation; } }
 
-        private void OnEnable()
+    private void OnEnable()
     {
         _mastBroken.OnMastBroken.AddListener(SetBrokenMastParameters);
         _mastBroken.OnMastFixed.AddListener(SetNormalMastParameters);
+
+        _gameOver.OnGameOver.AddListener(SinkShip);
+    }
+
+    private void OnDisable()
+    {
+        _mastBroken.OnMastBroken.RemoveListener(SetBrokenMastParameters);
+        _mastBroken.OnMastFixed.RemoveListener(SetNormalMastParameters);
+
+        _gameOver.OnGameOver.RemoveListener(SinkShip);
     }
 
     void Start()
@@ -84,7 +101,26 @@ public class Ship : MonoBehaviour
 
     public void SinkShip()
     {
+        //Тонем
+        StartCoroutine(Sink());
 
+    }
+
+    IEnumerator Sink()
+    {
+        bool _isEndSink = false;
+        while (_isEndSink)
+        {
+            transform.position = Vector3.SmoothDamp(
+                transform.position,
+                _sinkPosition,
+                ref _sinkVelocity,
+                _sinkTime
+            );
+
+            if (Vector3.Distance(transform.position, _sinkPosition) < 1f) _isEndSink = true;
+            yield return null;
+        }
     }
 
    
