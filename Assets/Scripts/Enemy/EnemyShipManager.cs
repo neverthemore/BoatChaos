@@ -48,6 +48,7 @@ public class EnemyShipManager : MonoBehaviour
         {
             _enemyEvent.Complete();
             _wasSpawning = false;
+            HidePromt();
         }
     }
 
@@ -61,6 +62,7 @@ public class EnemyShipManager : MonoBehaviour
         {
             movement.SetOffset(_goalOffset);
         }
+        ShowPromt();
     }
     
     private void ShowPromt()
