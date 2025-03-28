@@ -43,6 +43,7 @@ public class HintInterract : MonoBehaviour
             {
                 if (hit.collider != null && hit.collider.gameObject != _currentObj)
                 {
+                    OffPromtAndOutline();
                     _currentObj = hit.collider.gameObject;
                     /*
                     if (_currentObj.transform.parent.GetComponentInChildren<Canvas>() != null)
@@ -63,20 +64,24 @@ public class HintInterract : MonoBehaviour
             }
             else if(_currentObj != null)
             {
-                _currentObj.layer = LayerMask.NameToLayer("Item");
-                foreach (Transform child in _currentObj.GetComponentInChildren<Transform>(true))
-                {
-                    child.gameObject.layer = LayerMask.NameToLayer("Item");
-                }
-                HideHint();
-                _currentObj = null;
-
-                
+                OffPromtAndOutline();               
             }
 
             UpdateURPRenderer();
         }
     }   
+
+    void OffPromtAndOutline()
+    {
+        if (_currentObj == null) return;
+        _currentObj.layer = LayerMask.NameToLayer("Item");
+        foreach (Transform child in _currentObj.GetComponentInChildren<Transform>(true))
+        {
+            child.gameObject.layer = LayerMask.NameToLayer("Item");
+        }
+        HideHint();
+        _currentObj = null;
+    }
     void ShowHint()
     {
         /*
