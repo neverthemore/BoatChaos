@@ -49,7 +49,7 @@ public class EventsManager : MonoBehaviour
         {
             if (e is EnemyEvent)
             {
-               e.Activate();
+               //e.Activate();
             }
             if (e is BrokenWheelEvent)
             {

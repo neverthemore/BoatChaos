@@ -28,7 +28,11 @@ public class MechanicCharacter : CrewCharacter
     protected override void Update()
     {
         base.Update();
-        if (_isIll || !_isActive) return; //Перестает что-либо делать
+        if (_isIll || !_isActive)
+        {
+            animator.SetBool("use", false);
+            return; //Перестает что-либо делать
+        }
 
 
         // Переменные для отслеживания состояния кнопки
@@ -36,6 +40,7 @@ public class MechanicCharacter : CrewCharacter
         bool isAttackTriggered = isAttackPressed && !_wasAttackPressedLastFrame;
 
         animator.SetBool("use", isAttackPressed);
+
 
         if (GetItem()?.Name == "Hammer")
         {
@@ -106,6 +111,7 @@ public class MechanicCharacter : CrewCharacter
                 }
             }
 
+            /*
             if (inputActions.Crew.Attack.IsPressed())
             {
                 if (!_isAudioPlay)
@@ -122,6 +128,7 @@ public class MechanicCharacter : CrewCharacter
                     _audioSource.Stop();
                 }
             }
+            */
         }
         else
         {
@@ -141,6 +148,11 @@ public class MechanicCharacter : CrewCharacter
         // Обновляем состояние кнопки для следующего кадра
         _wasAttackPressedLastFrame = isAttackPressed;
         
+    }
+
+    public void PlayHammerSound()
+    {
+        _audioSource.Play();
     }
 
     private GameObject GetCurrentObj()

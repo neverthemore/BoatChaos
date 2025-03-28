@@ -155,4 +155,6 @@ public class CrewCharacter : BaseCharacter
         }
         else animator.SetBool("walking", false);
     }
+
+
 }
