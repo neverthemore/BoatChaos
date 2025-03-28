@@ -14,6 +14,8 @@ public class EnemyShipManager : MonoBehaviour
 
     [SerializeField] Vector3 _goalOffset = new Vector3(50, 0, 0); //ќффет от корабл€ (корабль стоит в 0 0 0)
 
+    [SerializeField]Canvas _canvas;
+
     GameObject _enemyShip;
     bool _wasSpawning = false;
 
@@ -30,7 +32,7 @@ public class EnemyShipManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
-
+        _canvas.gameObject.SetActive(false);
         //SpawnShip();
     }
 
@@ -61,4 +63,12 @@ public class EnemyShipManager : MonoBehaviour
         }
     }
     
+    private void ShowPromt()
+    {
+        _canvas.gameObject.SetActive(true);
+    }
+    private void HidePromt()
+    {
+        _canvas.gameObject.SetActive(false);
+    }
 }

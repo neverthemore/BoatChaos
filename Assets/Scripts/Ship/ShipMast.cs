@@ -50,7 +50,7 @@ public class ShipMast : MonoBehaviour, IFixable
         {
             canvas.transform.LookAt(Camera.main.transform);
         }
-        slider.value = (_brokenMastEvent.Current_Fix / _brokenMastEvent.Amount_For_Fix);
+        slider.value = (_brokenMastEvent.Current_Fix);
     }
 
     private void BreakTheMast()

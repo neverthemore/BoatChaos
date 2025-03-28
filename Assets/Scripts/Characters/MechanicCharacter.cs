@@ -64,17 +64,17 @@ public class MechanicCharacter : CrewCharacter
                     if (inputActions.Crew.Attack.triggered)
                     {
                         _currentFixable.StartFix();
-                        Debug.Log("Фикс мачты");
+                        //Debug.Log("Фикс мачты");
                     }
                 }
                 // Обработка пробоин
                 else if (_currentFixable is Breach)
                 {
-                    Debug.Log("Навелись на протечку");
+                    //Debug.Log("Навелись на протечку");
                     if (inputActions.Crew.Use.triggered && !_wasBreachOpened)
                     {
 
-                        Debug.Log("Пытаемся чинить");
+                        //Debug.Log("Пытаемся чинить");
                         //Открываем UI
                         _currentFixable.StartFix();
                         _wasBreachOpened = true;                       
