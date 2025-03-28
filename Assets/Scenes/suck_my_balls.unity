@@ -3915,6 +3915,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1169410565431622630, guid: 7242f5029a2031b41a0b6694c1b05e39, type: 3}
   m_PrefabInstance: {fileID: 1287060315}
   m_PrefabAsset: {fileID: 0}
+--- !u!223 &1287060317 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5070457185746668124, guid: 7242f5029a2031b41a0b6694c1b05e39, type: 3}
+  m_PrefabInstance: {fileID: 1287060315}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1290824847
 GameObject:
   m_ObjectHideFlags: 0
@@ -4730,6 +4735,7 @@ MonoBehaviour:
   _enemyShipPrefab: {fileID: 1486367336588955560, guid: 82ae2f77f2f099140a01715a6d86442d, type: 3}
   _spawnOffset: {x: 50, y: 0, z: -150}
   _goalOffset: {x: 50, y: 0, z: 0}
+  _canvas: {fileID: 1287060317}
 --- !u!4 &1528659629
 Transform:
   m_ObjectHideFlags: 0
