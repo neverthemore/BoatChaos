@@ -16,6 +16,7 @@ public class CaptainCharacter : BaseCharacter
     {
         inputActions.Enable();
         base.RotateCamera();
+        mouseX = Mathf.Clamp(mouseX, -75, 75);
         cmCameraGameObject.transform.localEulerAngles = new Vector3(mouseY, mouseX, 0f);              
     }
 
