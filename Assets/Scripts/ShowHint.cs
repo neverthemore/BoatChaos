@@ -1,16 +1,18 @@
 using UnityEngine;
 
 public class ShowHint : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+{   
+    [SerializeField] private string _hintText;
+    [SerializeField] private GameObject _hintObj;
+    HintInterract hintInterract;
+
     void Start()
     {
-        
+        hintInterract = new HintInterract();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        if 
     }
 }
