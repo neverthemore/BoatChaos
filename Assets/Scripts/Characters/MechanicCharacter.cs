@@ -35,6 +35,8 @@ public class MechanicCharacter : CrewCharacter
         bool isAttackPressed = inputActions.Crew.Attack.IsPressed();
         bool isAttackTriggered = isAttackPressed && !_wasAttackPressedLastFrame;
 
+        animator.SetBool("use", isAttackPressed);
+
         if (GetItem()?.Name == "Hammer")
         {
             bool isFixableHit = CastRayForFixAndCheck();
