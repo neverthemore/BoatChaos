@@ -2,10 +2,12 @@ using System.Data;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public abstract class BaseCharacter : MonoBehaviour
 {
     [SerializeField] private IllnesEvent _illnessEvent;
+
 
     [SerializeField] protected string _characterName;
     public string CharacterName { get { return _characterName; } }
@@ -23,6 +25,8 @@ public abstract class BaseCharacter : MonoBehaviour
 
     protected ItemState _itemState;            //Ячейка инвентаря
     public Transform _itemTransform;     //Место для присоединения вещей
+
+    [SerializeField]VisualEffect _illEffect;
 
 
     InteractionDetector _interactionDetector;
@@ -43,7 +47,8 @@ public abstract class BaseCharacter : MonoBehaviour
         {
             _itemTransform = transform.Find("ItemPivot");
         }
-                
+
+        _illEffect.Stop();
     }
 
     protected virtual void Update()
@@ -121,12 +126,14 @@ public abstract class BaseCharacter : MonoBehaviour
     protected virtual void StartIll()  //Для события болезни
     {
         Debug.Log(_characterName + " заболел");
+        _illEffect.Play();
         _isIll = true;
     }
 
     public void Cure()
     {
         Debug.Log(_characterName + " вылечен");
+        _illEffect.Stop();
         _isIll = false;
         _illnessEvent.HealOneCharacter();
     }
