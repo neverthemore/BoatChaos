@@ -36,18 +36,22 @@ public class HintInterract : MonoBehaviour
             Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, interactDistance, 1 << LayerMask.NameToLayer("Item")) ||
-                Physics.Raycast(ray, out hit, interactDistance, 1 << LayerMask.NameToLayer("ItemOutline")))
+            int layerMask = (1 << LayerMask.NameToLayer("Item")) | (1 << LayerMask.NameToLayer("ItemOutline"));
+            //if (Physics.Raycast(ray, out hit, interactDistance, 1 << LayerMask.NameToLayer("Item")) ||
+            //    Physics.Raycast(ray, out hit, interactDistance, 1 << LayerMask.NameToLayer("ItemOutline")))
+            if (Physics.Raycast(ray, out hit, interactDistance, layerMask))
             {
                 if (hit.collider != null && hit.collider.gameObject != _currentObj)
                 {
                     _currentObj = hit.collider.gameObject;
+                    /*
                     if (_currentObj.transform.parent.GetComponentInChildren<Canvas>() != null)
                     {
                         _hintWindow = _currentObj.transform.parent.GetComponentInChildren<Canvas>()?.gameObject;
                         _hintWindow.transform.position = _currentObj.transform.position + new Vector3(0, 1f, 0);
                         _hintWindow.transform.LookAt(_activeCharacter.transform.position);
                     }
+                    */
                     _currentObj.layer = LayerMask.NameToLayer("ItemOutline");                                        
                     
                     ShowHint();
@@ -55,26 +59,43 @@ public class HintInterract : MonoBehaviour
             }
             else if(_currentObj != null)
             {
-                _currentObj.layer = LayerMask.NameToLayer("Item");               
+                _currentObj.layer = LayerMask.NameToLayer("Item");
+                HideHint();
                 _currentObj = null;
 
-                HideHint();
+                
             }
+
             UpdateURPRenderer();
         }
     }   
     void ShowHint()
     {
+        /*
         if (_hintWindow == null) return;
         Canvas canvas = _hintWindow.GetComponent<Canvas>();
-        canvas.enabled = true;        
+        canvas.enabled = true;  
+        */
+        if (_currentObj.GetComponent<IPromtable>() != null)
+        {
+            if (_currentObj.GetComponent<IPromtable>().NeedToShowPromt())
+            {
+                _currentObj.GetComponent<IPromtable>().ShowPromt();
+            }
+        }
     }   
 
     void HideHint()
     {
+        /*
         if (_hintWindow == null) return;
         Canvas canvas = _hintWindow.GetComponent<Canvas>();
         canvas.enabled = false;
+        */
+        if (_currentObj.GetComponent<IPromtable>() != null)
+        {
+            _currentObj.GetComponent<IPromtable>().HidePromt();            
+        }
     }
 
     void Update()

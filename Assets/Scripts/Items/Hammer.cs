@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class Hammer : BaseItem, IPromtable
 {
-    //Интерфейс промтабл
-    Canvas canvas;
 
     private bool _isEquip = false;
+    private bool _isPromtShow = false;
+
+    Canvas canvas;
 
     protected override void Start()
     {
@@ -14,8 +15,9 @@ public class Hammer : BaseItem, IPromtable
         _whoCanEnteract = WhoCanEnteract.Technar;
 
         Transform parent = transform.parent;
-        canvas = parent.GetComponentInChildren<Canvas>();
+        canvas = parent.GetComponentInChildren<Canvas>();        
         canvas.gameObject.SetActive(false);
+
     }
 
     public override void Interact(GameObject interactor)
@@ -23,7 +25,7 @@ public class Hammer : BaseItem, IPromtable
         base.Interact(interactor);
         if (!IsInteractionAllowed)
             return;
-        //Debug.Log("Механик пытается взять");
+
         PickUp();
     }
 
@@ -46,14 +48,31 @@ public class Hammer : BaseItem, IPromtable
 
     public void ShowPromt()
     {
-        if (_isEquip) return;
-
         canvas.gameObject.SetActive(true);
+        _isPromtShow=true;
+        canvas.transform.LookAt(Camera.main.transform);
     }
 
     public void HidePromt()
     {
-        if (_isEquip) return;
+        _isPromtShow = false;
         canvas.gameObject.SetActive(false);
+    }
+
+    public bool NeedToShowPromt()
+    {
+        return !_isEquip && !_isPromtShow;
+    }
+
+    private void Update()
+    {
+        if (_isPromtShow)
+        {
+            canvas.transform.LookAt(Camera.main.transform);
+        }
+        if (_isPromtShow && _isEquip)
+        {
+            HidePromt();
+        }
     }
 }
