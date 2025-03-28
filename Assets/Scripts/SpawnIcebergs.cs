@@ -26,12 +26,12 @@ public class SpawnIcebergs : MonoBehaviour
 
     private void OnEnable()
     {
-        _gameOver.OnGameOver.AddListener(StartGame);
+        _gameOver.OnGameStart.AddListener(StartGame);
     }
 
     private void OnDisable()
     {
-        _gameOver.OnGameOver.RemoveListener(StartGame);
+        _gameOver.OnGameStart.RemoveListener(StartGame);
     }
 
     void Start()

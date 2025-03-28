@@ -41,7 +41,6 @@ public class HintInterract : MonoBehaviour
             {
                 if (hit.collider != null && hit.collider.gameObject != _currentObj)
                 {
-                    Debug.Log("Смотрим на объект");
                     _currentObj = hit.collider.gameObject;
                     if (_currentObj.transform.parent.GetComponentInChildren<Canvas>() != null)
                     {

@@ -21,7 +21,7 @@ public class EventsManager : MonoBehaviour
     [SerializeField] GameOver _gameOver;
 
 
-    [SerializeField] private bool _startTimer = true;
+    [SerializeField] private bool _startTimer = false;
 
     private void OnEnable()
     {
@@ -68,11 +68,13 @@ public class EventsManager : MonoBehaviour
     {
         timeRemaining = timerDuration;
         isTimerRunning = true;
+        Debug.Log("Ивенты начались");
     }
        
     public void StartChosenEvent(ShipEvent name) 
     {
         //Debug.Log("Starting event: " + name._EventData._name);
+
         name.Activate();
     }
 

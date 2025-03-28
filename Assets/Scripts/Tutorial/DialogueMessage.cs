@@ -166,7 +166,7 @@ public class DialogueSystem : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         UIStatistic.Instance.GameStart = true;
 
-        _gameOver.OnGameStart?.Invoke();
+        _gameOver.OnGameStart.Invoke();
 
     }
 
