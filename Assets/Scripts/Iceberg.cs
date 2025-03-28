@@ -30,7 +30,7 @@ public class Iceberg : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Ship") && other is CapsuleCollider)
+        if (other.CompareTag("Ship") && (other is CapsuleCollider))
         {
             Debug.Log("Столкновение с кораблем!");
 
@@ -41,10 +41,6 @@ public class Iceberg : MonoBehaviour
             }
 
             Destroy(gameObject);
-        }
-        else if(other.CompareTag("EnemyShip"))
-        {
-
         }
     }
 }
