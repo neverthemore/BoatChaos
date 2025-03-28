@@ -22,12 +22,29 @@ public class SpawnIcebergs : MonoBehaviour
     [SerializeField] private float _minOneSizeScale;
     [SerializeField] private float _maxOneSizeScale;
 
+    [SerializeField] GameOver _gameOver;
+
+    private void OnEnable()
+    {
+        _gameOver.OnGameOver.AddListener(StartGame);
+    }
+
+    private void OnDisable()
+    {
+        _gameOver.OnGameOver.RemoveListener(StartGame);
+    }
+
     void Start()
     {
         spawnedIcebergs = new List<GameObject>();
         StartCoroutine(SpawnInFront());
     }
-    IEnumerator SpawnInFront()
+
+    void StartGame()
+    {
+        StartCoroutine(SpawnInFront());
+    }
+    public IEnumerator SpawnInFront()
     {
         while (true)
         {

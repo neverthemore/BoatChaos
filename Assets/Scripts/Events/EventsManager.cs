@@ -18,7 +18,20 @@ public class EventsManager : MonoBehaviour
 
     bool _isEventActivated = false;
 
+    [SerializeField] GameOver _gameOver;
+
+
     [SerializeField] private bool _startTimer = true;
+
+    private void OnEnable()
+    {
+        _gameOver.OnGameOver.AddListener(StartTimer);
+    }
+
+    private void OnDisable()
+    {
+        _gameOver.OnGameOver.RemoveListener(StartTimer);
+    }
 
     private void Awake()
     {
@@ -52,6 +65,7 @@ public class EventsManager : MonoBehaviour
 
     private void StartTimer()
     {
+        if (isTimerRunning) return;
         timeRemaining = timerDuration;
         isTimerRunning = true;
     }
