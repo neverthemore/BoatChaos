@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Wheel : MonoBehaviour, IFixable, IPromtable
+public class Wheel : MonoBehaviour, IFixable
 {
 
     [SerializeField] private BrokenWheelEvent _brokenWheelEvent;
@@ -84,9 +84,9 @@ public class Wheel : MonoBehaviour, IFixable, IPromtable
         if (_isPromtShow)
         {
             canvas.transform.LookAt(Camera.main.transform);
+            //canvas.transform.localEulerAngles = new Vector3(0, 0, Mathf.Sin(Time.time * 3f) * 2f);
+            slider.value = _currentFix;
         }
-
-        slider.value = _currentFix;
     }
     public float GetCurrentAngle() { return _currentAngle; }
 

@@ -1,9 +1,14 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShipMast : MonoBehaviour, IFixable
 {
     //Чисто скрипт для поломки мачты
     [SerializeField] private BrokenMastEvent _brokenMastEvent;
+
+    [SerializeField] Canvas canvas;
+    bool _isPromtShow;
+    Slider slider;
 
     private float _currentClickReduceCooldown = 0f;
     private bool _isBroken;
@@ -22,6 +27,13 @@ public class ShipMast : MonoBehaviour, IFixable
         
     }
 
+    private void Start()
+    {
+        Transform parent = transform.parent;
+        slider = canvas.GetComponentInChildren<Slider>();
+        HidePromt();
+    }
+
     private void Update()
     {
         if (_isBroken)
@@ -33,18 +45,25 @@ public class ShipMast : MonoBehaviour, IFixable
                 _brokenMastEvent.ReducePerSecond();
                 _currentClickReduceCooldown = 1f;
             }
-        }        
+        }
+        if (_isPromtShow)
+        {
+            canvas.transform.LookAt(Camera.main.transform);
+        }
+        slider.value = (_brokenMastEvent.Current_Fix / _brokenMastEvent.Amount_For_Fix);
     }
 
     private void BreakTheMast()
     {
         _isBroken = true;
+        ShowPromt();
         Debug.Log("Мачта сломана");
     }
 
     private void FixTheMast()
     {
         _isBroken = false;
+        HidePromt();
         Debug.Log("Мачта починена");
     }
 
@@ -56,5 +75,23 @@ public class ShipMast : MonoBehaviour, IFixable
     public bool NeedToFix()
     {
         return _isBroken;
+    }
+
+    public void ShowPromt()
+    {
+        canvas.gameObject.SetActive(true);
+        _isPromtShow = true;
+        canvas.transform.LookAt(Camera.main.transform);
+    }
+
+    public void HidePromt()
+    {
+        _isPromtShow = false;
+        canvas.gameObject.SetActive(false);
+    }
+
+    public bool NeedToShowPromt()
+    {
+        return _isBroken && !_isPromtShow;
     }
 }
