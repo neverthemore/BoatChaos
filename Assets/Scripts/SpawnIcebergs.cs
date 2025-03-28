@@ -49,7 +49,7 @@ public class SpawnIcebergs : MonoBehaviour
         while (true)
         {
             mainObject = GetComponent<Transform>();
-            int numOfObj = Random.Range(0, icebergObjs.Length - 1);
+            int numOfObj = Random.Range(0, icebergObjs.Length);
             float distanceForward = Random.Range(_minDistance, _maxDistance);
             float distanceLeft = Random.Range(-_minDistance, _minDistance);
             float rotation = Random.Range(0, 180);
