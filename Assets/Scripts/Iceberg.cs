@@ -30,7 +30,7 @@ public class Iceberg : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Ship"))
+        if (other.CompareTag("Ship") && other is CapsuleCollider)
         {
             Debug.Log("Столкновение с кораблем!");
 
