@@ -30,6 +30,8 @@ public class DialogueSystem : MonoBehaviour
 
     [Header("Animator Settings")]
     [SerializeField] private Animator characterAnimator; // Аниматор персонажа
+
+
     
 
     private AudioSource audioSource;
@@ -48,8 +50,7 @@ public class DialogueSystem : MonoBehaviour
     }
 
     void Start()
-    {
-        
+    {    
         if (startOnAwake && dialogueLines.Length > 0)
             StartDialogue(dialogueLines);
     }
@@ -160,7 +161,8 @@ public class DialogueSystem : MonoBehaviour
         characterAnimator.SetBool("talk", false);
         ToggleDialoguePanel(false);
         Cursor.lockState = CursorLockMode.Locked;
-        
+        UIStatistic.Instance.GameStart = true;
+
     }
 
     void Update()
