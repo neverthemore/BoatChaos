@@ -28,6 +28,9 @@ public class DialogueSystem : MonoBehaviour
 
     [Header("Input Settings")]
     [SerializeField] private KeyCode continueKey = KeyCode.Space;
+    [SerializeField] private KeyCode SkipKey = KeyCode.LeftAlt;
+    public bool canDial = true;
+
 
     [Header("Animator Settings")]
     [SerializeField] private Animator characterAnimator; // Аниматор персонажа
@@ -169,13 +172,24 @@ public class DialogueSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(continueKey))
+        if(Input.GetKeyDown(SkipKey))
         {
-            if (waitForInput)
+            canDial = false;
+            StopCoroutine(typingCoroutine);
+            CompleteSentence();
+            EndDialogue();
+        }
+        if (canDial)
+        {
+            if (Input.GetKeyDown(continueKey))
             {
-                waitForInput = false;
-                ShowNextSentence();
-            }        
+                if (waitForInput)
+                {
+                    waitForInput = false;
+                    ShowNextSentence();
+
+                }
+            }
         }
     }
 }
