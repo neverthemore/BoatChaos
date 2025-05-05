@@ -1,36 +1,29 @@
 using System.Collections;
 using UnityEngine;
-//using static UnityEngine.Rendering.DynamicArray<T>;           Это че нахуй?
 
-public class Ball : BaseItem
-{
+public class Ball : BaseItem{
     private bool _friendly = true;
-
     private bool _isTakeDamage = false;
     protected override void Start()
     {
         base.Start();
         Name = "CannonBall";
         _whoCanEnteract = WhoCanEnteract.Pushkar;
-    }
+    }   
     public override void Interact(GameObject interactor)
     {        
         base.Interact(interactor);
         if (!IsInteractionAllowed)
             return;
         PickUp();
-
     }
-    private void PickUp()
+    protected override void PickUp()
     {
-        _rb.isKinematic = true; // Отключаем физику
-        _interactor.GetComponent<BaseCharacter>().AddItem(this);
-        GetComponent<Collider>().enabled = false;
+        base.PickUp();
     }
     public override void DropItem()
     {
-        _rb.isKinematic = false;
-        GetComponent<Collider>().enabled = true;
+        base.DropItem();
     }    
     public override void UseItem()
     {

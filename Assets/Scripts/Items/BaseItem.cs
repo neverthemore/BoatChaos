@@ -7,17 +7,25 @@ public enum WhoCanEnteract          //Список названий
 }
 
 [RequireComponent(typeof(Rigidbody))]
-public class BaseItem : MonoBehaviour, IInteractable
+public class BaseItem : MonoBehaviour, IInteractable, IPromtable
 {
+    private bool _isEquip = false;
+    private bool _isPromtShow = false;
     //Скрипт для шмоток
-    public string Name; //МБ нужно будет делать Scriptable
-    protected Rigidbody _rb;
+    public string Name; 
+    protected Rigidbody _rb;   
+    private Canvas canvas;
 
     protected WhoCanEnteract _whoCanEnteract = WhoCanEnteract.All;
     protected GameObject _interactor;
 
     protected bool IsInteractionAllowed;
-
+    protected virtual void Start()
+    {        
+        canvas = transform.GetComponentInChildren<Canvas>();
+        canvas.gameObject.SetActive(false);
+        _rb = GetComponent<Rigidbody>();
+    }
     public virtual void Interact(GameObject interactor)
     {        
         IsInteractionAllowed = false;
@@ -28,20 +36,50 @@ public class BaseItem : MonoBehaviour, IInteractable
         _interactor = interactor;
         IsInteractionAllowed = true;
         //Debug.Log("Это " + interactor.GetComponent<BaseCharacter>().CharacterName);
-    }
-
-    protected virtual void Start()
-    {
-        _rb = GetComponent<Rigidbody>();
-    }
-
+    }   
     public virtual void DropItem()
     {
-
+        _rb.isKinematic = false;
+        _isEquip = false;
+        GetComponentInChildren<Collider>().enabled = true;
     }
-    
+    protected virtual void PickUp()
+    {
+        _rb.isKinematic = true;
+        _interactor.GetComponent<BaseCharacter>().AddItem(this);
+        transform.localRotation = Quaternion.identity;
+        GetComponentInChildren<Collider>().enabled = false;
+
+        _isEquip = true;
+    }
     public virtual void UseItem()
     {
-        //Логика использования, например уничтожение объекта (Засунуть ядро в аушку например)
+        
     }
+    public void ShowPromt()
+    {
+        canvas.gameObject.SetActive(true);
+        _isPromtShow = true;
+        canvas.transform.LookAt(Camera.main.transform);
+    }
+    public void HidePromt()
+    {
+        _isPromtShow = false;
+        canvas.gameObject.SetActive(false);        
+    }
+    public bool NeedToShowPromt()
+    {
+        return !_isEquip && !_isPromtShow;
+    }
+    protected virtual void Update()
+    {
+        if (_isPromtShow)
+        {
+            canvas.transform.LookAt(Camera.main.transform);
+        }
+        if (_isPromtShow && _isEquip)
+        {
+            HidePromt();
+        }
+    }    
 }
