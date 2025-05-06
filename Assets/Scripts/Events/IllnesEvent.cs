@@ -10,25 +10,21 @@ public class IllnesEvent : ShipEvent
     public UnityEvent OnIllnessStart;
     public UnityEvent OnIllnesEnd;
 
-    private int _amountIllness = 0;
+    private bool isAnibodyIll = false;         
+    public int numberOfIllCharacter;
 
     public override void Activate()
     {
+        numberOfIllCharacter = Random.Range(0, 3);
         base.Activate();
-        _amountIllness = 0;
+        isAnibodyIll = true;
         OnIllnessStart?.Invoke();
     }
 
     public override void Complete()
     {
         base.Complete();
+        isAnibodyIll = false;
         OnIllnesEnd.Invoke();
-
-    }
-
-    public void HealOneCharacter()
-    {
-        _amountIllness += 1;
-        if (_amountIllness >= 3) Complete();
-    }
+    }    
 }

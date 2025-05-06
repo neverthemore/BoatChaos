@@ -6,8 +6,7 @@ using UnityEngine.VFX;
 
 public abstract class BaseCharacter : MonoBehaviour
 {
-    [SerializeField] private IllnesEvent _illnessEvent;
-
+    [SerializeField] private IllnesEvent _illnessEvent;    
 
     [SerializeField] protected string _characterName;
     public string CharacterName { get { return _characterName; } }
@@ -72,7 +71,6 @@ public abstract class BaseCharacter : MonoBehaviour
     private void OnEnable()
     {
         _illnessEvent.OnIllnessStart.AddListener(StartIll);
-
     }
 
     private void OnDisable()
@@ -125,17 +123,23 @@ public abstract class BaseCharacter : MonoBehaviour
     #region Illness
     protected virtual void StartIll()  //Для события болезни
     {
-        Debug.Log(_characterName + " заболел");
-        _illEffect.Play();
-        _isIll = true;
+        int number = _illnessEvent.numberOfIllCharacter;
+        if (CharacterManager.Instance.characters[number].name == _characterName)
+        {
+            Debug.Log(_characterName + " заболел");
+            CharacterManager.Instance.characters[number]._illEffect.Play();
+            CharacterManager.Instance.characters[number]._isIll = true;
+        }
+        
     }
 
     public void Cure()
     {
+        int number = _illnessEvent.numberOfIllCharacter;
         Debug.Log(_characterName + " вылечен");
-        _illEffect.Stop();
-        _isIll = false;
-        _illnessEvent.HealOneCharacter();
+        CharacterManager.Instance.characters[number]._illEffect.Stop();
+        CharacterManager.Instance.characters[number]._isIll = false;
+        _illnessEvent.Complete();
     }
     #endregion
 }

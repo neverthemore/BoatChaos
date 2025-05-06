@@ -5,7 +5,7 @@ public class CharacterManager : MonoBehaviour
     //Синглтон
     public static CharacterManager Instance;
 
-    [SerializeField] private BaseCharacter[] characters;
+    [SerializeField] public BaseCharacter[] characters;
     //Нужно хранить инфу о том, какой у нас сейчас персонаж (Индекс?)
     private BaseCharacter _currentCharacter;
 
