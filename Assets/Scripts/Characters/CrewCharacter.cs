@@ -61,7 +61,7 @@ public class CrewCharacter : BaseCharacter
         controller.enabled = false;
         base.Deactivate();
         inAiMod = true;        
-    }
+    }        
 
     protected override void Update()
     {
@@ -76,11 +76,12 @@ public class CrewCharacter : BaseCharacter
                 _isNeedToStopCoroutine = false;
                 _isNeedToSwitchOnNavMesh = true;
             }
-            if (_isIll) return;
-                Move();
 
-                RotateCamera();         
-            
+            if (_isIll) return;
+
+            Move();
+
+            RotateCamera();            
         }
         else
         {
@@ -104,11 +105,18 @@ public class CrewCharacter : BaseCharacter
     }
     protected override void AIMod()
     {
-        if (ai._isOnPoint)
+        if (!_isIll)
         {
-            ai.ChangePointState(false);
-            ai._isOnPoint = false;
-            StartCoroutine(ai.AIMoving());
+            if (ai._isOnPoint)
+            {
+                ai.ChangePointState(false);
+                ai._isOnPoint = false;
+                StartCoroutine(ai.AIMoving());
+            }
+        }
+        else
+        {
+            ai.StartCoroutine(ai.AIPuke());
         }
     }
 
