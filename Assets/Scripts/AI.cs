@@ -6,7 +6,7 @@ public class AI : MonoBehaviour
 {    
     NavMeshAgent agent;
     Animator animator;
-    [SerializeField] GoalPoint[] points;
+    [SerializeField] Transform[] points;
 
     [SerializeField] private float _distance;
 
@@ -24,19 +24,20 @@ public class AI : MonoBehaviour
     public IEnumerator AIMoving()
     {        
         int randIndex = Random.Range(0, points.Length);
-        Transform point = points[randIndex].transform;
+        Transform point = points[randIndex];
         while (Vector3.Distance(transform.position, point.position) > 3f)
         {
-        _distance = Vector3.Distance(transform.position, point.position);
-        if (agent.enabled && agent.navMeshOwner != null) agent.SetDestination(point.position);
+            _distance = Vector3.Distance(transform.position, point.position);
+            if (agent.enabled && agent.navMeshOwner != null) 
+                agent.SetDestination(point.position);
 
             yield return new WaitForFixedUpdate();
-            point = points[randIndex].transform;
+            point = points[randIndex];
             animator.SetBool("walking", true);
         }
 
         animator.SetBool("walking", false);
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(4);        
         ChangePointState(true);                
     }
 
