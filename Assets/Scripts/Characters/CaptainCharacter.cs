@@ -10,7 +10,7 @@ public class CaptainCharacter : BaseCharacter
     {
         base.Update();
         RotateCamera();
-        if (_isIll || !_isActive) return;           
+        if (!_isActive) return;           
     }
     protected override void RotateCamera()  //“ут что-то не работает
     {

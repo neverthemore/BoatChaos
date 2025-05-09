@@ -8,15 +8,19 @@ public class AI : MonoBehaviour
     NavMeshAgent agent;
     Animator animator;
     [SerializeField] Transform[] points;
-    [SerializeField] Transform[] pukePoints;
+    [SerializeField] Transform pukePoint;
+    BaseCharacter character;
 
     [SerializeField] private float _distance;
 
     public bool _isOnPoint;
+    private bool _isPuking = false;
+    public bool IsPuking() => _isPuking;
     void Start()
     {        
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        character = GetComponent<BaseCharacter>();
         StartCoroutine(AIMoving());
     }
     public void ChangePointState(bool state)
@@ -36,30 +40,16 @@ public class AI : MonoBehaviour
             yield return new WaitForFixedUpdate();
             point = points[randIndex];
             animator.SetBool("walking", true);
-        }
-        
+        }        
         animator.SetBool("walking", false);
         yield return new WaitForSeconds(4);        
         ChangePointState(true);                
-    }
-    private Transform findPukePoint()
-    {
-        int index = 0;
-        float minDistanceToPukePoint = 1000f;
-        for (int i = 0; i < pukePoints.Length; i++)
-        {
-            float distanceToPukePoint = Vector3.Distance(transform.position, pukePoints[i].position);
-            if (distanceToPukePoint < minDistanceToPukePoint)
-            {
-                index = i;
-                minDistanceToPukePoint = distanceToPukePoint;
-            }
-        }
-        return pukePoints[index];
-    }
+    }    
     public IEnumerator AIPuke()
     {
-        Transform pukePoint = findPukePoint();
+        _isPuking = true;      
+
+        // Идем к точке рвоты
         while (Vector3.Distance(transform.position, pukePoint.position) > 2f)
         {
             if (agent.enabled && agent.navMeshOwner != null)
@@ -68,9 +58,29 @@ public class AI : MonoBehaviour
             animator.SetBool("walking", true);
         }
 
-        animator.SetBool("walking", false);        
+        animator.SetBool("walking", false);
         SetNavMesh(false);
-        transform.rotation = pukePoint.rotation;            
+        transform.rotation = pukePoint.rotation;
+        animator.SetBool("puking", true);
+
+        // Ждем завершения анимации рвоты
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        _isPuking = false;
+        animator.SetBool("puking", false);       
+
+        // Если все еще болен, повторяем процесс
+        if (character.IsIll)
+        {
+            SetNavMesh(true);
+            StartCoroutine(AIPuke());
+        }
+        else
+        {
+            // Если выздоровел, возвращаемся к обычному поведению
+            SetNavMesh(true);
+            ChangePointState(true);
+        }
     }
 
     public void SetNavMesh(bool conclusion)

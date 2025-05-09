@@ -28,7 +28,7 @@ public class MechanicCharacter : CrewCharacter
     protected override void Update()
     {
         base.Update();
-        if (_isIll || !_isActive)
+        if (!_isActive)
         {
             animator.SetBool("use", false);
             return; //Перестает что-либо делать

@@ -8,10 +8,10 @@ public class DoctorCharacter : CrewCharacter
 
     private BaseCharacter _currentHealCharacter;
 
-    protected override void StartIll()
-    {
-        _isIll = false;
-    }
+    //protected override void StartIll()
+    //{
+    //    _isIll = false;
+    //}
 
     protected override void Update()
     {
@@ -35,10 +35,10 @@ public class DoctorCharacter : CrewCharacter
             BaseCharacter _character = hit.collider.GetComponent<BaseCharacter>();
             if (_character != null)
             {
-                if (_character.IsIll)
-                {
-                    _character.Cure();
-                }
+                //if (_character.IsIll)
+                //{
+                //    _character.Cure();
+                //}
             }
         }
     }

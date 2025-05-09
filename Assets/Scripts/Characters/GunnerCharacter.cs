@@ -4,11 +4,12 @@ public class GunnerCharacter : CrewCharacter
 {
     protected override void Update()
     {
-        if (_isIll) return;
-
         base.Update();
-
-        if (!_isActive) return;
+        if (!_isActive)
+        {
+            animator.SetBool("use", false);
+            return; //Перестает что-либо делать
+        }       
 
     }
 }

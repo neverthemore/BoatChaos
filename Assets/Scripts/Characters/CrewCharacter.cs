@@ -68,57 +68,74 @@ public class CrewCharacter : BaseCharacter
         base.Update();
         if (_isActive)
         {
-            if (_isNeedToStopCoroutine)
-            {
-                ai.StopAllCoroutines();
-                ai.SetNavMesh(false);
+            //if (_isNeedToStopCoroutine)
+            //{
+            //    ai.StopAllCoroutines();
+            //    ai.SetNavMesh(false);
+            //    _isNeedToStopCoroutine = false;
+            //    _isNeedToSwitchOnNavMesh = true;
+            //}
 
-                _isNeedToStopCoroutine = false;
-                _isNeedToSwitchOnNavMesh = true;
-            }
-
-            if (_isIll) return;
+            //if (_isIll)
+            //{
+            //    // Если персонаж болен и активен, он не должен двигаться
+            //    animator.SetBool("walking", false);
+            //    return;
+            //}
 
             Move();
-
-            RotateCamera();            
+            RotateCamera();
         }
         else
         {
-            if (_isNeedToSwitchOnNavMesh)
-            {
-                ai.SetNavMesh(true);
-                _isNeedToSwitchOnNavMesh = false;
-                _isNeedToStopCoroutine = true;
-                ai.ChangePointState(true);
-                _isFirstMove = true;
-            }
-            AIMod();
+        //    if (_isNeedToSwitchOnNavMesh)
+        //    {
+        //        ai.SetNavMesh(true);
+        //        _isNeedToSwitchOnNavMesh = false;
+        //        _isNeedToStopCoroutine = true;
+        //        ai.ChangePointState(true);
+        //        _isFirstMove = true;
+        //    }
+
+        //    // Всегда вызываем AIMod, но внутри он сам решит что делать
+        //    //AIMod();
         }
 
         if (GetItem() != null)
         {
             animator.SetBool("carring", true);
         }
-        else animator.SetBool("carring", false);
-
-    }
-    protected override void AIMod()
-    {
-        if (!_isIll)
-        {
-            if (ai._isOnPoint)
-            {
-                ai.ChangePointState(false);
-                ai._isOnPoint = false;
-                StartCoroutine(ai.AIMoving());
-            }
-        }
         else
         {
-            ai.StartCoroutine(ai.AIPuke());
+            animator.SetBool("carring", false);
         }
     }
+    //protected override void AIMod()
+    //{
+    //    if (_isIll)
+    //    {
+    //        // Если уже выполняется AIPuke, не запускаем снова
+    //        if (!ai.IsPuking())
+    //        {
+    //            ai.StopAllCoroutines();
+    //            ai.StartCoroutine(ai.AIPuke());
+    //        }
+    //    }
+    //    else
+    //    {
+    //        // Сбрасываем состояние рвоты при выздоровлении
+    //        animator.SetBool("puking", false);
+
+    //        // Если не на точке и не выполняем другое действие, начинаем движение
+    //        if (ai._isOnPoint)
+    //        {
+    //            ai.ChangePointState(false);
+    //            ai._isOnPoint = false;
+    //            ai.StopAllCoroutines();
+    //            ai.StartCoroutine(ai.AIMoving());
+    //        }
+    //    }
+    //}
 
     public void PlaySound()
     {

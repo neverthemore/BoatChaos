@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 519962701946698563}
   - component: {fileID: 2813291219969709528}
   - component: {fileID: 3870243946980695435}
-  - component: {fileID: 3752392648440698292}
   - component: {fileID: 8096667465534051505}
   - component: {fileID: 6178563564564419545}
+  - component: {fileID: 3752392648440698292}
   - component: {fileID: 1734267097709224592}
   m_Layer: 7
   m_Name: Pushkar
@@ -92,30 +92,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3752392648440698292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2289289525167456300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5e3821c7cbc0747a8691217fefa81a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _illnessEvent: {fileID: 11400000, guid: 5d6cd77f6de768c4b82e94dd6bf462cf, type: 2}
-  _characterName: Pushkar
-  cmCamera: {fileID: 8249357904362870795}
-  mouseX: 0
-  mouseY: 0
-  Sensitivity: 10
-  _itemTransform: {fileID: 0}
-  _illEffect: {fileID: 0}
-  _isActive: 0
-  inAiMod: 0
-  _audioSource: {fileID: 0}
-  pitchVariation: 0.1
 --- !u!195 &8096667465534051505
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -161,8 +137,33 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  pukePoints: []
   _distance: 0
   _isOnPoint: 0
+--- !u!114 &3752392648440698292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289289525167456300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5e3821c7cbc0747a8691217fefa81a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _illnessEvent: {fileID: 11400000, guid: 5d6cd77f6de768c4b82e94dd6bf462cf, type: 2}
+  _characterName: Pushkar
+  cmCamera: {fileID: 8249357904362870795}
+  mouseX: 0
+  mouseY: 0
+  Sensitivity: 10
+  _itemTransform: {fileID: 0}
+  _illEffect: {fileID: 0}
+  _isActive: 0
+  inAiMod: 0
+  _audioSource: {fileID: 0}
+  pitchVariation: 0.1
 --- !u!136 &1734267097709224592
 CapsuleCollider:
   m_ObjectHideFlags: 0
