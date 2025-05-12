@@ -5,138 +5,64 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CrewCharacter : BaseCharacter
-{    
-    protected CharacterController controller;     
-    protected Animator animator;
-    protected AI ai;    
-    
-    public bool inAiMod;
+{
+    #region Components
+    protected CharacterController controller;           //Контроллер
+    protected Animator animator;                        //Анимации
+    private Ship _ship;                                 //Скрипт корабля
+    #endregion
 
-    private bool _isNeedToStopCoroutine = true;
-    private bool _isNeedToSwitchOnNavMesh = false;
-
+    #region Base Variables
+    public bool inAiMod;    
     private float _speedOfMoving = 5f;
     private float _jumpUp;
     private float _gravityForce = -5f;
-
     private bool _isFirstMove = true;
-
-    private Ship _ship;
-    //Команда, может двигаться и ходить в отличие от кэпа
     private Vector3 _lastShipPosition = Ship.LastShipPosition;
     private Quaternion _lastShipRotation = Ship.LastShipRotation;
+    #endregion
 
     [SerializeField]private AudioSource _audioSource;
     [SerializeField] private float pitchVariation = 0.1f; // Величина изменения питча
 
-
     override protected void Start()
     {
         base.Start();       
-        _ship = GetComponentInParent<Ship>();
-        ai = GetComponent<AI>();
+
+        _ship = GetComponentInParent<Ship>();        
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();        
-        inputActions = new InputSystem_Actions();
         inputActions.Enable();
-        cmCameraGameObject = GameObject.Find("CM Camera" + _characterName);
     }
     protected override void RotateCamera()
     {
         base.RotateCamera();
+
         cmCameraGameObject.transform.localEulerAngles = new Vector3(mouseY, 0f, 0f);
         transform.localEulerAngles = new Vector3(0f, mouseX, 0f);
     }
     public override void Activate()
     {
-        controller = GetComponent<CharacterController>();
-        controller.enabled = true;
-        base.Activate();        
-        inAiMod = false;
-        
+        base.Activate();
+        controller.enabled = true;               
+        inAiMod = false;        
     }
     public override void Deactivate()
     {
-        controller = GetComponent<CharacterController>();
-        controller.enabled = false;
         base.Deactivate();
+        controller.enabled = false;        
         inAiMod = true;        
     }        
-
     protected override void Update()
     {
         base.Update();
+        AnimationsOfMoving();
         if (_isActive)
-        {
-            //if (_isNeedToStopCoroutine)
-            //{
-            //    ai.StopAllCoroutines();
-            //    ai.SetNavMesh(false);
-            //    _isNeedToStopCoroutine = false;
-            //    _isNeedToSwitchOnNavMesh = true;
-            //}
-
-            //if (_isIll)
-            //{
-            //    // Если персонаж болен и активен, он не должен двигаться
-            //    animator.SetBool("walking", false);
-            //    return;
-            //}
-
+        {            
             Move();
             RotateCamera();
-        }
-        else
-        {
-        //    if (_isNeedToSwitchOnNavMesh)
-        //    {
-        //        ai.SetNavMesh(true);
-        //        _isNeedToSwitchOnNavMesh = false;
-        //        _isNeedToStopCoroutine = true;
-        //        ai.ChangePointState(true);
-        //        _isFirstMove = true;
-        //    }
-
-        //    // Всегда вызываем AIMod, но внутри он сам решит что делать
-        //    //AIMod();
-        }
-
-        if (GetItem() != null)
-        {
-            animator.SetBool("carring", true);
-        }
-        else
-        {
-            animator.SetBool("carring", false);
-        }
-    }
-    //protected override void AIMod()
-    //{
-    //    if (_isIll)
-    //    {
-    //        // Если уже выполняется AIPuke, не запускаем снова
-    //        if (!ai.IsPuking())
-    //        {
-    //            ai.StopAllCoroutines();
-    //            ai.StartCoroutine(ai.AIPuke());
-    //        }
-    //    }
-    //    else
-    //    {
-    //        // Сбрасываем состояние рвоты при выздоровлении
-    //        animator.SetBool("puking", false);
-
-    //        // Если не на точке и не выполняем другое действие, начинаем движение
-    //        if (ai._isOnPoint)
-    //        {
-    //            ai.ChangePointState(false);
-    //            ai._isOnPoint = false;
-    //            ai.StopAllCoroutines();
-    //            ai.StartCoroutine(ai.AIMoving());
-    //        }
-    //    }
-    //}
-
+        }          
+    }    
     public void PlaySound()
     {
         if (_audioSource == null) return;
@@ -172,14 +98,12 @@ public class CrewCharacter : BaseCharacter
         controller.Move(totalMove);
 
         _lastShipPosition = Ship.LastShipPosition;
-        _lastShipRotation = Ship.LastShipRotation;
-
-        if (direction != Vector2.zero)
-        {
-            animator.SetBool("walking", true);
-        }
-        else animator.SetBool("walking", false);
+        _lastShipRotation = Ship.LastShipRotation;        
     }
-
-
+    private void AnimationsOfMoving()
+    {
+        if (inputActions.Crew.Move.ReadValue<Vector2>() == Vector2.zero)
+            animator.SetBool("walking", false);
+        animator.SetBool("walking", true);
+    }
 }

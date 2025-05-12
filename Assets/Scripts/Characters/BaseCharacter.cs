@@ -1,4 +1,5 @@
 using System.Data;
+using Unity.Behavior;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,15 +7,21 @@ using UnityEngine.VFX;
 
 public abstract class BaseCharacter : MonoBehaviour
 {
-    //[SerializeField] private IllnesEvent _illnessEvent;    
-
+    #region Base Variables
     [SerializeField] protected string _characterName;
     public string CharacterName { get { return _characterName; } }
-
     protected GameObject cmCameraGameObject;
+    public bool _isActive;          //Активен ли сейчас персонаж  
+    public Transform _itemTransform;//Место для присоединения вещей  
+    #endregion
 
-    [SerializeField] protected CinemachineCamera cmCamera; 
-    protected InputSystem_Actions inputActions;
+    #region Components
+    protected BehaviorGraphAgent behavior;                      //ИИ Компонент
+    protected CinemachineCamera cmCamera;                       //Камера
+    protected InputSystem_Actions inputActions;                 //Инпуты
+    protected InteractionDetector _interactionDetector;         //Для взятия вещей
+    protected ItemState _itemState;                             //Ячейка инвентаря
+    #endregion
 
     #region Rotate protected Variables
     [SerializeField] protected float mouseX;
@@ -22,31 +29,27 @@ public abstract class BaseCharacter : MonoBehaviour
     public float Sensitivity = 10f;
     #endregion
 
-    protected ItemState _itemState;            //Ячейка инвентаря
-    public Transform _itemTransform;     //Место для присоединения вещей
-
-    //[SerializeField]VisualEffect _illEffect;
-
-
-    InteractionDetector _interactionDetector;
-
-    public bool _isActive; //Активен ли сейчас персонаж
-
+    #region Illness Variables
     //protected bool _isIll;
     //public bool IsIll { get { return _isIll; } }
-
+    //[SerializeField] private IllnesEvent _illnessEvent;    
+    //[SerializeField]VisualEffect _illEffect;
+    #endregion    
 
     virtual protected void Start()
-    {       
+    {
         Cursor.visible = false;
-        inputActions = new InputSystem_Actions();   
+
+        behavior = GetComponent<BehaviorGraphAgent>();
+        cmCamera = GetComponentInChildren<CinemachineCamera>();       
         _interactionDetector = gameObject.AddComponent<InteractionDetector>();
         _itemState = gameObject.AddComponent<ItemState>();
-        if (_itemTransform == null)
-        {
-            _itemTransform = transform.Find("ItemPivot");
-        }
+        inputActions = new InputSystem_Actions();
 
+        if (_itemTransform == null)        
+            _itemTransform = transform.Find("ItemPivot");
+        
+        behavior.enabled = true;
         //_illEffect.Stop();
     }
 
@@ -87,25 +90,20 @@ public abstract class BaseCharacter : MonoBehaviour
 
     public virtual void Activate()
     {        
-        _isActive = true;        
+        _isActive = true;     
+        behavior.enabled = false;
         if (cmCamera != null) cmCamera.Priority = 10;        
         cmCameraGameObject = GameObject.Find("CM Camera" + _characterName);           
     }
 
     public virtual void Deactivate()
     {
+        behavior.enabled = true;
         _isActive = false;        
         if (cmCamera != null) cmCamera.Priority = 0;        
-    }
-
-    protected virtual void AIMod()
-    {
-
-    }
-
+    }    
     public virtual void AddItem(BaseItem item)
-    {
-        
+    {       
         _itemState.PickUpItem(item);
     }
 

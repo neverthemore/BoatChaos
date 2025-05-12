@@ -70,17 +70,17 @@ public class AI : MonoBehaviour
         animator.SetBool("puking", false);       
 
         // Если все еще болен, повторяем процесс
-        if (character.IsIll)
-        {
-            SetNavMesh(true);
-            StartCoroutine(AIPuke());
-        }
-        else
-        {
-            // Если выздоровел, возвращаемся к обычному поведению
-            SetNavMesh(true);
-            ChangePointState(true);
-        }
+        //if (character.IsIll)
+        //{
+        //    SetNavMesh(true);
+        //    StartCoroutine(AIPuke());
+        //}
+        //else
+        //{
+        //    // Если выздоровел, возвращаемся к обычному поведению
+        //    SetNavMesh(true);
+        //    ChangePointState(true);
+        //}
     }
 
     public void SetNavMesh(bool conclusion)

@@ -9,7 +9,6 @@ public class GunnerCharacter : CrewCharacter
         {
             animator.SetBool("use", false);
             return; //Перестает что-либо делать
-        }       
-
+        }    
     }
 }

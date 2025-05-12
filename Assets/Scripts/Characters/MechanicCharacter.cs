@@ -1,30 +1,27 @@
 using System.Drawing;
+using Unity.Behavior;
 using UnityEngine;
 
 public class MechanicCharacter : CrewCharacter
 {
-    [SerializeField] private float _fixRange = 2f;
-
-    // Добавляем переменную для отслеживания предыдущего состояния кнопки
-    private bool _wasAttackPressedLastFrame = false;
-    //Если в руках молоток, То мы можем нажать ЛКМ, который будет чинить сломанные объекты
-    //Выпускает луч, который проверяет тег, пока он выпущен и наведен на цель то цель чинится (ну или логика внутри предмета)
+    #region Base Variables
     private float _secondsForFix = 1f;
     private float _clampedSeconds = 0f;
-
-    private AudioSource _audioSource;
     private bool _isAudioPlay = false;
 
     private bool _wasBreachOpened = false;
-
+    private bool _wasAttackPressedLastFrame = false;
+    [SerializeField] private float _fixRange = 2f;
+    #endregion    
+    
+    private AudioSource _audioSource;
     private IFixable _currentFixable;
 
     protected override void Start()
     {
         base.Start();
-        _audioSource = GetComponent<AudioSource>();
-    }
-
+        _audioSource = GetComponent<AudioSource>();        
+    }    
     protected override void Update()
     {
         base.Update();
@@ -38,14 +35,12 @@ public class MechanicCharacter : CrewCharacter
         // Переменные для отслеживания состояния кнопки
         bool isAttackPressed = inputActions.Crew.Attack.IsPressed();
         bool isAttackTriggered = isAttackPressed && !_wasAttackPressedLastFrame;
-
         animator.SetBool("use", isAttackPressed);
-
 
         if (GetItem()?.Name == "Hammer")
         {
             bool isFixableHit = CastRayForFixAndCheck();
-
+            behavior.BlackboardReference.SetVariableValue("withHammer", true);
             if (isFixableHit)
             {
                 // Обработка Wheel (удержание)
@@ -55,7 +50,6 @@ public class MechanicCharacter : CrewCharacter
                     {
                         _clampedSeconds += Time.deltaTime;
                     }
-
                     // При достижении времени чиним
                     if (_clampedSeconds >= _secondsForFix)
                     {
@@ -92,7 +86,6 @@ public class MechanicCharacter : CrewCharacter
                             UIBranch.Instance.FixBreach(GetCurrentObj()); 
                         }
                         _wasBreachOpened = false;
-
                     }
                 }
             }
@@ -109,31 +102,12 @@ public class MechanicCharacter : CrewCharacter
                     }
                     _wasBreachOpened = false;
                 }
-            }
-
-            /*
-            if (inputActions.Crew.Attack.IsPressed())
-            {
-                if (!_isAudioPlay)
-                {
-                    _isAudioPlay = true;
-                    _audioSource.Play();
-                }
-            }
-            else
-            {
-                if (_isAudioPlay)
-                {
-                    _isAudioPlay = false;
-                    _audioSource.Stop();
-                }
-            }
-            */
+            }            
         }
         else
         {
             _clampedSeconds = 0f;
-
+            behavior.BlackboardReference.SetVariableValue("withHammer", false);
             if (_wasBreachOpened)
             {
                 UIBranch.Instance.CloseUI();
@@ -165,7 +139,6 @@ public class MechanicCharacter : CrewCharacter
         }
         return null;
     }
-
     private bool CastRayForFixAndCheck()   //Зажато ЛКМ, попало в IFixable -> вызывается StartFix()
     {
         Ray ray = new Ray(cmCamera.transform.position, cmCamera.transform.forward);

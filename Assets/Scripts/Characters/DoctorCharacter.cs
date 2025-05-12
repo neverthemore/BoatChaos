@@ -1,11 +1,8 @@
 using UnityEngine;
 
 public class DoctorCharacter : CrewCharacter
-{
-    //Этот тип не может заболеть
-    //Также лечит тиму
+{    
     [SerializeField] private float _healRange;
-
     private BaseCharacter _currentHealCharacter;
 
     //protected override void StartIll()
@@ -18,12 +15,8 @@ public class DoctorCharacter : CrewCharacter
         base.Update();
 
         if (!_isActive) return;
-
-        //Может брать колбочку лекарства
-        //Если подходит с колбочкой к персонажу, нажимает E, то лечит его
+        
         if (inputActions.Crew.Use.triggered) CastRayForHeal();
-
-
     }
 
     private void CastRayForHeal()   //Попали в типа - вызвали его хилл
@@ -42,5 +35,4 @@ public class DoctorCharacter : CrewCharacter
             }
         }
     }
-
 }
