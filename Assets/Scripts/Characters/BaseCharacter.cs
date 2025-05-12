@@ -89,7 +89,8 @@ public abstract class BaseCharacter : MonoBehaviour
     }
 
     public virtual void Activate()
-    {        
+    {
+        behavior = GetComponent<BehaviorGraphAgent>();
         _isActive = true;     
         behavior.enabled = false;
         if (cmCamera != null) cmCamera.Priority = 10;        
@@ -98,6 +99,7 @@ public abstract class BaseCharacter : MonoBehaviour
 
     public virtual void Deactivate()
     {
+        behavior = GetComponent<BehaviorGraphAgent>();
         behavior.enabled = true;
         _isActive = false;        
         if (cmCamera != null) cmCamera.Priority = 0;        
