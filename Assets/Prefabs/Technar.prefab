@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 385996421174449202}
   - component: {fileID: 7414268805882120831}
   - component: {fileID: 1426989401031897732}
-  - component: {fileID: 405363468635620398}
   - component: {fileID: 4302947603739076023}
   - component: {fileID: 6912418584145813762}
   m_Layer: 8
@@ -113,31 +112,6 @@ NavMeshAgent:
   m_BaseOffset: 1.81
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 2
---- !u!114 &405363468635620398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 248692079710505833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b73209a6d94a864bb59ba13a9292c95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  points:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _distance: 0
-  _isOnPoint: 0
 --- !u!114 &4302947603739076023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,15 +124,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37238a7336b0c4abd2f5eab317c532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _illnessEvent: {fileID: 11400000, guid: 5d6cd77f6de768c4b82e94dd6bf462cf, type: 2}
   _characterName: Technar
-  cmCamera: {fileID: 5989934283673341979}
+  _isActive: 0
+  _itemTransform: {fileID: 0}
   mouseX: 0
   mouseY: 0
   Sensitivity: 10
-  _itemTransform: {fileID: 0}
-  _illEffect: {fileID: 0}
-  _isActive: 0
   inAiMod: 0
   _audioSource: {fileID: 0}
   pitchVariation: 0.1

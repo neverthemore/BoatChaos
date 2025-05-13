@@ -8,7 +8,6 @@ public class Hammer : BaseItem
         Name = "Hammer";
         _whoCanEnteract = WhoCanEnteract.Technar;    
     }
-
     public override void Interact(GameObject interactor)
     {
         base.Interact(interactor);
@@ -17,11 +16,10 @@ public class Hammer : BaseItem
 
         PickUp();
     }
-    protected override void PickUp()
+    public override void PickUp()
     {
         base.PickUp();
     }
-
     public override void DropItem()
     {
         base.DropItem();

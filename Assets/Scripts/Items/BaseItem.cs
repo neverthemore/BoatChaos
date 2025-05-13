@@ -10,8 +10,7 @@ public enum WhoCanEnteract          //Список названий
 public class BaseItem : MonoBehaviour, IInteractable, IPromtable
 {
     private bool _isEquip = false;
-    private bool _isPromtShow = false;
-    //Скрипт для шмоток
+    private bool _isPromtShow = false;    
     public string Name; 
     protected Rigidbody _rb;   
     private Canvas canvas;
@@ -43,13 +42,12 @@ public class BaseItem : MonoBehaviour, IInteractable, IPromtable
         _isEquip = false;
         GetComponentInChildren<Collider>().enabled = true;
     }
-    protected virtual void PickUp()
+    public virtual void PickUp()
     {
         _rb.isKinematic = true;
         _interactor.GetComponent<BaseCharacter>().AddItem(this);
         transform.localRotation = Quaternion.identity;
         GetComponentInChildren<Collider>().enabled = false;
-
         _isEquip = true;
     }
     public virtual void UseItem()

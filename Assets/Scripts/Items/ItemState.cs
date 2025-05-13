@@ -7,10 +7,10 @@ public class ItemState : MonoBehaviour
 
     public void PickUpItem(BaseItem newItem)
     {
-        if (newItem == _item) return;
+        if (newItem == _item) return;   
         if (_item != null) DropItem();
 
-        _item = newItem;
+        _item = newItem;        
         newItem.transform.SetParent(gameObject.GetComponent<BaseCharacter>()._itemTransform);
         newItem.transform.localPosition = Vector3.zero;
     }

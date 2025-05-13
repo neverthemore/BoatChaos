@@ -26,16 +26,12 @@ public class MechanicCharacter : CrewCharacter
     {
         base.Update();
         if (!_isActive)
-        {
-            animator.SetBool("use", false);
+        {            
             return; //Перестает что-либо делать
         }
-
-
         // Переменные для отслеживания состояния кнопки
         bool isAttackPressed = inputActions.Crew.Attack.IsPressed();
-        bool isAttackTriggered = isAttackPressed && !_wasAttackPressedLastFrame;
-        animator.SetBool("use", isAttackPressed);
+        bool isAttackTriggered = isAttackPressed && !_wasAttackPressedLastFrame;        
 
         if (GetItem()?.Name == "Hammer")
         {
@@ -123,12 +119,10 @@ public class MechanicCharacter : CrewCharacter
         _wasAttackPressedLastFrame = isAttackPressed;
         
     }
-
     public void PlayHammerSound()
     {
         _audioSource.Play();
     }
-
     private GameObject GetCurrentObj()
     {
         Ray ray = new Ray(cmCamera.transform.position, cmCamera.transform.forward);

@@ -5,15 +5,20 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "PickUpHammer", story: "[Agent] PickUps [Hammer]", category: "Action/Animation", id: "b714c202561cce3f814795e17a0cb7ad")]
+[NodeDescription(name: "PickUpHammer", story: "[Agent] PickUps [Hammer]", category: "Action", id: "b714c202561cce3f814795e17a0cb7ad")]
 public partial class PickUpHammerAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Agent;
-    [SerializeReference] public BlackboardVariable<Transform> Hammer;
-
+    [SerializeReference] public BlackboardVariable<BaseItem> Hammer;        
+    
     protected override Status OnStart()
     {
-        return Status.Running;
+        BaseItem hammer = Hammer.Value;        
+        GameObject character = Agent.Value;
+        character.GetComponent<ItemState>().PickUpItem(hammer);
+        hammer.Interact(character);
+        hammer.PickUp();
+        return Status.Running;        
     }
 
     protected override Status OnUpdate()
@@ -23,6 +28,7 @@ public partial class PickUpHammerAction : Action
 
     protected override void OnEnd()
     {
+
     }
 }
 

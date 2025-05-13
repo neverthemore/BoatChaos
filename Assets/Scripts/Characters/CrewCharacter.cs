@@ -2,6 +2,7 @@
 using Unity.Jobs;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class CrewCharacter : BaseCharacter
@@ -10,6 +11,7 @@ public class CrewCharacter : BaseCharacter
     protected CharacterController controller;           //Контроллер
     protected Animator animator;                        //Анимации
     private Ship _ship;                                 //Скрипт корабля
+    private NavMeshAgent _agent;
     #endregion
 
     #region Base Variables
@@ -31,7 +33,8 @@ public class CrewCharacter : BaseCharacter
 
         _ship = GetComponentInParent<Ship>();        
         animator = GetComponent<Animator>();
-        controller = GetComponent<CharacterController>();        
+        controller = GetComponent<CharacterController>();
+        _agent = GetComponent<NavMeshAgent>();
         inputActions.Enable();
     }
     protected override void RotateCamera()
@@ -45,6 +48,8 @@ public class CrewCharacter : BaseCharacter
     {
         base.Activate();
         controller = GetComponent<CharacterController>();
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.enabled = false;
         controller.enabled = true;               
         inAiMod = false;        
     }
@@ -52,6 +57,8 @@ public class CrewCharacter : BaseCharacter
     {
         base.Deactivate();
         controller = GetComponent<CharacterController>();
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.enabled = true;
         controller.enabled = false;        
         inAiMod = true;        
     }        

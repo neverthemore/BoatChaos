@@ -17,7 +17,7 @@ public class Ball : BaseItem{
             return;
         PickUp();
     }
-    protected override void PickUp()
+    public override void PickUp()
     {
         base.PickUp();
     }
