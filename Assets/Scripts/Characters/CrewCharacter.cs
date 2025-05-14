@@ -9,8 +9,7 @@ public class CrewCharacter : BaseCharacter
 {
     #region Components
     protected CharacterController controller;           //Контроллер
-    protected Animator animator;                        //Анимации
-    private Ship _ship;                                 //Скрипт корабля
+    protected Animator animator;                        //Анимации                                    
     private NavMeshAgent _agent;
     #endregion
 
@@ -18,10 +17,7 @@ public class CrewCharacter : BaseCharacter
     public bool inAiMod;    
     private float _speedOfMoving = 5f;
     private float _jumpUp;
-    private float _gravityForce = -5f;
-    private bool _isFirstMove = true;
-    private Vector3 _lastShipPosition = Ship.LastShipPosition;
-    private Quaternion _lastShipRotation = Ship.LastShipRotation;
+    private float _gravityForce = -5f;    
     #endregion
 
     [SerializeField]private AudioSource _audioSource;
@@ -29,9 +25,8 @@ public class CrewCharacter : BaseCharacter
 
     override protected void Start()
     {
-        base.Start();       
-
-        _ship = GetComponentInParent<Ship>();        
+        base.Start();
+          
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         _agent = GetComponent<NavMeshAgent>();
@@ -82,32 +77,20 @@ public class CrewCharacter : BaseCharacter
     private void Move()
     {
         if (!controller.isGrounded)
-            _jumpUp += _gravityForce * Time.deltaTime;
-        else if (_jumpUp <= 0) _jumpUp = 0;
-
-        Vector3 shipDelta = Ship.LastShipPosition - _lastShipPosition;
-        Quaternion shipRotationDelta = Ship.LastShipRotation * Quaternion.Inverse(_lastShipRotation);
-
-        if (_isFirstMove)
         {
-            shipDelta = Vector3.zero;
-            shipRotationDelta = new Quaternion(0, 0, 0, 0);
-            _isFirstMove = false;
+            _jumpUp += _gravityForce * Time.deltaTime;
+            Debug.Log("Персонаж падает");
         }
-         
-        Vector3 rotatedPosition = shipRotationDelta * (transform.position - _lastShipPosition);
-        Vector3 shipMove = (rotatedPosition + _lastShipPosition + shipDelta) - transform.position;
+        else if (_jumpUp <= 0) _jumpUp = 0;      
 
         Vector2 direction = inputActions.Crew.Move.ReadValue<Vector2>();
         Vector3 characterMove = transform.TransformDirection(
             new Vector3(direction.x, 0, direction.y)) * _speedOfMoving * Time.deltaTime;
 
-        Vector3 totalMove = shipMove + characterMove;
+        Vector3 totalMove = characterMove;
         totalMove.y += _jumpUp;
-        controller.Move(totalMove);
-
-        _lastShipPosition = Ship.LastShipPosition;
-        _lastShipRotation = Ship.LastShipRotation;        
+        if (direction != Vector2.zero)
+            controller.Move(totalMove);         
     }
     private void AnimationsOfMoving()
     {

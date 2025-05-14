@@ -8,10 +8,6 @@ public class MenuController : MonoBehaviour
     [Header("UI Settings")]
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private string gameSceneName = "scene";
- 
-   
-
-
 
     [Header("Movement Settings")]
     [SerializeField] private GameObject objectToMove; // Объект для движения
@@ -32,9 +28,9 @@ public class MenuController : MonoBehaviour
     private Material skyboxMaterial;
 
     void Start()
-    {
-  
-
+    {  
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         if (RenderSettings.skybox != null)
         {
             skyboxMaterial = RenderSettings.skybox;
