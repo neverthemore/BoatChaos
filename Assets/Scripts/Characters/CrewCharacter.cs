@@ -64,11 +64,11 @@ public class CrewCharacter : BaseCharacter
     }        
     protected override void Update()
     {
-        base.Update();
-        AnimationsOfMoving();
+        base.Update();        
         if (_isActive)
         {            
             Move();
+            AnimationsOfMoving();
             RotateCamera();
         }          
     }    

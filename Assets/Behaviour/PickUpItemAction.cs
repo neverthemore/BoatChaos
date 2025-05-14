@@ -5,15 +5,14 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "PickUpHammer", story: "[Agent] PickUps [Hammer]", category: "Action", id: "b714c202561cce3f814795e17a0cb7ad")]
-public partial class PickUpHammerAction : Action
+[NodeDescription(name: "PickUpItem", story: "[Agent] PickUps [Item]", category: "Action", id: "b714c202561cce3f814795e17a0cb7ad")]
+public partial class PickUpItemAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Agent;
-    [SerializeReference] public BlackboardVariable<BaseItem> Hammer;        
-    
+    [SerializeReference] public BlackboardVariable<BaseItem> Item;
     protected override Status OnStart()
     {
-        BaseItem hammer = Hammer.Value;        
+        BaseItem hammer = Item.Value;        
         GameObject character = Agent.Value;
         character.GetComponent<ItemState>().PickUpItem(hammer);
         hammer.Interact(character);
