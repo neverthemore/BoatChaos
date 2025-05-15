@@ -9,6 +9,7 @@ TagManager:
   - Ship
   - EnemyShip
   - Hammer
+  - UsedBall
   layers:
   - Default
   - TransparentFX

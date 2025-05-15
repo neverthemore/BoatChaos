@@ -28,10 +28,10 @@ public class DoctorCharacter : CrewCharacter
             BaseCharacter _character = hit.collider.GetComponent<BaseCharacter>();
             if (_character != null)
             {
-                //if (_character.IsIll)
-                //{
-                //    _character.Cure();
-                //}
+                if (_character.IsIll)
+                {
+                    _character.Cure();
+                }
             }
         }
     }

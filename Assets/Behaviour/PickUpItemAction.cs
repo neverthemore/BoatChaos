@@ -12,11 +12,12 @@ public partial class PickUpItemAction : Action
     [SerializeReference] public BlackboardVariable<BaseItem> Item;
     protected override Status OnStart()
     {
-        BaseItem hammer = Item.Value;        
+        BaseItem item = Item.Value;        
         GameObject character = Agent.Value;
-        character.GetComponent<ItemState>().PickUpItem(hammer);
-        hammer.Interact(character);
-        hammer.PickUp();
+        character.GetComponent<ItemState>().PickUpItem(item);
+        
+        item.Interact(character);
+        item.PickUp();
         return Status.Running;        
     }
 

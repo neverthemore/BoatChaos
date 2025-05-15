@@ -4,15 +4,15 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
-
+using ShipGame.Events;
 public abstract class BaseCharacter : MonoBehaviour
 {
     #region Base Variables
     [SerializeField] protected string _characterName;
     public string CharacterName { get { return _characterName; } }
     protected GameObject cmCameraGameObject;
-    public bool _isActive;          //Активен ли сейчас персонаж  
-    public Transform _itemTransform;//Место для присоединения вещей  
+    public bool _isActive;                      //Активен ли сейчас персонаж  
+    public Transform _itemTransform;            //Место для присоединения вещей  
     #endregion
 
     #region Components
@@ -30,10 +30,9 @@ public abstract class BaseCharacter : MonoBehaviour
     #endregion
 
     #region Illness Variables
-    //protected bool _isIll;
-    //public bool IsIll { get { return _isIll; } }
-    //[SerializeField] private IllnesEvent _illnessEvent;    
-    //[SerializeField]VisualEffect _illEffect;
+    protected bool _isIll;
+    public bool IsIll { get { return _isIll; } }      
+    [SerializeField]VisualEffect _illEffect;
     #endregion    
 
     virtual protected void Start()
@@ -50,7 +49,7 @@ public abstract class BaseCharacter : MonoBehaviour
             _itemTransform = transform.Find("ItemPivot");
         
         behavior.enabled = true;
-        //_illEffect.Stop();
+        _illEffect.Stop();
     }
 
     protected virtual void Update()
@@ -72,12 +71,11 @@ public abstract class BaseCharacter : MonoBehaviour
 
     private void OnEnable()
     {
-        //_illnessEvent.OnIllnessStart.AddListener(StartIll);
+        EventBus<IllnesStartEvent>.Subscribe(StartIll);        
     }
-
     private void OnDisable()
     {
-        //_illnessEvent.OnIllnessStart.RemoveListener(StartIll);
+        EventBus<IllnesStartEvent>.Unsubscribe(StartIll);        
     }
 
     protected virtual void RotateCamera()
@@ -119,26 +117,22 @@ public abstract class BaseCharacter : MonoBehaviour
         return _itemState.Item;
     }
 
-    //#region Illness
-    //protected virtual void StartIll()  //Для события болезни
-    //{
-    //    int number = _illnessEvent.numberOfIllCharacter;
-    //    if (CharacterManager.Instance.characters[number].name == _characterName)
-    //    {
-    //        Debug.Log(_characterName + " заболел");
-    //        CharacterManager.Instance.characters[number]._illEffect.Play();
-    //        CharacterManager.Instance.characters[number]._isIll = true;
-    //    }
+    #region Illness
+    protected virtual void StartIll(IllnesStartEvent evt)          
+    {
+        int number = evt.Source.numberOfIllCharacter;
+        if (CharacterManager.Instance.characters[number].name == _characterName)
+        {
+            CharacterManager.Instance.characters[number].behavior.SetVariableValue("IsIll", true);
+            Debug.Log(_characterName + " заболел");
+            CharacterManager.Instance.characters[number]._illEffect.Play();
+            CharacterManager.Instance.characters[number]._isIll = true;
+        }
+    }
 
-    //}
-
-    //public void Cure()
-    //{
-    //    int number = _illnessEvent.numberOfIllCharacter;
-    //    Debug.Log(_characterName + " вылечен");
-    //    CharacterManager.Instance.characters[number]._illEffect.Stop();
-    //    CharacterManager.Instance.characters[number]._isIll = false;
-    //    _illnessEvent.Complete();
-    //}
-    //#endregion
+    public void Cure()
+    {        
+        Debug.Log(_characterName + " вылечен");         
+    }
+    #endregion
 }

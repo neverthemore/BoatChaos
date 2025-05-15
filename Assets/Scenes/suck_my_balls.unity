@@ -859,7 +859,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109383242}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 309fe05954af0b14dad26134b293ebfc, type: 3}
   m_Name: 
@@ -870,8 +870,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d6cd77f6de768c4b82e94dd6bf462cf, type: 2}
   - {fileID: 11400000, guid: a1711da725b35654585928bdfca26af3, type: 2}
   timerDuration: 10
-  _gameOver: {fileID: 11400000, guid: 880435c62b36dc542bcb270a0eb5ff32, type: 2}
-  _startTimer: 0
 --- !u!4 &109383244
 Transform:
   m_ObjectHideFlags: 0
@@ -4338,6 +4336,7 @@ MonoBehaviour:
   - rid: 4542243397401837977
   - rid: 4542243397401837978
   - rid: 4542243397401837979
+  - rid: 4542243421639410628
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -4423,6 +4422,14 @@ MonoBehaviour:
           m_Value1: 171183360033346571
         Name: StandTime
         m_Value: 3
+    - rid: 4542243421639410628
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 5631570623108101698
+          m_Value1: 698317834294909472
+        Name: Ill Point
+        m_Value: {fileID: 1888810180}
 --- !u!95 &1234390916 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3330511201753887270, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
@@ -5319,7 +5326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1256085af248d104ea6080057194d751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameOver: {fileID: 11400000, guid: 880435c62b36dc542bcb270a0eb5ff32, type: 2}
   winclip: {fileID: 367184829}
   loseclip: {fileID: 2088998023}
   hpSlider: {fileID: 2863242155060388453}
@@ -6938,7 +6944,7 @@ Transform:
   m_GameObject: {fileID: 1888810179}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7120149, z: -0, w: 0.70216435}
-  m_LocalPosition: {x: -3.21, y: 6.98, z: 9.77}
+  m_LocalPosition: {x: -3.98, y: 6.98, z: 9.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8452,6 +8458,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 541145774945693725, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: _illnessEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d6cd77f6de768c4b82e94dd6bf462cf, type: 2}
     - target: {fileID: 557572228881534714, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8508,6 +8518,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1212642534487966627, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: _illnessEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d6cd77f6de768c4b82e94dd6bf462cf, type: 2}
     - target: {fileID: 1462432767539882219, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8548,6 +8562,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6651430145919708281, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: _illnessEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d6cd77f6de768c4b82e94dd6bf462cf, type: 2}
     - target: {fileID: 6749517979766620808, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_LocalPosition.z
       value: 15.4
@@ -9081,7 +9099,6 @@ MonoBehaviour:
   SkipKey: 308
   canDial: 1
   characterAnimator: {fileID: 1373272579}
-  _gameOver: {fileID: 11400000, guid: 880435c62b36dc542bcb270a0eb5ff32, type: 2}
 --- !u!222 &9114772124003427188
 CanvasRenderer:
   m_ObjectHideFlags: 0

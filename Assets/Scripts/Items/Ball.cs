@@ -18,7 +18,7 @@ public class Ball : BaseItem{
         PickUp();
     }
     public override void PickUp()
-    {
+    {        
         base.PickUp();
     }
     public override void DropItem()
@@ -39,12 +39,12 @@ public class Ball : BaseItem{
         //После выстрела если попадает в корабль, то что-то вызывает 
         //Если во вражеский, то топим
         //Если в наш, то снимаем хп
-
+        gameObject.tag = "UsedBall";
+        IsInteractionAllowed = false;
         _friendly = !enemyBall;
         _rb = GetComponent<Rigidbody>();
         _rb.AddForce(direction * power, ForceMode.Impulse);
-        transform.SetParent(null);
-
+        transform.SetParent(null);        
         //Уничтожение через пару секунд (5)
         Destroy(gameObject, 5);
     }

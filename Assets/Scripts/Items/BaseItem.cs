@@ -34,7 +34,7 @@ public class BaseItem : MonoBehaviour, IInteractable, IPromtable
 
         _interactor = interactor;
         IsInteractionAllowed = true;
-        //Debug.Log("Это " + interactor.GetComponent<BaseCharacter>().CharacterName);
+        //Debug.Log("Это " + interactor.GetComponent<BaseCharacter>().CharacterName);\       
     }   
     public virtual void DropItem()
     {
@@ -43,12 +43,12 @@ public class BaseItem : MonoBehaviour, IInteractable, IPromtable
         GetComponentInChildren<Collider>().enabled = true;
     }
     public virtual void PickUp()
-    {
+    {        
         _rb.isKinematic = true;
         _interactor.GetComponent<BaseCharacter>().AddItem(this);
         transform.localRotation = Quaternion.identity;
         GetComponentInChildren<Collider>().enabled = false;
-        _isEquip = true;
+        _isEquip = true;        
     }
     public virtual void UseItem()
     {
