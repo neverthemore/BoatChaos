@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using ShipGame.Events;
 
 public class ShipMast : MonoBehaviour, IFixable
 {
@@ -15,16 +16,14 @@ public class ShipMast : MonoBehaviour, IFixable
 
     private void OnEnable()
     {
-        _brokenMastEvent.OnMastBroken.AddListener(BreakTheMast);
-        _brokenMastEvent.OnMastFixed.AddListener(FixTheMast);
-
+        EventBus<MastBrokenEvent>.Subscribe(BreakTheMast);
+        EventBus<MastFixedEvent>.Subscribe(FixTheMast);
     }
 
     private void OnDisable()
     {
-        _brokenMastEvent.OnMastBroken.RemoveListener(BreakTheMast);
-        _brokenMastEvent.OnMastFixed.RemoveListener(FixTheMast);
-        
+        EventBus<MastBrokenEvent>.Unsubscribe(BreakTheMast);
+        EventBus<MastFixedEvent>.Unsubscribe(FixTheMast);
     }
 
     private void Start()
@@ -53,14 +52,14 @@ public class ShipMast : MonoBehaviour, IFixable
         slider.value = (_brokenMastEvent.Current_Fix);
     }
 
-    private void BreakTheMast()
+    private void BreakTheMast(MastBrokenEvent evt)
     {
         _isBroken = true;
         ShowPromt();
         Debug.Log("Мачта сломана");
     }
 
-    private void FixTheMast()
+    private void FixTheMast(MastFixedEvent evt)
     {
         _isBroken = false;
         HidePromt();

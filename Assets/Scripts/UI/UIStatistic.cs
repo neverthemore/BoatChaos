@@ -3,12 +3,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using ShipGame.Events;
 
 public class UIStatistic : MonoBehaviour
 {
     public static UIStatistic Instance;
 
-    public GameOver _gameOver;
     [SerializeField] AudioSource winclip;
     [SerializeField] AudioSource loseclip;
     [Header("UI Elements")]
@@ -43,7 +43,6 @@ public class UIStatistic : MonoBehaviour
         initialShipY = shipIcon.anchoredPosition.y;
         InitializeSliders();
         UpdateShipPosition();
-        //_gameOver.OnGameOver?.Invoke();
     }
     
     void Update()
@@ -73,7 +72,7 @@ public class UIStatistic : MonoBehaviour
         timeToLose -= Time.deltaTime;
         if (RemainingDistance <= 0)
         {
-            _gameOver.OnGameVictory?.Invoke();
+            GameStartEventBus.PublishGameVictory();
             Debug.Log("777 BIG WIN 777");
             winclip.Play();
             RemainingDistance = 1000f;
@@ -81,7 +80,7 @@ public class UIStatistic : MonoBehaviour
         if (ShipHP <= 0)
         {
             Debug.Log("LOSE");
-            _gameOver.OnGameOver?.Invoke();
+            GameStartEventBus.PublishGameOver();
             loseclip.Play();
             ShipHP = 1000f;
         }
@@ -89,7 +88,7 @@ public class UIStatistic : MonoBehaviour
         {
             Debug.Log("LOSEforTime");
             loseclip.Play();
-            _gameOver.OnGameOver?.Invoke();
+            GameStartEventBus.PublishGameOver();
             timeToLose = 1000f;
 
         }

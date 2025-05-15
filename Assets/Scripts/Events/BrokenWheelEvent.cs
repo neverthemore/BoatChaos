@@ -1,14 +1,11 @@
 using UnityEngine;
 using UnityEngine.Events;
+using ShipGame.Events;
 
 [CreateAssetMenu(menuName = "Events/ Broken Wheel Event")]
 public class BrokenWheelEvent : ShipEvent
 {
     //Нужно уведомить о том, что штурвал сломался (наверное ивент)
-
-    [Header("Wheel Events")]
-    public UnityEvent OnWheelBroken;
-    public UnityEvent OnWheelFixed;
 
     public int Amount_For_Fix = 4;
     private int _currentFix = 0;
@@ -24,7 +21,8 @@ public class BrokenWheelEvent : ShipEvent
     {
         base.Activate();
         _currentFix = 0;
-        OnWheelBroken?.Invoke();
+
+        EventBus<WheelBrokenEvent>.Publish(new WheelBrokenEvent { Source = this });
     }
 
 
@@ -33,7 +31,18 @@ public class BrokenWheelEvent : ShipEvent
     {
         base.Complete();
         _currentFix = 0;
-        OnWheelFixed?.Invoke();
+
+        EventBus<WheelBrokenEvent>.Publish(new WheelBrokenEvent { Source = this });
     }
 
 };
+
+public class WheelBrokenEvent
+{
+    public BrokenWheelEvent Source;
+}
+
+public class WheelFixedEvent
+{
+    public BrokenWheelEvent Source;
+}

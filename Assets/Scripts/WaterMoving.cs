@@ -26,19 +26,6 @@ public class WaterMoving : MonoBehaviour
         _plane = GameObject.Find("Plane") ;        
     }
 
-    private void Moving()
-    {
-        Vector3 move = transform.forward * _shipSpeed * Time.deltaTime * -1;
-        _plane.transform.localPosition += move;
-        _UIStatistic.RemainingDistance -= _shipSpeed * Time.deltaTime;
-    }
-
-    private void Rotating()
-    {
-        float angle = _wheel.GetCurrentAngle();
-        _resultAngle = Mathf.Clamp((angle / (1080 / _maxAngle)), -_maxAngle, _maxAngle);        
-        transform.eulerAngles = new Vector3(0f, -_resultAngle, 0f);
-    }
 
 
     void Update()
@@ -53,7 +40,8 @@ public class WaterMoving : MonoBehaviour
         //    Вне зависимости от поворота корабля, объект воды всегда движется вдоль мировых координат -Z.
         _plane.transform.Translate(Vector3.forward * -_shipSpeed * Time.deltaTime, Space.World);
 
-        _UIStatistic.RemainingDistance -= _shipSpeed * Time.deltaTime;
+        if (_UIStatistic.GameStart)
+            _UIStatistic.RemainingDistance -= _shipSpeed * Time.deltaTime;
     }
 
 }

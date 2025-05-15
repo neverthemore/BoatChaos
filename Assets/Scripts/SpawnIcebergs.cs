@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using ShipGame.Events;
 
 public class SpawnIcebergs : MonoBehaviour
 {
@@ -22,16 +23,14 @@ public class SpawnIcebergs : MonoBehaviour
     [SerializeField] private float _minOneSizeScale;
     [SerializeField] private float _maxOneSizeScale;
 
-    [SerializeField] GameOver _gameOver;
-
     private void OnEnable()
     {
-        _gameOver.OnGameStart.AddListener(StartGame);
+        GameStartEventBus.SubscribeToGameStart(StartGame);
     }
 
     private void OnDisable()
     {
-        _gameOver.OnGameStart.RemoveListener(StartGame);
+        GameStartEventBus.UnsubscribeFromGameStart(StartGame);
     }
 
     void Start()

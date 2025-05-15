@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using ShipGame.Events;
 
 public class UIShowTroubles : MonoBehaviour
 {
@@ -20,32 +21,32 @@ public class UIShowTroubles : MonoBehaviour
 
     private void OnEnable()
     {
-        _brokenWheelEvent.OnWheelBroken.AddListener(ShowWheelAllert);
-        _brokenWheelEvent.OnWheelFixed.AddListener(HideWheelAllert);
+        EventBus<WheelBrokenEvent>.Subscribe(ShowWheelAllert);
+        EventBus<WheelFixedEvent>.Subscribe(HideWheelAllert);
 
-        _brokenMastEvent.OnMastBroken.AddListener(ShowMastAllert);
-        _brokenMastEvent.OnMastFixed.AddListener(HideMastlAllert);
+        EventBus<MastBrokenEvent>.Subscribe(ShowMastAllert);
+        EventBus<MastFixedEvent>.Subscribe(HideMastlAllert);
 
-        _illnesEvent.OnIllnessStart.AddListener(ShowIllAllert);
-        _illnesEvent.OnIllnesEnd.AddListener(HideIllAllert);
+        EventBus<IllnesStartEvent>.Subscribe(ShowIllAllert);
+        EventBus<IllnesEndEvent>.Subscribe(HideIllAllert);
 
-        _enemyEvent.OnEnemyStart.AddListener(ShowEnemyAllert);
-        _enemyEvent.OnEnemyEnd.AddListener(HideEnemylAllert);
+        EventBus<EnemyAttackEvent>.Subscribe(ShowEnemyAllert);
+        EventBus<EnemyEndAttackEvent>.Subscribe(HideEnemylAllert);
     }
 
     private void OnDisable()
     {
-        _brokenWheelEvent.OnWheelBroken.RemoveListener(ShowWheelAllert);
-        _brokenWheelEvent.OnWheelFixed.RemoveListener(HideWheelAllert);
+        EventBus<WheelBrokenEvent>.Unsubscribe(ShowWheelAllert);
+        EventBus<WheelFixedEvent>.Unsubscribe(HideWheelAllert);
 
-        _brokenMastEvent.OnMastBroken.RemoveListener(ShowMastAllert);
-        _brokenMastEvent.OnMastFixed.RemoveListener(HideMastlAllert);
+        EventBus<MastBrokenEvent>.Unsubscribe(ShowMastAllert);
+        EventBus<MastFixedEvent>.Unsubscribe(HideMastlAllert);
 
-        _illnesEvent.OnIllnessStart.RemoveListener(ShowIllAllert);
-        _illnesEvent.OnIllnesEnd.RemoveListener(HideIllAllert);
+        EventBus<IllnesStartEvent>.Unsubscribe(ShowIllAllert);
+        EventBus<IllnesEndEvent>.Unsubscribe(HideIllAllert);
 
-        _enemyEvent.OnEnemyStart.RemoveListener(ShowEnemyAllert);
-        _enemyEvent.OnEnemyEnd.RemoveListener(HideEnemylAllert);
+        EventBus<EnemyAttackEvent>.Unsubscribe(ShowEnemyAllert);
+        EventBus<EnemyEndAttackEvent>.Unsubscribe(HideEnemylAllert);
     }
 
     private void ShowAllert(GameObject panel)
@@ -59,48 +60,48 @@ public class UIShowTroubles : MonoBehaviour
     }
 
     #region Wheel
-    private void ShowWheelAllert()
+    private void ShowWheelAllert(WheelBrokenEvent evt)
     {
         ShowAllert(_wheelPanel);
     }
 
-    private void HideWheelAllert()
+    private void HideWheelAllert(WheelFixedEvent evt)
     {
         HideAllert(_wheelPanel);
     }
     #endregion
 
     #region Mast
-    private void ShowMastAllert()
+    private void ShowMastAllert(MastBrokenEvent evt)
     {
         ShowAllert(_mastPanel);
     }
 
-    private void HideMastlAllert()
+    private void HideMastlAllert(MastFixedEvent evt)
     {
         HideAllert(_mastPanel);
     }
     #endregion
 
     #region Ill
-    private void ShowIllAllert()
+    private void ShowIllAllert(IllnesStartEvent evt)
     {
         ShowAllert(_illPanel);
     }
 
-    private void HideIllAllert()
+    private void HideIllAllert(IllnesEndEvent end)
     {
         HideAllert(_illPanel);
     }
     #endregion
 
     #region Enemy
-    private void ShowEnemyAllert()
+    private void ShowEnemyAllert(EnemyAttackEvent evt)
     {
         ShowAllert(_enemyPanel);
     }
 
-    private void HideEnemylAllert()
+    private void HideEnemylAllert(EnemyEndAttackEvent evt)
     {
         HideAllert(_enemyPanel);
     }

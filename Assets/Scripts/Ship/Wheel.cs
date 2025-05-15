@@ -1,6 +1,7 @@
-using Unity.VisualScripting;
+using ShipGame.Events;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class Wheel : MonoBehaviour, IFixable
 {
@@ -26,15 +27,15 @@ public class Wheel : MonoBehaviour, IFixable
 
     private void OnEnable()
     {
-        _brokenWheelEvent.OnWheelBroken.AddListener(SetBrokenWheelParameters);
-        _brokenWheelEvent.OnWheelFixed.AddListener(SetNormalWheelParameters);
+        EventBus<WheelBrokenEvent>.Subscribe(SetBrokenWheelParameters);
+        EventBus<WheelFixedEvent>.Subscribe(SetNormalWheelParameters);
 
     }
 
     private void OnDisable()
     {
-        _brokenWheelEvent.OnWheelBroken.RemoveListener(SetBrokenWheelParameters);
-        _brokenWheelEvent.OnWheelFixed.RemoveListener(SetNormalWheelParameters);
+        EventBus<WheelBrokenEvent>.Unsubscribe(SetBrokenWheelParameters);
+        EventBus<WheelFixedEvent>.Unsubscribe(SetNormalWheelParameters);
     }
 
     private void Start()
@@ -48,14 +49,14 @@ public class Wheel : MonoBehaviour, IFixable
         HidePromt();
     }
 
-    public void SetBrokenWheelParameters()
+    public void SetBrokenWheelParameters(WheelBrokenEvent evt)
     {
         _isBroken = true;
         ShowPromt();
         _currentFix = 0;
         Debug.Log("Штурвал сломан!");
     }
-    public void SetNormalWheelParameters()
+    public void SetNormalWheelParameters(WheelFixedEvent evt)
     {
         _isBroken = false;
         HidePromt();
@@ -70,10 +71,9 @@ public class Wheel : MonoBehaviour, IFixable
     
     void Update()
     {
+        float input = inputActions.Captain.Manage.ReadValue<float>();
         if (_canRotate && !_isBroken)
-        {
-            float input = inputActions.Captain.Manage.ReadValue<float>();
-
+        {           
             if (input > 0) _currentAngle += _angularSpeed * Time.deltaTime;
             else if (input < 0) _currentAngle -= _angularSpeed * Time.deltaTime;
             _currentAngle = Mathf.Clamp(_currentAngle, -1080f, 1080f);
@@ -86,6 +86,13 @@ public class Wheel : MonoBehaviour, IFixable
             canvas.transform.LookAt(Camera.main.transform);
             //canvas.transform.localEulerAngles = new Vector3(0, 0, Mathf.Sin(Time.time * 3f) * 2f);
             slider.value = _currentFix;
+        }
+
+        //Автоматическое возвращение штурвала в начальное состояние
+        if (input == 0)
+        {
+            if (_currentAngle > 0) _currentAngle -= _angularSpeed * Time.deltaTime;
+            if (_currentAngle < 0) _currentAngle += _angularSpeed * Time.deltaTime;
         }
     }
     public float GetCurrentAngle() { return _currentAngle; }

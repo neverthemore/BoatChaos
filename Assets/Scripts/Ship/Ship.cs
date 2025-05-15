@@ -1,3 +1,4 @@
+using ShipGame.Events;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
@@ -7,8 +8,6 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    [SerializeField] private BrokenMastEvent _mastBroken;
-    [SerializeField] private GameOver _gameOver;
     Wheel _wheel;
     UIStatistic UIStatistic;
     CharacterController controller;
@@ -38,18 +37,18 @@ public class Ship : MonoBehaviour
 
     private void OnEnable()
     {
-        _mastBroken.OnMastBroken.AddListener(SetBrokenMastParameters);
-        _mastBroken.OnMastFixed.AddListener(SetNormalMastParameters);
+        EventBus<MastBrokenEvent>.Subscribe(SetBrokenMastParameters);
+        EventBus<MastFixedEvent>.Subscribe(SetNormalMastParameters);
 
-        _gameOver.OnGameOver.AddListener(SinkShip);
+        GameStartEventBus.SubscribeToGameOver(SinkShip);
     }
 
     private void OnDisable()
     {
-        _mastBroken.OnMastBroken.RemoveListener(SetBrokenMastParameters);
-        _mastBroken.OnMastFixed.RemoveListener(SetNormalMastParameters);
+        EventBus<MastBrokenEvent>.Unsubscribe(SetBrokenMastParameters);
+        EventBus<MastFixedEvent>.Unsubscribe(SetNormalMastParameters);
 
-        _gameOver.OnGameOver.RemoveListener(SinkShip);
+        GameStartEventBus.UnsubscribeFromGameOver(SinkShip);
     }
 
     void Start()
@@ -58,13 +57,13 @@ public class Ship : MonoBehaviour
         _wheel = FindAnyObjectByType<Wheel>();
         controller = GetComponent<CharacterController>();
     }
-    private void SetBrokenMastParameters() 
+    private void SetBrokenMastParameters(MastBrokenEvent evt) 
     { 
         _maxIncline *= _brokenMastCoef; 
         _shipSpeed /= _brokenMastCoef;
         Debug.Log("Мачта сломана");
     }
-    private void SetNormalMastParameters() 
+    private void SetNormalMastParameters(MastFixedEvent evt) 
     { 
         _maxIncline /= _brokenMastCoef;
         _shipSpeed *= _brokenMastCoef;

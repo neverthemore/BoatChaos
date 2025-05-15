@@ -3,6 +3,7 @@ using System.Xml.Schema;
 using System.Xml.Serialization;
 using UnityEngine;
 using System.Collections.Generic;
+using ShipGame.Events;
 
 public class EventsManager : MonoBehaviour
 {
@@ -18,20 +19,15 @@ public class EventsManager : MonoBehaviour
 
     bool _isEventActivated = false;
 
-    [SerializeField] GameOver _gameOver;
-
-
-    [SerializeField] private bool _startTimer = false;
-
     private void OnEnable()
     {
-        _gameOver.OnGameStart.AddListener(StartTimer);
-        
+        GameStartEventBus.SubscribeToGameStart(StartTimer);
+
     }
 
     private void OnDisable()
     {
-        _gameOver.OnGameStart.RemoveListener(StartTimer);
+        GameStartEventBus.UnsubscribeFromGameStart(StartTimer);
     }
 
     private void Awake()
@@ -59,9 +55,7 @@ public class EventsManager : MonoBehaviour
             {
                 //e.Activate();
             }
-        }
-
-        if (_startTimer) StartTimer();     
+        }    
     }
 
     private void InitializeEvents()
@@ -81,8 +75,6 @@ public class EventsManager : MonoBehaviour
        
     public void StartChosenEvent(ShipEvent name) 
     {
-        //Debug.Log("Starting event: " + name._EventData._name);
-
         name.Activate();
     }
 

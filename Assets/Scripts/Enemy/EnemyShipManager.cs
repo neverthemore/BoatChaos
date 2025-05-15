@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using ShipGame.Events;
 
 public class EnemyShipManager : MonoBehaviour
 {
@@ -21,12 +22,12 @@ public class EnemyShipManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _enemyEvent.OnEnemyStart.AddListener(SpawnShip);
+        EventBus<EnemyAttackEvent>.Subscribe(SpawnShip);
     }
 
     private void OnDisable()
     {
-        _enemyEvent.OnEnemyStart.RemoveListener(SpawnShip);
+        EventBus<EnemyAttackEvent>.Unsubscribe(SpawnShip);
     }
 
     private void Start()
@@ -52,7 +53,7 @@ public class EnemyShipManager : MonoBehaviour
         }
     }
 
-    private void SpawnShip()
+    private void SpawnShip(EnemyAttackEvent evt)
     {
         _enemyShip = Instantiate(_enemyShipPrefab, _spawnOffset, Quaternion.identity);
         _wasSpawning = true;

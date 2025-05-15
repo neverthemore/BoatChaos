@@ -1,24 +1,34 @@
 using UnityEngine;
 using UnityEngine.Events;
+using ShipGame.Events;
 
 [CreateAssetMenu(menuName = "Events/ Enemy Attack Event")]
 public class EnemyEvent : ShipEvent
 {
-    [Header("Enemy Events")]
-    public UnityEvent OnEnemyStart;
-    public UnityEvent OnEnemyEnd;
 
     //ѕериодически стрел€ют (вызыва€ пробоины)
 
     public override void Activate()
     {
         base.Activate();
-        OnEnemyStart?.Invoke();
+
+        EventBus<EnemyAttackEvent>.Publish(new EnemyAttackEvent { Source = this });
     }
 
     public override void Complete()
     {
         base.Complete();
-        OnEnemyEnd?.Invoke();
+
+        EventBus<EnemyEndAttackEvent>.Publish(new EnemyEndAttackEvent { Source = this });
     }
+}
+
+public class EnemyAttackEvent
+{
+    public EnemyEvent Source;
+}
+
+public class EnemyEndAttackEvent
+{
+    public EnemyEvent Source;
 }

@@ -2,14 +2,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using static Unity.VisualScripting.Member;
+using ShipGame.Events;
 
 public class UI_GameOver : MonoBehaviour
 {
-    //Запускает Game Over/ Victory
-    //Подписка на событие 
-    [SerializeField] GameOver _gameOver;
-
     [SerializeField] private Image _GameOverImage;
     [SerializeField] private Image _VictoryImage;
     [SerializeField] private string _mainMenuSceneName = "Menu";
@@ -23,14 +19,14 @@ public class UI_GameOver : MonoBehaviour
    
     private void OnEnable()
     {
-        _gameOver.OnGameOver.AddListener(GameOver);
-        _gameOver.OnGameVictory.AddListener(Victory);
+        GameStartEventBus.SubscribeToGameOver(GameOver);
+        GameStartEventBus.SubscribeToGameVictory(Victory);
     }
 
     private void OnDisable()
     {
-        _gameOver.OnGameOver.RemoveListener(GameOver);
-        _gameOver.OnGameVictory.RemoveListener(Victory);
+        GameStartEventBus.UnsubscribeFromGameOver(GameOver);
+        GameStartEventBus.UnsubscribeFromGameVictory(Victory);
     }
 
     private void GameOver()
