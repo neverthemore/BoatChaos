@@ -4874,6 +4874,17 @@ MonoBehaviour:
   m_Graph: {fileID: -8832895896891438549, guid: 3f2a6d5ed5e3cb949bf14fb0ca9e888c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 4542243353314722043
+  - rid: 4542243444614759197
+  - rid: 4542243444614759198
+  - rid: 4542243444614759199
+  - rid: 4542243444614759200
+  - rid: 4542243444614759201
+  - rid: 4542243444614759202
+  - rid: 4542243444614759203
+  - rid: 4542243444614759204
+  - rid: 4542243444614759205
+  - rid: 4542243444614759206
+  - rid: 4542243444614759207
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -4887,6 +4898,94 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 968228034}
+    - rid: 4542243444614759197
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 5055611129259545155
+          m_Value1: 4993994803756924515
+        Name: Point 1
+        m_Value: {fileID: 1417150507}
+    - rid: 4542243444614759198
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 16231725197920274306
+          m_Value1: 17876073558984745606
+        Name: Point 2
+        m_Value: {fileID: 4378385286613390728}
+    - rid: 4542243444614759199
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 9110261576095460535
+          m_Value1: 6725153292214853026
+        Name: Point 3
+        m_Value: {fileID: 965241886}
+    - rid: 4542243444614759200
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 208921105910342505
+          m_Value1: 7549174973768769680
+        Name: Point 4
+        m_Value: {fileID: 782366183}
+    - rid: 4542243444614759201
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 11076657998977807358
+          m_Value1: 11527667294039290766
+        Name: Point 5
+        m_Value: {fileID: 1275804197}
+    - rid: 4542243444614759202
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 10617921977572528958
+          m_Value1: 14268857292775367640
+        Name: Point 6
+        m_Value: {fileID: 4378385286613390727}
+    - rid: 4542243444614759203
+      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 18287518818351915383
+          m_Value1: 7437021674269159343
+        Name: DancingSeconds
+        m_Value: 6
+    - rid: 4542243444614759204
+      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 12173180241496189375
+          m_Value1: 9496790119902536509
+        Name: StandTime
+        m_Value: 3
+    - rid: 4542243444614759205
+      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 181433889625132664
+          m_Value1: 10269493982309748584
+        Name: CleanTime
+        m_Value: 4
+    - rid: 4542243444614759206
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Animator, UnityEngine.AnimationModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 17333373824639944016
+          m_Value1: 12396078446922191437
+        Name: Doctor Animator
+        m_Value: {fileID: 4378385286613390729}
+    - rid: 4542243444614759207
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 15482712637770963447
+          m_Value1: 17828386022590622073
+        Name: Rag
+        m_Value: {fileID: 4378385286613390726}
 --- !u!1 &1356835737
 GameObject:
   m_ObjectHideFlags: 0
@@ -8630,6 +8729,26 @@ PrefabInstance:
 --- !u!1 &4378385286613390725 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5961551492858660415, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+  m_PrefabInstance: {fileID: 4378385286613390724}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4378385286613390726 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5017051514227471127, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+  m_PrefabInstance: {fileID: 4378385286613390724}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4378385286613390727 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3834156950312446101, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+  m_PrefabInstance: {fileID: 4378385286613390724}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4378385286613390728 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8391353269328796418, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+  m_PrefabInstance: {fileID: 4378385286613390724}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4378385286613390729 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6780490939133534760, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
   m_PrefabInstance: {fileID: 4378385286613390724}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &4432995333620513537

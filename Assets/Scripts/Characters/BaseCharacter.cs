@@ -21,6 +21,7 @@ public abstract class BaseCharacter : MonoBehaviour
     protected InputSystem_Actions inputActions;                 //Инпуты
     protected InteractionDetector _interactionDetector;         //Для взятия вещей
     protected ItemState _itemState;                             //Ячейка инвентаря
+    private IllnesEvent _illnesEvent;
     #endregion
 
     #region Rotate protected Variables
@@ -71,7 +72,7 @@ public abstract class BaseCharacter : MonoBehaviour
 
     private void OnEnable()
     {
-        EventBus<IllnesStartEvent>.Subscribe(StartIll);        
+        EventBus<IllnesStartEvent>.Subscribe(StartIll);       
     }
     private void OnDisable()
     {
@@ -106,7 +107,6 @@ public abstract class BaseCharacter : MonoBehaviour
     {       
         _itemState.PickUpItem(item);
     }
-
     public virtual void DropItem()
     {
         _itemState.DropItem();
@@ -120,19 +120,30 @@ public abstract class BaseCharacter : MonoBehaviour
     #region Illness
     protected virtual void StartIll(IllnesStartEvent evt)          
     {
+        _illnesEvent = evt.Source;
         int number = evt.Source.numberOfIllCharacter;
         if (CharacterManager.Instance.characters[number].name == _characterName)
         {
-            CharacterManager.Instance.characters[number].behavior.SetVariableValue("IsIll", true);
-            Debug.Log(_characterName + " заболел");
+            CharacterManager.Instance.characters[number].behavior.SetVariableValue("IsIll", true);            
             CharacterManager.Instance.characters[number]._illEffect.Play();
             CharacterManager.Instance.characters[number]._isIll = true;
+            behavior.BlackboardReference.SetVariableValue("IsIll", true);
+            Debug.Log(_characterName + " заболел");
         }
     }
 
     public void Cure()
-    {        
-        Debug.Log(_characterName + " вылечен");         
+    {
+        int number = _illnesEvent.numberOfIllCharacter;
+        if (CharacterManager.Instance.characters[number].name == _characterName)
+        {
+            CharacterManager.Instance.characters[number].behavior.SetVariableValue("IsIll", false);
+            CharacterManager.Instance.characters[number]._illEffect.Stop();
+            CharacterManager.Instance.characters[number]._isIll = false;            
+            EventBus<IllnesEndEvent>.Publish(new IllnesEndEvent { Source = _illnesEvent});
+            behavior.BlackboardReference.SetVariableValue("IsIll", false);
+            Debug.Log(_characterName + " вылечен");
+        }        
     }
     #endregion
 }

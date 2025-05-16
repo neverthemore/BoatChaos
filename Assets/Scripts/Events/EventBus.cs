@@ -4,9 +4,7 @@ namespace ShipGame.Events
 {
     public static class EventBus<TEvent>
     {
-        private static event Action<TEvent> OnEvent;
-        private static event Action OnGameStartEvent;
-
+        private static event Action<TEvent> OnEvent;        
         public static void Subscribe(Action<TEvent> callback) => OnEvent += callback;
         public static void Unsubscribe(Action<TEvent> callback) => OnEvent -= callback;
         public static void Publish(TEvent evt) => OnEvent?.Invoke(evt);

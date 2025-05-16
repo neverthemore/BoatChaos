@@ -12,19 +12,25 @@ public class IllnesEvent : ShipEvent
 
     public override void Activate()
     {
-        numberOfIllCharacter = Random.Range(1, 3);  //Надо сделать, чтобы был 1
+        numberOfIllCharacter = Random.Range(0, 3);  //Надо сделать, чтобы был 1
         base.Activate();
         isAnibodyIll = true;
 
         EventBus<IllnesStartEvent>.Publish(new IllnesStartEvent { Source = this });
     }
+    public void OnEnable()
+    {
+        EventBus<IllnesEndEvent>.Subscribe(EndEvent);
+    }
 
+    protected void EndEvent(IllnesEndEvent evt)
+    {
+        Complete();
+    }
     public override void Complete()
     {
         base.Complete();
-        isAnibodyIll = false;
-
-        EventBus<IllnesEndEvent>.Publish(new IllnesEndEvent { Source = this });
+        isAnibodyIll = false;    
     }    
 }
 

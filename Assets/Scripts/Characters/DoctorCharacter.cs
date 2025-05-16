@@ -17,7 +17,7 @@ public class DoctorCharacter : CrewCharacter
         if (!_isActive) return;
         
         if (inputActions.Crew.Use.triggered) CastRayForHeal();
-    }
+    }    
 
     private void CastRayForHeal()   //Попали в типа - вызвали его хилл
     {

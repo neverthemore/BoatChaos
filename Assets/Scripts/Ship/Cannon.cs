@@ -44,7 +44,7 @@ public class Cannon : MonoBehaviour, IInteractable
         }
         else
         {
-            _animator.SetTrigger("firing");
+            _animator.SetTrigger("firing");         //Стрельба в аниматоре
         }
     }
     public void Fire() //Потом переделать (сделать не паблик)
@@ -62,9 +62,7 @@ public class Cannon : MonoBehaviour, IInteractable
             currentFirePower = Random.Range(_firePower/3, _firePower * 1.5f);
         }
         ball.GetComponent<Ball>()?.FireTheBall(transform.forward, currentFirePower, _enemyCannon);
-        _isFiring = false;
-        
-              
+        _isFiring = false;              
     } 
     
     private void SpawnEffect()

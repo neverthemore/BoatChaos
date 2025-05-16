@@ -28,7 +28,7 @@ MonoBehaviour:
         AuthoringAssetID:
           m_Value0: 9546929812602053293
           m_Value1: 16432061301550057208
-        m_DebugInfo: {fileID: 0}
+        m_DebugInfo: {fileID: 7119293749803920381}
         Root:
           rid: 4542243421639410639
         BlackboardReference:
@@ -8202,7 +8202,7 @@ MonoBehaviour:
   - rid: 4542243398013157809
   - rid: 4542243421639409771
   - rid: 4542243421639409992
-  m_VersionTimestamp: 638829520511742578
+  m_VersionTimestamp: 638830359063280023
   m_CommandBuffer:
     m_Commands: []
   m_RuntimeBlackboardAsset: {fileID: 3315319527071370190}
@@ -8336,7 +8336,7 @@ MonoBehaviour:
           m_Value0: 12297708784759591432
           m_Value1: 6855648200144203339
         Name: Current Point
-        IsExposed: 1
+        IsExposed: 0
         m_IsShared: 0
         m_Value: {fileID: 0}
     - rid: 4542243398013157809
@@ -8346,7 +8346,7 @@ MonoBehaviour:
           m_Value0: 12834171144374877052
           m_Value1: 5360467415018414867
         Name: Last Point
-        IsExposed: 1
+        IsExposed: 0
         m_IsShared: 0
         m_Value: {fileID: 0}
     - rid: 4542243421639409771

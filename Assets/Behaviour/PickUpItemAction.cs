@@ -15,10 +15,16 @@ public partial class PickUpItemAction : Action
         BaseItem item = Item.Value;        
         GameObject character = Agent.Value;
         character.GetComponent<ItemState>().PickUpItem(item);
-        
-        item.Interact(character);
-        item.PickUp();
-        return Status.Running;        
+
+        if (item != null)
+        {
+            item.Interact(character);
+            return Status.Success;
+        }
+        else
+        {
+            return Status.Failure;
+        }
     }
 
     protected override Status OnUpdate()

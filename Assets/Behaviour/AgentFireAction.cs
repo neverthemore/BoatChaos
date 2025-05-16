@@ -16,7 +16,7 @@ public partial class AgentFireAction : Action
         Cannon cannon = Cannon.Value.GetComponent<Cannon>();
         GameObject interactor = Agent.Value;
         cannon.Interact(interactor);
-        cannon.Fire();
+        cannon.Interact(interactor);
         return Status.Running;
     }
 
