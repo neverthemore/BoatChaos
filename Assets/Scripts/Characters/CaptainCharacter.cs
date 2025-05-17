@@ -3,13 +3,17 @@ using UnityEngine.InputSystem;
 
 public class CaptainCharacter : BaseCharacter
 {    
-    [SerializeField] Wheel wheel;   
+    [SerializeField] Wheel wheel;
 
     protected override void Update()
     {
         base.Update();
         RotateCamera();
-        if (!_isActive) return;
+        if (!_isActive || IsIll) return;
+        if (inputActions.Captain.Drink.triggered)
+        {
+            Drink();
+        }
     }
     protected override void RotateCamera()  //“ут что-то не работает
     {
@@ -20,7 +24,8 @@ public class CaptainCharacter : BaseCharacter
     }
     protected override void Start()
     {
-        base.Start();        
+        base.Start();
+        _itemTransform.gameObject.SetActive(false);
     }
     public override void Activate()
     {
@@ -31,5 +36,17 @@ public class CaptainCharacter : BaseCharacter
     {
         base.Deactivate();
         wheel.SetRotation(false);        
+    }
+    public void SetUnActiveRum()
+    {
+        _itemTransform.gameObject.SetActive(false);
+    }
+    public void SetActiveRum()
+    {
+        _itemTransform.gameObject.SetActive(true);
+    }
+    protected void Drink()
+    {        
+        animator.SetTrigger("drinking");
     }
 }

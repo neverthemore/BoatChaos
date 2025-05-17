@@ -22,6 +22,7 @@ public abstract class BaseCharacter : MonoBehaviour
     protected InteractionDetector _interactionDetector;         //Для взятия вещей
     protected ItemState _itemState;                             //Ячейка инвентаря
     private IllnesEvent _illnesEvent;
+    protected Animator animator;
     #endregion
 
     #region Rotate protected Variables
@@ -40,6 +41,7 @@ public abstract class BaseCharacter : MonoBehaviour
     {
         Cursor.visible = false;
 
+        animator = GetComponent<Animator>();
         behavior = GetComponent<BehaviorGraphAgent>();
         cmCamera = GetComponentInChildren<CinemachineCamera>();       
         _interactionDetector = gameObject.AddComponent<InteractionDetector>();
@@ -68,12 +70,7 @@ public abstract class BaseCharacter : MonoBehaviour
         {
             _itemState.DropItem();
         }        
-    }
-
-    public void UseItem()
-    {
-        _itemTransform.gameObject.GetComponentInChildren<BaseItem>()?.gameObject.SetActive(false);
-    }
+    }    
     private void OnEnable()
     {
         EventBus<IllnesStartEvent>.Subscribe(StartIll);       

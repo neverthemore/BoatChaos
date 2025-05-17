@@ -117,6 +117,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drink"",
+                    ""type"": ""Button"",
+                    ""id"": ""eb4bd993-3331-4ecf-a296-fe7b4907d7db"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CircleMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8d220f9f-9a47-45e5-9c6e-8a96af6b615c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drink"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -446,6 +466,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Captain_Manage = m_Captain.FindAction("Manage", throwIfNotFound: true);
         m_Captain_Look = m_Captain.FindAction("Look", throwIfNotFound: true);
         m_Captain_CircleMenu = m_Captain.FindAction("CircleMenu", throwIfNotFound: true);
+        m_Captain_Drink = m_Captain.FindAction("Drink", throwIfNotFound: true);
         // Crew
         m_Crew = asset.FindActionMap("Crew", throwIfNotFound: true);
         m_Crew_Leave = m_Crew.FindAction("Leave", throwIfNotFound: true);
@@ -542,6 +563,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Captain_Manage;
     private readonly InputAction m_Captain_Look;
     private readonly InputAction m_Captain_CircleMenu;
+    private readonly InputAction m_Captain_Drink;
     /// <summary>
     /// Provides access to input actions defined in input action map "Captain".
     /// </summary>
@@ -565,6 +587,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Captain/CircleMenu".
         /// </summary>
         public InputAction @CircleMenu => m_Wrapper.m_Captain_CircleMenu;
+        /// <summary>
+        /// Provides access to the underlying input action "Captain/Drink".
+        /// </summary>
+        public InputAction @Drink => m_Wrapper.m_Captain_Drink;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -600,6 +626,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @CircleMenu.started += instance.OnCircleMenu;
             @CircleMenu.performed += instance.OnCircleMenu;
             @CircleMenu.canceled += instance.OnCircleMenu;
+            @Drink.started += instance.OnDrink;
+            @Drink.performed += instance.OnDrink;
+            @Drink.canceled += instance.OnDrink;
         }
 
         /// <summary>
@@ -620,6 +649,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @CircleMenu.started -= instance.OnCircleMenu;
             @CircleMenu.performed -= instance.OnCircleMenu;
             @CircleMenu.canceled -= instance.OnCircleMenu;
+            @Drink.started -= instance.OnDrink;
+            @Drink.performed -= instance.OnDrink;
+            @Drink.canceled -= instance.OnDrink;
         }
 
         /// <summary>
@@ -993,6 +1025,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCircleMenu(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Drink" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDrink(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Crew" which allows adding and removing callbacks.
