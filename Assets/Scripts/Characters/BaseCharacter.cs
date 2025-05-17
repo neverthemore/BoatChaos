@@ -31,7 +31,7 @@ public abstract class BaseCharacter : MonoBehaviour
     #endregion
 
     #region Illness Variables
-    protected bool _isIll;
+    public bool _isIll;
     public bool IsIll { get { return _isIll; } }      
     [SerializeField]VisualEffect _illEffect;
     #endregion    
@@ -70,6 +70,10 @@ public abstract class BaseCharacter : MonoBehaviour
         }        
     }
 
+    public void UseItem()
+    {
+        _itemTransform.gameObject.GetComponentInChildren<BaseItem>()?.gameObject.SetActive(false);
+    }
     private void OnEnable()
     {
         EventBus<IllnesStartEvent>.Subscribe(StartIll);       

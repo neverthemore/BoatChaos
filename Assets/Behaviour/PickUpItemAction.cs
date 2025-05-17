@@ -18,7 +18,7 @@ public partial class PickUpItemAction : Action
 
         if (item != null)
         {
-            item.Interact(character);
+            item.Interact(character);            
             return Status.Success;
         }
         else

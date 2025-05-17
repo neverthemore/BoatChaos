@@ -921,6 +921,11 @@ MonoBehaviour:
   - {fileID: 1010249076}
   - {fileID: 1234390908}
   - {fileID: 1308120619}
+--- !u!4 &113256756 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2592276697496308717, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+  m_PrefabInstance: {fileID: 4378385286613390724}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &117229063
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,6 +1187,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 207326790}
     m_Modifications:
+    - target: {fileID: 6297725396475424560, guid: e84e54cd1c89b9f4199052c1d1687b5e, type: 3}
+      propertyPath: Name
+      value: CannonBall
+      objectReference: {fileID: 0}
     - target: {fileID: 7120720433450771250, guid: e84e54cd1c89b9f4199052c1d1687b5e, type: 3}
       propertyPath: m_Name
       value: CannonBall (1)
@@ -3474,6 +3483,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 207326790}
     m_Modifications:
+    - target: {fileID: 6297725396475424560, guid: e84e54cd1c89b9f4199052c1d1687b5e, type: 3}
+      propertyPath: Name
+      value: CannonBall
+      objectReference: {fileID: 0}
     - target: {fileID: 7120720433450771250, guid: e84e54cd1c89b9f4199052c1d1687b5e, type: 3}
       propertyPath: m_Name
       value: CannonBall (2)
@@ -5099,6 +5112,37 @@ RectTransform:
   m_AnchoredPosition: {x: 198.0651, y: -75.9669}
   m_SizeDelta: {x: 379.13, y: 151.9338}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1369163070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369163071}
+  m_Layer: 0
+  m_Name: Point (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1369163071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369163070}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.16, y: 5.91, z: -1.48}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1389241003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1373272579 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 405177746169205500, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
@@ -5728,6 +5772,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 207326790}
     m_Modifications:
+    - target: {fileID: 6297725396475424560, guid: e84e54cd1c89b9f4199052c1d1687b5e, type: 3}
+      propertyPath: Name
+      value: CannonBall
+      objectReference: {fileID: 0}
     - target: {fileID: 7120720433450771250, guid: e84e54cd1c89b9f4199052c1d1687b5e, type: 3}
       propertyPath: m_Name
       value: CannonBall (3)
@@ -6968,6 +7016,10 @@ MonoBehaviour:
   - rid: 4542243396473848562
   - rid: 4542243396473848563
   - rid: 4542243396473848564
+  - rid: 4542243466112664196
+  - rid: 4542243466112664197
+  - rid: 4542243467226775915
+  - rid: 4542243467226776108
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -6987,15 +7039,15 @@ MonoBehaviour:
         GUID:
           m_Value0: 1794086265714128784
           m_Value1: 4094464489006866656
-        Name: Point 1
-        m_Value: {fileID: 1417150507}
+        Name: UpPoint
+        m_Value: {fileID: 1369163071}
     - rid: 4542243396473848562
       type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 9649599142403198763
           m_Value1: 5486828469248078419
-        Name: Point 2
+        Name: DownPoint
         m_Value: {fileID: 1275804197}
     - rid: 4542243396473848563
       type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
@@ -7003,8 +7055,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 2969736856987981971
           m_Value1: 7291901078399324003
-        Name: Point 3
-        m_Value: {fileID: 965241886}
+        Name: Point
+        m_Value: {fileID: 1417150507}
     - rid: 4542243396473848564
       type: {class: 'BlackboardVariable`1[[UnityEngine.Animator, UnityEngine.AnimationModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -7013,6 +7065,38 @@ MonoBehaviour:
           m_Value1: 18018761636634056075
         Name: Gunner Animator
         m_Value: {fileID: 1852307192}
+    - rid: 4542243466112664196
+      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 5407481333919392708
+          m_Value1: 10688632662192363377
+        Name: RunningSpeed
+        m_Value: 4
+    - rid: 4542243466112664197
+      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 3945347545583618202
+          m_Value1: 5847122816309058563
+        Name: WalkingSpeed
+        m_Value: 2
+    - rid: 4542243467226775915
+      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4222080199267651670
+          m_Value1: 4346283903171450811
+        Name: StandTime
+        m_Value: 4
+    - rid: 4542243467226776108
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 16012980734272867888
+          m_Value1: 13866481022590142848
+        Name: Ill Point
+        m_Value: {fileID: 1888810180}
 --- !u!95 &1852307192 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1484909664889614449, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
@@ -7125,6 +7209,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 207326790}
     m_Modifications:
+    - target: {fileID: 6297725396475424560, guid: e84e54cd1c89b9f4199052c1d1687b5e, type: 3}
+      propertyPath: Name
+      value: CannonBall
+      objectReference: {fileID: 0}
     - target: {fileID: 7120720433450771250, guid: e84e54cd1c89b9f4199052c1d1687b5e, type: 3}
       propertyPath: m_Name
       value: CannonBall (4)
@@ -7552,6 +7640,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 207326790}
     m_Modifications:
+    - target: {fileID: 6297725396475424560, guid: e84e54cd1c89b9f4199052c1d1687b5e, type: 3}
+      propertyPath: Name
+      value: CannonBall
+      objectReference: {fileID: 0}
     - target: {fileID: 7120720433450771250, guid: e84e54cd1c89b9f4199052c1d1687b5e, type: 3}
       propertyPath: m_Name
       value: CannonBall (5)
@@ -8561,6 +8653,10 @@ PrefabInstance:
       propertyPath: _illnessEvent
       value: 
       objectReference: {fileID: 11400000, guid: 5d6cd77f6de768c4b82e94dd6bf462cf, type: 2}
+    - target: {fileID: 541145774945693725, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: _itemTransform
+      value: 
+      objectReference: {fileID: 113256756}
     - target: {fileID: 557572228881534714, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8621,9 +8717,21 @@ PrefabInstance:
       propertyPath: _illnessEvent
       value: 
       objectReference: {fileID: 11400000, guid: 5d6cd77f6de768c4b82e94dd6bf462cf, type: 2}
+    - target: {fileID: 1323920889521209508, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: Name
+      value: CannonBall
+      objectReference: {fileID: 0}
     - target: {fileID: 1462432767539882219, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572166017671070334, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993131271456781325, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2097473093631343381, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_TagString
@@ -8636,6 +8744,14 @@ PrefabInstance:
     - target: {fileID: 3194341575801841029, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_Name
       value: Gunner
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210772570905358893, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343916524664867464, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3369585413510488634, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_Enabled
@@ -8653,9 +8769,17 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4847731801744570872, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5255352951199698843, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419439357819803033, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6607262468902315901, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_AnchorMax.y
@@ -8685,6 +8809,9 @@ PrefabInstance:
     - {fileID: 8169059846958001802, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 9080047088425442189, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1369163071}
     - targetCorrespondingSourceObject: {fileID: 9080047088425442189, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1888810180}

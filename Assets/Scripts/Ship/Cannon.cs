@@ -44,6 +44,7 @@ public class Cannon : MonoBehaviour, IInteractable
         }
         else
         {
+            interactor.GetComponent<Animator>()?.SetTrigger("use");
             _animator.SetTrigger("firing");         //Стрельба в аниматоре
         }
     }
