@@ -60,7 +60,7 @@ public abstract class BaseCharacter : MonoBehaviour
         if (Sensitivity != PauseMenu.MouseSense) Sensitivity = PauseMenu.MouseSense;
 
         if (!_isActive) return;
-
+        
         if (inputActions.Crew.Use.triggered)
         {
             _interactionDetector.SendARay();

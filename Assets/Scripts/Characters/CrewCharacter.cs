@@ -62,8 +62,7 @@ public class CrewCharacter : BaseCharacter
         base.Update();        
         if (_isActive)
         {            
-            Move();
-            AnimationsOfMoving();
+            Move();            
             RotateCamera();
         }          
     }    
@@ -88,14 +87,12 @@ public class CrewCharacter : BaseCharacter
             new Vector3(direction.x, 0, direction.y)) * _speedOfMoving * Time.deltaTime;
 
         Vector3 totalMove = characterMove;
-        totalMove.y += _jumpUp;
+        if (totalMove != Vector3.zero)
+            animator.SetBool("walking", true);
+        else
+            animator.SetBool("walking", false);
+            totalMove.y += _jumpUp;
         if (direction != Vector2.zero)
             controller.Move(totalMove);         
-    }
-    private void AnimationsOfMoving()
-    {
-        if (inputActions.Crew.Move.ReadValue<Vector2>() == Vector2.zero)
-            animator.SetBool("walking", false);
-        animator.SetBool("walking", true);
-    }
+    }    
 }
