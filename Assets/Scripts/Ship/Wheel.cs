@@ -29,7 +29,6 @@ public class Wheel : MonoBehaviour, IFixable
     {
         EventBus<WheelBrokenEvent>.Subscribe(SetBrokenWheelParameters);
         EventBus<WheelFixedEvent>.Subscribe(SetNormalWheelParameters);
-
     }
 
     private void OnDisable()

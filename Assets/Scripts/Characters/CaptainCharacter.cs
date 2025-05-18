@@ -8,12 +8,17 @@ public class CaptainCharacter : BaseCharacter
     protected override void Update()
     {
         base.Update();
-        RotateCamera();
+        RotateCamera();        
         if (!_isActive || IsIll) return;
+        RotateWheelAnim();
         if (inputActions.Captain.Drink.triggered)
         {
             Drink();
         }
+    }
+    protected void RotateWheelAnim()
+    {
+        animator.SetFloat("wheel", inputActions.Captain.Manage.ReadValue<float>());
     }
     protected override void RotateCamera()  //“ут что-то не работает
     {
