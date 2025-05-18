@@ -70,6 +70,14 @@ public abstract class BaseCharacter : MonoBehaviour
         {
             _itemState.DropItem();
         }        
+        if (IsIll)
+        {
+            animator.SetBool("illnes", true);
+        }
+        else
+        {
+            animator.SetBool("illnes", false);
+        }
     }    
     private void OnEnable()
     {
