@@ -35,6 +35,8 @@ public class MechanicCharacter : CrewCharacter
 
         if (GetItem()?.Name == "Hammer")
         {
+            if (isAttackTriggered)
+                animator.SetTrigger("Use");
             bool isFixableHit = CastRayForFixAndCheck();
             behavior.BlackboardReference.SetVariableValue("withHammer", true);
             if (isFixableHit)
@@ -45,12 +47,14 @@ public class MechanicCharacter : CrewCharacter
                     if (isAttackPressed)
                     {
                         _clampedSeconds += Time.deltaTime;
+                        animator.SetBool("use", true);
                     }
                     // При достижении времени чиним
                     if (_clampedSeconds >= _secondsForFix)
                     {
                         _currentFixable.StartFix();
                         _clampedSeconds = 0f;
+                        animator.SetBool("use", false);
                     }
                 }
                 // Обработка ShipMast (одиночные нажатия)
@@ -58,6 +62,7 @@ public class MechanicCharacter : CrewCharacter
                 {
                     if (inputActions.Crew.Attack.triggered)
                     {
+                        animator.SetTrigger("Use");
                         _currentFixable.StartFix();
                         //Debug.Log("Фикс мачты");
                     }
@@ -68,7 +73,7 @@ public class MechanicCharacter : CrewCharacter
                     //Debug.Log("Навелись на протечку");
                     if (inputActions.Crew.Use.triggered && !_wasBreachOpened)
                     {
-
+                        animator.SetTrigger("Use");
                         //Debug.Log("Пытаемся чинить");
                         //Открываем UI
                         _currentFixable.StartFix();
@@ -82,6 +87,7 @@ public class MechanicCharacter : CrewCharacter
                             UIBranch.Instance.FixBreach(GetCurrentObj()); 
                         }
                         _wasBreachOpened = false;
+                        animator.SetTrigger("Use");
                     }
                 }
             }

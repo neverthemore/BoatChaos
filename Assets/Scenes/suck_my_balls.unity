@@ -8011,6 +8011,7 @@ MonoBehaviour:
   m_Graph: {fileID: -7647950518982197542, guid: d3a09401ff28c894cba8d51f388285c8, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 4542243353314722057
+  - rid: 4542243512097178147
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -8024,6 +8025,19 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1406853721}
+    - rid: 4542243512097178147
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Animator, UnityEngine.AnimationModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 15861230312591582683
+          m_Value1: 6501884284012983260
+        Name: Captain Animator
+        m_Value: {fileID: 679947871774649578}
+--- !u!95 &679947871774649578 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 249136158961746708, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
+  m_PrefabInstance: {fileID: 4378385286613390724}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &888810286045220019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8752,15 +8766,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 787564675866155601, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.71
+      value: 0.59
       objectReference: {fileID: 0}
     - target: {fileID: 787564675866155601, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.71
+      value: 0.59
       objectReference: {fileID: 0}
     - target: {fileID: 787564675866155601, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.71
+      value: 0.59
       objectReference: {fileID: 0}
     - target: {fileID: 1021404973350965870, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
       propertyPath: m_IsTrigger
