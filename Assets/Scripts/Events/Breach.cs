@@ -1,14 +1,18 @@
 using System.Collections;
+using UnityEditor.Rendering.Universal;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.VFX;
 
-public class Breach : MonoBehaviour, IFixable
+public class Breach : MonoBehaviour, IFixable, IPromtable
 {
     //Весит на объекте
     [SerializeField] private float _damage = 1f;
     [SerializeField] private float _inSeconds = 5f;
 
     private VisualEffect _effect;
+    private DecalProjector _projector;
+    private Canvas promtCanvas;
 
     private float _currentCooldown = 0;
 
@@ -22,6 +26,10 @@ public class Breach : MonoBehaviour, IFixable
     {
         _effect = GetComponentInChildren<VisualEffect>();
         _effect.Stop();
+        _projector = GetComponentInChildren<DecalProjector>();
+        _projector.enabled = false;
+        promtCanvas = GetComponentInChildren<Canvas>();
+        HidePromt();
     }
 
     private void Update()
@@ -73,7 +81,9 @@ public class Breach : MonoBehaviour, IFixable
         _isActive = true;
         _currentCooldown = 0;
         _effect.Play();
-        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        _projector.enabled = true;
+        //gameObject.GetComponent<MeshRenderer>().enabled = true;
+        ShowPromt();
         Debug.Log("Протечка");
     }
 
@@ -81,7 +91,25 @@ public class Breach : MonoBehaviour, IFixable
     {
         _isActive = false;
         _effect.Stop();
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        _projector.enabled = false;
+        //gameObject.GetComponent<MeshRenderer>().enabled = false;
+        HidePromt();
         Debug.Log("Починили");
+    }
+
+    public void ShowPromt()
+    {
+        promtCanvas?.gameObject?.SetActive(true);
+    }
+
+    public void HidePromt()
+    {
+        //Скрываем канвас
+        promtCanvas?.gameObject?.SetActive(false);
+    }
+
+    public bool NeedToShowPromt()
+    {
+        return _isActive;
     }
 }
