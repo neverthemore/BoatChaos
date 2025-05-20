@@ -55,6 +55,7 @@ public class ShipMast : MonoBehaviour, IFixable
     private void BreakTheMast(MastBrokenEvent evt)
     {
         _isBroken = true;
+        slider.maxValue = evt.Source.Amount_For_Fix;
         ShowPromt();
         Debug.Log("Мачта сломана");
     }

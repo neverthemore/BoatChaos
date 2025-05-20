@@ -32,7 +32,7 @@ public class BrokenWheelEvent : ShipEvent
         base.Complete();
         _currentFix = 0;
 
-        EventBus<WheelBrokenEvent>.Publish(new WheelBrokenEvent { Source = this });
+        EventBus<WheelFixedEvent>.Publish(new WheelFixedEvent { Source = this });
     }
 
 };

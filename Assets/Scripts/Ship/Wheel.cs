@@ -88,7 +88,7 @@ public class Wheel : MonoBehaviour, IFixable
         }
 
         //Автоматическое возвращение штурвала в начальное состояние
-        if (input == 0)
+        if (input == 0 || _isBroken)
         {
             if (_currentAngle > 0) _currentAngle -= _angularSpeed * Time.deltaTime;
             if (_currentAngle < 0) _currentAngle += _angularSpeed * Time.deltaTime;
