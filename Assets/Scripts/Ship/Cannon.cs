@@ -45,13 +45,13 @@ public class Cannon : MonoBehaviour, IInteractable
         else
         {
             interactor.GetComponent<Animator>()?.SetTrigger("use");
+            _ballLoaded = false;
             _animator.SetTrigger("firing");         //Стрельба в аниматоре
         }
     }
     public void Fire() //Потом переделать (сделать не паблик)
     {
         _ballLoaded = false;
-
         GameObject ball = Instantiate(_ballPrefab, _ballAttackPoint);
         SpawnEffect();
         PlayAudio();

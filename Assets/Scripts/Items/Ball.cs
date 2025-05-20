@@ -26,9 +26,9 @@ public class Ball : BaseItem{
         base.DropItem();
     }    
     public override void UseItem()
-    {
-        //Удаляем нахуй этот объект (!!!не проебать ошибки!!!)
+    {        
         Destroy(gameObject);
+        Debug.Log("Удалили ядро");
     }
     public void SpawnObject(Transform placement)
     {

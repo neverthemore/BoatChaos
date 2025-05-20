@@ -866,9 +866,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _allEvents:
   - {fileID: 11400000, guid: 9ce682475e61fe34ba74a3b87c3f3cf9, type: 2}
-  - {fileID: 11400000, guid: f9c40afd81a060d4290eaf7100439352, type: 2}
-  - {fileID: 11400000, guid: 5d6cd77f6de768c4b82e94dd6bf462cf, type: 2}
-  - {fileID: 11400000, guid: a1711da725b35654585928bdfca26af3, type: 2}
   timerDuration: 10
 --- !u!4 &109383244
 Transform:
@@ -4918,16 +4915,6 @@ MonoBehaviour:
   m_Graph: {fileID: -8832895896891438549, guid: 3f2a6d5ed5e3cb949bf14fb0ca9e888c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 4542243353314722043
-  - rid: 4542243444614759197
-  - rid: 4542243444614759198
-  - rid: 4542243444614759199
-  - rid: 4542243444614759200
-  - rid: 4542243444614759201
-  - rid: 4542243444614759202
-  - rid: 4542243444614759203
-  - rid: 4542243444614759204
-  - rid: 4542243444614759205
-  - rid: 4542243444614759206
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -4941,86 +4928,6 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 968228034}
-    - rid: 4542243444614759197
-      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 5055611129259545155
-          m_Value1: 4993994803756924515
-        Name: Point 1
-        m_Value: {fileID: 1888810180}
-    - rid: 4542243444614759198
-      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 16231725197920274306
-          m_Value1: 17876073558984745606
-        Name: Point 2
-        m_Value: {fileID: 418507812}
-    - rid: 4542243444614759199
-      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 9110261576095460535
-          m_Value1: 6725153292214853026
-        Name: Point 3
-        m_Value: {fileID: 465081213}
-    - rid: 4542243444614759200
-      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 208921105910342505
-          m_Value1: 7549174973768769680
-        Name: Point 4
-        m_Value: {fileID: 275461888}
-    - rid: 4542243444614759201
-      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 11076657998977807358
-          m_Value1: 11527667294039290766
-        Name: Point 5
-        m_Value: {fileID: 265609684}
-    - rid: 4542243444614759202
-      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 10617921977572528958
-          m_Value1: 14268857292775367640
-        Name: Dance Point
-        m_Value: {fileID: 1689556028}
-    - rid: 4542243444614759203
-      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 18287518818351915383
-          m_Value1: 7437021674269159343
-        Name: DancingSeconds
-        m_Value: 6
-    - rid: 4542243444614759204
-      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12173180241496189375
-          m_Value1: 9496790119902536509
-        Name: StandTime
-        m_Value: 3
-    - rid: 4542243444614759205
-      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 181433889625132664
-          m_Value1: 10269493982309748584
-        Name: CleanTime
-        m_Value: 4
-    - rid: 4542243444614759206
-      type: {class: 'BlackboardVariable`1[[UnityEngine.Animator, UnityEngine.AnimationModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 17333373824639944016
-          m_Value1: 12396078446922191437
-        Name: Doctor Animator
-        m_Value: {fileID: 4378385286613390729}
 --- !u!1 &1356835737
 GameObject:
   m_ObjectHideFlags: 0
@@ -7069,10 +6976,6 @@ MonoBehaviour:
   - rid: 4542243396473848562
   - rid: 4542243396473848563
   - rid: 4542243396473848564
-  - rid: 4542243466112664196
-  - rid: 4542243466112664197
-  - rid: 4542243467226775915
-  - rid: 4542243467226776108
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -7092,7 +6995,7 @@ MonoBehaviour:
         GUID:
           m_Value0: 1794086265714128784
           m_Value1: 4094464489006866656
-        Name: UpPoint
+        Name: Point 1
         m_Value: {fileID: 1369163071}
     - rid: 4542243396473848562
       type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
@@ -7100,7 +7003,7 @@ MonoBehaviour:
         GUID:
           m_Value0: 9649599142403198763
           m_Value1: 5486828469248078419
-        Name: DownPoint
+        Name: Point 2
         m_Value: {fileID: 1275804197}
     - rid: 4542243396473848563
       type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
@@ -7108,7 +7011,7 @@ MonoBehaviour:
         GUID:
           m_Value0: 2969736856987981971
           m_Value1: 7291901078399324003
-        Name: Point
+        Name: Point 3
         m_Value: {fileID: 1417150507}
     - rid: 4542243396473848564
       type: {class: 'BlackboardVariable`1[[UnityEngine.Animator, UnityEngine.AnimationModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
@@ -7118,38 +7021,6 @@ MonoBehaviour:
           m_Value1: 18018761636634056075
         Name: Gunner Animator
         m_Value: {fileID: 1852307192}
-    - rid: 4542243466112664196
-      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 5407481333919392708
-          m_Value1: 10688632662192363377
-        Name: RunningSpeed
-        m_Value: 4
-    - rid: 4542243466112664197
-      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 3945347545583618202
-          m_Value1: 5847122816309058563
-        Name: WalkingSpeed
-        m_Value: 2
-    - rid: 4542243467226775915
-      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4222080199267651670
-          m_Value1: 4346283903171450811
-        Name: StandTime
-        m_Value: 4
-    - rid: 4542243467226776108
-      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 16012980734272867888
-          m_Value1: 13866481022590142848
-        Name: Ill Point
-        m_Value: {fileID: 1888810180}
 --- !u!95 &1852307192 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1484909664889614449, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
@@ -8949,11 +8820,6 @@ PrefabInstance:
 --- !u!1 &4378385286613390725 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5961551492858660415, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
-  m_PrefabInstance: {fileID: 4378385286613390724}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &4378385286613390729 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6780490939133534760, guid: 1131b93cddcb10d4a97a3295ef977566, type: 3}
   m_PrefabInstance: {fileID: 4378385286613390724}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &4432995333620513537

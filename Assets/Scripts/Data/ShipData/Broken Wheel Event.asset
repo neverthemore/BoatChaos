@@ -13,10 +13,4 @@ MonoBehaviour:
   m_Name: Broken Wheel Event
   m_EditorClassIdentifier: 
   _EventData: {fileID: 11400000, guid: a3a8d4120bf7c3849a06f0716bf2b41f, type: 2}
-  OnWheelBroken:
-    m_PersistentCalls:
-      m_Calls: []
-  OnWheelFixed:
-    m_PersistentCalls:
-      m_Calls: []
-  Amount_For_Fix: 4
+  Amount_For_Fix: 3

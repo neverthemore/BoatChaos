@@ -85,14 +85,6 @@ public abstract class BaseCharacter : MonoBehaviour
             animator.SetBool("illnes", false);
         }
     }    
-    private void OnEnable()
-    {
-        EventBus<IllnesStartEvent>.Subscribe(StartIll);       
-    }
-    private void OnDisable()
-    {
-        EventBus<IllnesStartEvent>.Unsubscribe(StartIll);        
-    }
 
     protected virtual void RotateCamera()
     {
@@ -133,29 +125,28 @@ public abstract class BaseCharacter : MonoBehaviour
     }
 
     #region Illness
-    protected virtual void StartIll(IllnesStartEvent evt)          
+    public virtual void StartIll()          
     {
-        _illnesEvent = evt.Source;
-        int number = evt.Source.numberOfIllCharacter;
-        if (CharacterManager.Instance.characters[number].name == _characterName)
-        {
-            CharacterManager.Instance.characters[number].behavior.SetVariableValue("IsIll", true);            
-            CharacterManager.Instance.characters[number]._illEffect.Play();
-            CharacterManager.Instance.characters[number]._isIll = true;
+        //_illnesEvent = evt.Source;
+        //int number = evt.Source.numberOfIllCharacter;
+        //if (CharacterManager.Instance.characters[number]._characterName == _characterName)
+        //{           
+            _illEffect.Play();
+            _isIll = true;
             behavior.BlackboardReference.SetVariableValue("IsIll", true);
             Debug.Log(_characterName + " заболел");
-        }
+        //}
     }
 
     public void Cure()
     {
-        int number = _illnesEvent.numberOfIllCharacter;
-        if (CharacterManager.Instance.characters[number].name == _characterName)
+        //int number = _illnesEvent.numberOfIllCharacter;
+        if (_isIll)
         {
-            CharacterManager.Instance.characters[number].behavior.SetVariableValue("IsIll", false);
-            CharacterManager.Instance.characters[number]._illEffect.Stop();
-            CharacterManager.Instance.characters[number]._isIll = false;            
-            EventBus<IllnesEndEvent>.Publish(new IllnesEndEvent { Source = _illnesEvent});
+            behavior.SetVariableValue("IsIll", false);
+            _illEffect.Stop();
+            _isIll = false;            
+            EventBus<IllnesEndEvent>.Publish(new IllnesEndEvent { Source = _illnesEvent});  //По хорошему направить эту инфу в CharacterManager, чтобы он решал, прекращаестя ивент или нет
             behavior.BlackboardReference.SetVariableValue("IsIll", false);
             Debug.Log(_characterName + " вылечен");
         }        

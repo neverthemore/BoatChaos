@@ -1,3 +1,4 @@
+using ShipGame.Events;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
@@ -7,6 +8,15 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] public BaseCharacter[] characters;
 
     private BaseCharacter _currentCharacter;
+
+    private void OnEnable()
+    {
+        EventBus<IllnesStartEvent>.Subscribe(StartIllCharacter);
+    }
+    private void OnDisable()
+    {
+        EventBus<IllnesStartEvent>.Unsubscribe(StartIllCharacter);
+    }
 
     public BaseCharacter FindActive()
     {
@@ -41,5 +51,10 @@ public class CharacterManager : MonoBehaviour
         //ѕроверка на то, чтобы не выйти за пределы массива?
         _currentCharacter = characters[index];
         _currentCharacter.Activate();
-    }    
+    }  
+    
+    private void StartIllCharacter(IllnesStartEvent evt)
+    {
+        characters[evt.Source.numberOfIllCharacter].StartIll();
+    }
 }

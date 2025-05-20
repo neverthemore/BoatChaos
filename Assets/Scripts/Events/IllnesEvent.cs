@@ -12,7 +12,8 @@ public class IllnesEvent : ShipEvent
 
     public override void Activate()
     {
-        numberOfIllCharacter = Random.Range(0, 2);  //Надо сделать, чтобы был 1
+        numberOfIllCharacter = Random.Range(0, 3);
+        Debug.Log(numberOfIllCharacter);
         base.Activate();
         isAnibodyIll = true;
 
