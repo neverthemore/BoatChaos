@@ -52,16 +52,16 @@ public class DialogueSystem : MonoBehaviour
     }
 
     void Start()
-    {    
-        if (startOnAwake && dialogueLines.Length > 0)
-            StartDialogue(dialogueLines);
+    {
+        // if (startOnAwake && dialogueLines.Length > 0)
+        //    StartDialogue(dialogueLines);
     }
 
-    public void StartDialogue(string[] lines)
+    public void StartDialogue()
     {
         Cursor.lockState = CursorLockMode.None;
         sentences.Clear();
-        foreach (string line in lines)
+        foreach (string line in dialogueLines)
             sentences.Enqueue(line);
 
         ToggleDialoguePanel(true);
