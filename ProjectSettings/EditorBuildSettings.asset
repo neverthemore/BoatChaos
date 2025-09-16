@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
+    path: Assets/_project/Scenes/Menu.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/suck_my_balls.unity
+    path: Assets/_project/Scenes/suck_my_balls.unity
     guid: 5c7c48e33bee48d4081d70a5dcfffa29
   - enabled: 1
-    path: Assets/Scenes/Titles.unity
+    path: Assets/_project/Scenes/Titles.unity
     guid: 9c91a0ce93938024ca65179bfc2a62a7
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 99f9c9493070a9d4c979a8fec7c5a8d3, type: 2}
