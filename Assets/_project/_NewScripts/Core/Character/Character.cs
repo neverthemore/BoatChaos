@@ -52,7 +52,8 @@ namespace BoatGame.Core.Character
             }
             else
             {
-
+                //Если нет, то работает AI
+                //В AI можно попробовать интегрировать паттерн стратегия
             }
             _brain.Update(Time.deltaTime);
         }
